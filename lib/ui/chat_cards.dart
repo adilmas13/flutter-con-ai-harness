@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 
 import '../data/schedule.dart';
 import '../stores/app_store.dart';
@@ -30,7 +31,7 @@ class ChatCard extends StatelessWidget {
       AssistantText(:final text, :final fromRecording) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SelectableText(text, style: const TextStyle(fontSize: 15.5, height: 1.5)),
+            AssistantMarkdown(text),
             if (fromRecording)
               Padding(
                 padding: const EdgeInsets.only(top: 4),
@@ -42,7 +43,7 @@ class ChatCard extends StatelessWidget {
       AppText(:final text) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(text, style: const TextStyle(fontSize: 15.5, height: 1.5)),
+            AssistantMarkdown(text),
             Text('Sent by the app, not the model',
                 style: TextStyle(fontSize: 12, color: p.muted)),
           ],
@@ -439,4 +440,37 @@ class _Dashed extends StatelessWidget {
             borderRadius: BorderRadius.circular(12)),
         child: Text(text, style: TextStyle(color: context.pal.muted, fontSize: 14)),
       );
+}
+
+/// Claude replies in Markdown; render it like any chat assistant would.
+/// The inspector's raw view still shows the text exactly as sent.
+class AssistantMarkdown extends StatelessWidget {
+  const AssistantMarkdown(this.text, {super.key});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.pal;
+    const body = TextStyle(fontSize: 15.5, height: 1.5);
+    return MarkdownBody(
+      data: text,
+      selectable: true,
+      styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+        p: body.copyWith(color: p.fg),
+        listBullet: body.copyWith(color: p.fg),
+        strong: const TextStyle(fontWeight: FontWeight.w700),
+        h1: TextStyle(fontSize: 19, fontWeight: FontWeight.w700, color: p.fg),
+        h2: TextStyle(fontSize: 17.5, fontWeight: FontWeight.w700, color: p.fg),
+        h3: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: p.fg),
+        code: TextStyle(
+            fontFamily: monoFamily, fontSize: 13.5, color: p.fg, backgroundColor: p.sunk),
+        codeblockDecoration:
+            BoxDecoration(color: p.sunk, borderRadius: BorderRadius.circular(8)),
+        blockquoteDecoration: BoxDecoration(
+            border: Border(left: BorderSide(color: p.line, width: 3))),
+        blockSpacing: 10,
+        listIndent: 22,
+      ),
+    );
+  }
 }
