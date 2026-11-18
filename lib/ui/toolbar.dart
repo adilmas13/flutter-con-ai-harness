@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../agent/agent_state.dart';
 import '../agent/levels.dart';
 import '../config.dart';
 import '../stores/app_store.dart';
@@ -46,6 +47,12 @@ class PresenterBar extends StatelessWidget {
             const SizedBox(width: 14),
             Text(store.experiment.notes,
                 style: TextStyle(fontSize: 12.5, color: p.muted)),
+            const SizedBox(width: 14),
+            TextButton.icon(
+              onPressed: store.state.isBusy ? null : store.resetForStage,
+              icon: const Icon(Icons.replay, size: 16),
+              label: const Text('Reset for stage'),
+            ),
           ],
         ),
       );

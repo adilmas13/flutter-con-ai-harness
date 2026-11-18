@@ -68,7 +68,7 @@ class _ChatPaneState extends State<ChatPane> {
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 680),
                       child: i == items.length
-                          ? _Working(state: store.state)
+                          ? _Working(state: store.state, onCancel: store.cancel)
                           : ChatCard(store: store, index: i, item: items[i]),
                     ),
                   ),
@@ -109,8 +109,9 @@ class _EmptyState extends StatelessWidget {
 }
 
 class _Working extends StatelessWidget {
-  const _Working({required this.state});
+  const _Working({required this.state, required this.onCancel});
   final AgentState state;
+  final VoidCallback onCancel;
   @override
   Widget build(BuildContext context) {
     final p = context.pal;
@@ -130,6 +131,8 @@ class _Working extends StatelessWidget {
           child: CircularProgressIndicator(strokeWidth: 2, color: p.accent)),
       const SizedBox(width: 10),
       Text(text, style: TextStyle(color: p.muted, fontSize: 13.5)),
+      const SizedBox(width: 8),
+      TextButton(onPressed: onCancel, child: const Text('Cancel')),
     ]);
   }
 }

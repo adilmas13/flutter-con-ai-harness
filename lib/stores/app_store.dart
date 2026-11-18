@@ -30,6 +30,7 @@ abstract class _AppStore with Store implements LoopHost {
   _AppStore(this.schedule, this.recordings, {ModelClient Function()? liveClient})
       : builder = ContextBuilder(schedule),
         _liveClient = liveClient ?? AnthropicClient.new {
+    replay = recordings.count > 0;
     _resetConversation();
   }
 
@@ -107,9 +108,6 @@ abstract class _AppStore with Store implements LoopHost {
   final ObservableList<String> exports = ObservableList();
 
   // ---- saving runs ----
-  RecordingClient? _capture;
-  String? _captureKey;
-  String? _captureInput;
   @observable
   bool canSave = false;
   @observable
@@ -169,26 +167,34 @@ abstract class _AppStore with Store implements LoopHost {
     _resetConversation();
   }
 
+  /// Back to the start of the talk: level 1, inspector closed, replay on if
+  /// anything is recorded.
   @action
-  void resetMemory() {
+  void resetForStage() {
     if (state.isBusy) return;
-    memoryFacts.clear();
-    itinerary.clear();
-    calendar.clear();
-    exports.clear();
+    levelIndex = 0;
+    experimentIndex = 0;
+    side = Side.without;
+    inspectorOpen = false;
+    replay = recordings.count > 0;
+    toast = null;
     _resetConversation();
   }
 
+  /// Every experiment starts from a fixed state, so a replayed run sees
+  /// exactly the requests that were recorded.
   @action
   void _resetConversation() {
     final exp = experiment;
-    if (exp.id == 'save') memoryFacts.clear();
-    if (exp.seed == Seed.demoMemoryAndPlan || exp.seed == Seed.demoMemory) {
-      if (memoryFacts.isEmpty) memoryFacts.addAll(demoMemory);
-      if (exp.seed == Seed.demoMemoryAndPlan && itinerary.isEmpty) {
-        itinerary.addAll(demoPlanIds(schedule));
-      }
-    }
+    final demo = exp.seed == Seed.demoMemoryAndPlan;
+    memoryFacts
+      ..clear()
+      ..addAll(demo ? demoMemory : const []);
+    itinerary
+      ..clear()
+      ..addAll(demo ? demoPlanIds(schedule) : const []);
+    calendar.clear();
+    exports.clear();
     conversation = Conversation(memorySnapshot: memoryFacts.toList());
     chat.clear();
     trace.clear();
@@ -196,23 +202,30 @@ abstract class _AppStore with Store implements LoopHost {
     lastRequest = null;
     lastExactTokens = null;
     canSave = false;
+    _turns.clear();
     _calendarTimedOut = false;
     _pending.clear();
+    _cancel = Completer<void>();
     state = const Idle();
     if (exp.seed == Seed.longChat) {
       seedLongChat(conversation, schedule);
       chat.add(DividerText(
           '${conversation.seededTurns} earlier turns. The rules were said at the start.'));
     }
-    if (exp.seed == Seed.demoMemoryAndPlan) {
-      chat.add(const DividerText('New conversation'));
-    }
+    if (demo) chat.add(const DividerText('New conversation'));
     lastRequest = builder.build(conversation, config,
         calendarTools: exp.calendarTools);
     sentTurns = 0;
   }
 
   // ================= sending =================
+
+  /// Live turns captured in this conversation, saved together by Save run.
+  final List<({String key, String input, List<Exchange> exchanges})> _turns = [];
+  Completer<void> _cancel = Completer<void>();
+
+  @override
+  Future<void> get cancelled => _cancel.future;
 
   @action
   Future<void> send(String text) async {
@@ -221,25 +234,27 @@ abstract class _AppStore with Store implements LoopHost {
 
     final key = nextRecordingKey;
     ModelClient client;
+    RecordingClient? capture;
+    chat.add(UserText(text));
     if (replay) {
       final rec = recordings[key];
       if (rec == null) {
-        chat.add(UserText(text));
         chat.add(const ErrorText(
             'Nothing is recorded for this turn yet. Switch to Live, run it, and save the run.'));
         return;
       }
+      if (rec.input != text) {
+        chat.add(DividerText('Replaying the run recorded for “${rec.input}”'));
+      }
       client = ReplayClient(rec.exchanges);
-      _capture = null;
     } else {
-      _capture = RecordingClient(_liveClient());
-      client = _capture!;
+      client = capture = RecordingClient(_liveClient());
     }
 
+    if (_cancel.isCompleted) _cancel = Completer<void>();
     trace.clear();
     checks = const [];
     canSave = false;
-    chat.add(UserText(text));
     _currentGroup = null;
 
     final loop = AgentLoop(
@@ -251,42 +266,66 @@ abstract class _AppStore with Store implements LoopHost {
       calendarTools: experiment.calendarTools,
     );
     final record = await loop.run(text);
-    _finishTurn(record, key, text);
+    _finishTurn(record, key, text, capture);
   }
 
   @action
-  void _finishTurn(TurnRecord record, String key, String text) {
-    checks = runChecks(record, rules, schedule);
-    sentTurns++;
-    final captured = _capture?.captured ?? const [];
-    if (!replay && captured.isNotEmpty) {
-      _captureKey = key;
-      _captureInput = text;
-      canSave = true;
+  void cancel() {
+    if (!state.isBusy) return;
+    if (!_cancel.isCompleted) _cancel.complete();
+    for (final c in _pending.values) {
+      if (!c.isCompleted) c.complete(false);
+    }
+    _pending.clear();
+    for (var i = 0; i < chat.length; i++) {
+      final item = chat[i];
+      if (item is ApprovalCard && item.decision == Decision.pending) {
+        chat[i] = ApprovalCard(item.id, item.tool, item.sessions, item.args, Decision.no);
+      } else if (item is MemoryCard && item.decision == Decision.pending) {
+        chat[i] = MemoryCard(item.id, item.fact, Decision.no);
+      }
     }
   }
 
   @action
+  void _finishTurn(TurnRecord record, String key, String text, RecordingClient? capture) {
+    checks = runChecks(record, rules, schedule);
+    sentTurns++;
+    if (capture == null) return;
+    final broken = state is Failed || (state is Stopped && (state as Stopped).reason == 'cancelled');
+    if (broken) {
+      // Later turns would replay against a conversation that never happened.
+      _turns.clear();
+      canSave = false;
+      return;
+    }
+    if (capture.captured.isNotEmpty) {
+      _turns.add((key: key, input: text, exchanges: List.of(capture.captured)));
+      canSave = true;
+    }
+  }
+
+  /// Saves every live turn of this conversation, so multi-turn experiments
+  /// stay consistent.
+  @action
   Future<void> saveRun() async {
-    final cap = _capture, key = _captureKey;
-    if (cap == null || key == null) return;
+    if (_turns.isEmpty) return;
+    final turns = List.of(_turns);
     try {
-      await recordings.save(Recording(
-        key: key,
-        input: _captureInput ?? '',
-        savedAt: DateTime.now(),
-        exchanges: List.of(cap.captured),
-      ));
-      _saved(key);
+      for (final t in turns) {
+        await recordings.save(Recording(
+            key: t.key, input: t.input, savedAt: DateTime.now(), exchanges: t.exchanges));
+      }
+      _saved(turns.length == 1 ? turns.single.key : '${turns.length} turns (${turns.first.key} …)');
     } catch (e) {
       _toast('$e');
     }
   }
 
   @action
-  void _saved(String key) {
+  void _saved(String what) {
     canSave = false;
-    toast = 'Saved $key';
+    toast = 'Saved $what';
     recordingsVersion++;
   }
 

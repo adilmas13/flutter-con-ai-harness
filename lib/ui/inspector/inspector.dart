@@ -419,7 +419,7 @@ class _MemoryTab extends StatelessWidget {
         Row(children: [
           const Cap('Memory · kept across conversations'),
           const Spacer(),
-          TextButton(onPressed: store.resetMemory, child: const Text('Reset all')),
+
         ]),
         if (!memOn)
           empty('This harness has no memory: nothing below reaches the model.'),

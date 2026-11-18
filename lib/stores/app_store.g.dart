@@ -448,12 +448,12 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void resetMemory() {
+  void resetForStage() {
     final _$actionInfo = _$_AppStoreActionController.startAction(
-      name: '_AppStore.resetMemory',
+      name: '_AppStore.resetForStage',
     );
     try {
-      return super.resetMemory();
+      return super.resetForStage();
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
@@ -472,24 +472,41 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void _finishTurn(TurnRecord record, String key, String text) {
+  void cancel() {
     final _$actionInfo = _$_AppStoreActionController.startAction(
-      name: '_AppStore._finishTurn',
+      name: '_AppStore.cancel',
     );
     try {
-      return super._finishTurn(record, key, text);
+      return super.cancel();
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void _saved(String key) {
+  void _finishTurn(
+    TurnRecord record,
+    String key,
+    String text,
+    RecordingClient? capture,
+  ) {
+    final _$actionInfo = _$_AppStoreActionController.startAction(
+      name: '_AppStore._finishTurn',
+    );
+    try {
+      return super._finishTurn(record, key, text, capture);
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void _saved(String what) {
     final _$actionInfo = _$_AppStoreActionController.startAction(
       name: '_AppStore._saved',
     );
     try {
-      return super._saved(key);
+      return super._saved(what);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
