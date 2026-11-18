@@ -65,8 +65,8 @@ final levels = <Level>[
           change: 'nothing',
           baseline: true,
           inputs: const [
-            'Plan my flutterCon day around AI talks. Keep it brief.',
-            'Plan my day around AI talks. Keep it brief. Here’s the schedule:\n\n$pasteSchedule',
+            'Plan my flutterCon day around AI talks. Answer in two sentences.',
+            'Plan my day around AI talks as a short list. Here’s the schedule:\n\n$pasteSchedule',
           ],
           without: Harnesses.h1,
           withPiece: Harnesses.h1,
@@ -81,8 +81,8 @@ final levels = <Level>[
           name: 'Follow-up',
           change: 'history',
           inputs: const [
-            'Plan my day around AI talks. Keep it brief. Here’s the schedule:\n\n$pasteSchedule',
-            'Swap the second one for something on performance.',
+            'Plan my day around AI talks as a short list. Here’s the schedule:\n\n$pasteSchedule',
+            'Swap the second one for a performance talk.',
           ],
           without: Harnesses.h1,
           withPiece: Harnesses.h2,

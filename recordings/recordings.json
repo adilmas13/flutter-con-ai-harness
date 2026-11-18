@@ -1,1 +1,2158 @@
-{"version":1,"recordings":{}}
+{
+  "version": 1,
+  "recordings": {
+    "L3/plan/with/turn-0": {
+      "input": "Plan my day around AI talks. Nothing before 10, and no roundtables.",
+      "savedAt": "2026-11-18T17:57:32.921196",
+      "exchanges": [
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "Plan my day around AI talks. Nothing before 10, and no roundtables."
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChAPhYvuWS2yFbELNSpzC",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "tool_use",
+                "id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                "name": "searchSessions",
+                "input": {
+                  "keyword": "AI",
+                  "after": "10:00"
+                },
+                "caller": {
+                  "type": "direct"
+                }
+              }
+            ],
+            "container": null,
+            "stop_reason": "tool_use",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 964,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 964,
+                  "output_tokens": 73,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 73,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        },
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "Plan my day around AI talks. Nothing before 10, and no roundtables."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "10:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "content": "{\"total\":15,\"sessions\":[{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"disciplined-by-design-tdd-driven-flutter\",\"title\":\"Disciplined by Design: TDD-Driven Flutter Development with AI\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"i-shipped-a-local-ai-model-to-7-000-user\",\"title\":\"I shipped a local AI Model to 7,000+ users. Here's what happened.\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Aditya Thakur\"]}],\"hint\":\"Showing 5 of 15. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChAPhfgTXStKMXUzmj3NM",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "tool_use",
+                "id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                "name": "searchSessions",
+                "input": {
+                  "keyword": "AI",
+                  "after": "14:00"
+                },
+                "caller": {
+                  "type": "direct"
+                }
+              }
+            ],
+            "container": null,
+            "stop_reason": "tool_use",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 1651,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 1651,
+                  "output_tokens": 73,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 73,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        },
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "Plan my day around AI talks. Nothing before 10, and no roundtables."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "10:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "content": "{\"total\":15,\"sessions\":[{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"disciplined-by-design-tdd-driven-flutter\",\"title\":\"Disciplined by Design: TDD-Driven Flutter Development with AI\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"i-shipped-a-local-ai-model-to-7-000-user\",\"title\":\"I shipped a local AI Model to 7,000+ users. Here's what happened.\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Aditya Thakur\"]}],\"hint\":\"Showing 5 of 15. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "14:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                    "content": "{\"total\":7,\"sessions\":[{\"id\":\"the-catalog-is-the-cage-safe-generative\",\"title\":\"The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pawan Kumar\"]},{\"id\":\"tracking-the-unpredictable-monitoring-ai\",\"title\":\"Tracking the Unpredictable: Monitoring AI Costs and Performance\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Hema Sai Charan Kothamasu\",\"Jaldeep Asodariya\"]},{\"id\":\"beyond-prompts-context-memory-agent-loop\",\"title\":\"Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Neelansh Sethi\",\"Adil Shaikh\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]}],\"hint\":\"Showing 5 of 7. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChAPhm4QXaKXDTZkADBd3",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS4QUKEAgTGAI4AUIIdGhpbmtpbmcSDAeOm9/8gu8Kv5Rp0RoMarlb1oeTWmUTzjVNIjD/gEXZM4qGwTXk5dixoibW45BwnHGb4P5iE34JH1rraT/MIyuTvGzrJEsVRIRXxFYq/gTO0d9jZPTz1aAHKbHczulDtG8Ar8rhoEs/md5Q/PBz9IQR6fkHKes/N3JgaAjApRgleHS7jQwz3+npMk1pwcnGCQzxvEmy48eIsfwamTlWLrqWq6myEypoVYztw14OHa7209kc9hYuzOgA34yjq9ybXRxbjjXsCfx9QPSw7Wfh8HegA/AAXlXjB198m0T8qNbdl9asmiVYl7zWKpvfzrXtohEFOhhDsnD0kOT9m53TLQZVVUPm5HB/1cPlCx9PKHng7jPBQ35zlcMK/EMMgmBeC33hi33xJpjVPdbs+ojdjAXqprqMV/VRTNn1SaLVbca6tpjDj9JMxK0Ez3mGAIQEMgk3DiIvtb4h3Tbg7oS+5eEq/xVtLSY7rK+lNOEYAr/m9RLJrn213g54okJNeXcgSWThfOL4MSTiJ2uc6452L7r9PdVShUEluLJXkiPJbAogO/knd/E8IT5BbBmk0rE82iKxIOA2iQNyV7BpHWcf+2ZPAbDKLdLm1MKj5f64oicSNtQv/Jb0M2s/Tu1M64GQjmXeiUI0ib6mScSSap6yzgWFvqlWZymUj0kCrfgh4jQ1AAFy9Wunc+oriUpD0JRNsqpOUw3xvZZssEWSaGTOjlpUHrTHTz94/M6IOjjcJQupSNnpJ0e6Ju6SM7E1i83qz89yy/AZOl6+vBiKt9qCstDxGVVxltwegkxraZvf27V9CYMiHV5H14YblIHFUOSkI5QlBp6/mS0GZEzor6qP+RMkC3zGLhnlzQ5swl8T/TDwaQ0lRQvTbKWaiREWV3RiMAW4FpJCPBqN47CA/aS54B640k+OuS6EvlThL4VYGHV3XSVz+l8DRa3yELtn+RgB"
+              },
+              {
+                "type": "tool_use",
+                "id": "toolu_01Dpwu1gT9dFhDCfnCvaPqyQ",
+                "name": "searchSessions",
+                "input": {
+                  "keyword": "AI",
+                  "after": "10:00",
+                  "before": "11:05"
+                },
+                "caller": {
+                  "type": "direct"
+                }
+              }
+            ],
+            "container": null,
+            "stop_reason": "tool_use",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 2345,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 2345,
+                  "output_tokens": 139,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 139,
+              "output_tokens_details": {
+                "thinking_tokens": 42
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        },
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "Plan my day around AI talks. Nothing before 10, and no roundtables."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "10:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "content": "{\"total\":15,\"sessions\":[{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"disciplined-by-design-tdd-driven-flutter\",\"title\":\"Disciplined by Design: TDD-Driven Flutter Development with AI\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"i-shipped-a-local-ai-model-to-7-000-user\",\"title\":\"I shipped a local AI Model to 7,000+ users. Here's what happened.\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Aditya Thakur\"]}],\"hint\":\"Showing 5 of 15. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "14:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                    "content": "{\"total\":7,\"sessions\":[{\"id\":\"the-catalog-is-the-cage-safe-generative\",\"title\":\"The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pawan Kumar\"]},{\"id\":\"tracking-the-unpredictable-monitoring-ai\",\"title\":\"Tracking the Unpredictable: Monitoring AI Costs and Performance\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Hema Sai Charan Kothamasu\",\"Jaldeep Asodariya\"]},{\"id\":\"beyond-prompts-context-memory-agent-loop\",\"title\":\"Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Neelansh Sethi\",\"Adil Shaikh\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]}],\"hint\":\"Showing 5 of 7. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "",
+                    "signature": "CAQS4QUKEAgTGAI4AUIIdGhpbmtpbmcSDAeOm9/8gu8Kv5Rp0RoMarlb1oeTWmUTzjVNIjD/gEXZM4qGwTXk5dixoibW45BwnHGb4P5iE34JH1rraT/MIyuTvGzrJEsVRIRXxFYq/gTO0d9jZPTz1aAHKbHczulDtG8Ar8rhoEs/md5Q/PBz9IQR6fkHKes/N3JgaAjApRgleHS7jQwz3+npMk1pwcnGCQzxvEmy48eIsfwamTlWLrqWq6myEypoVYztw14OHa7209kc9hYuzOgA34yjq9ybXRxbjjXsCfx9QPSw7Wfh8HegA/AAXlXjB198m0T8qNbdl9asmiVYl7zWKpvfzrXtohEFOhhDsnD0kOT9m53TLQZVVUPm5HB/1cPlCx9PKHng7jPBQ35zlcMK/EMMgmBeC33hi33xJpjVPdbs+ojdjAXqprqMV/VRTNn1SaLVbca6tpjDj9JMxK0Ez3mGAIQEMgk3DiIvtb4h3Tbg7oS+5eEq/xVtLSY7rK+lNOEYAr/m9RLJrn213g54okJNeXcgSWThfOL4MSTiJ2uc6452L7r9PdVShUEluLJXkiPJbAogO/knd/E8IT5BbBmk0rE82iKxIOA2iQNyV7BpHWcf+2ZPAbDKLdLm1MKj5f64oicSNtQv/Jb0M2s/Tu1M64GQjmXeiUI0ib6mScSSap6yzgWFvqlWZymUj0kCrfgh4jQ1AAFy9Wunc+oriUpD0JRNsqpOUw3xvZZssEWSaGTOjlpUHrTHTz94/M6IOjjcJQupSNnpJ0e6Ju6SM7E1i83qz89yy/AZOl6+vBiKt9qCstDxGVVxltwegkxraZvf27V9CYMiHV5H14YblIHFUOSkI5QlBp6/mS0GZEzor6qP+RMkC3zGLhnlzQ5swl8T/TDwaQ0lRQvTbKWaiREWV3RiMAW4FpJCPBqN47CA/aS54B640k+OuS6EvlThL4VYGHV3XSVz+l8DRa3yELtn+RgB"
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01Dpwu1gT9dFhDCfnCvaPqyQ",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "10:00",
+                      "before": "11:05"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01Dpwu1gT9dFhDCfnCvaPqyQ",
+                    "content": "{\"count\":0,\"sessions\":[],\"hint\":\"No sessions matched \\\"AI\\\". Try a different keyword.\"}"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChAPhuwwU2t1hpRn7udCV",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "tool_use",
+                "id": "toolu_01X39ix5Soh7X79jqGmF1f2v",
+                "name": "searchSessions",
+                "input": {
+                  "keyword": "AI",
+                  "after": "16:00"
+                },
+                "caller": {
+                  "type": "direct"
+                }
+              }
+            ],
+            "container": null,
+            "stop_reason": "tool_use",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 2530,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 2530,
+                  "output_tokens": 73,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 73,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        },
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "Plan my day around AI talks. Nothing before 10, and no roundtables."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "10:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "content": "{\"total\":15,\"sessions\":[{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"disciplined-by-design-tdd-driven-flutter\",\"title\":\"Disciplined by Design: TDD-Driven Flutter Development with AI\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"i-shipped-a-local-ai-model-to-7-000-user\",\"title\":\"I shipped a local AI Model to 7,000+ users. Here's what happened.\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Aditya Thakur\"]}],\"hint\":\"Showing 5 of 15. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "14:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                    "content": "{\"total\":7,\"sessions\":[{\"id\":\"the-catalog-is-the-cage-safe-generative\",\"title\":\"The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pawan Kumar\"]},{\"id\":\"tracking-the-unpredictable-monitoring-ai\",\"title\":\"Tracking the Unpredictable: Monitoring AI Costs and Performance\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Hema Sai Charan Kothamasu\",\"Jaldeep Asodariya\"]},{\"id\":\"beyond-prompts-context-memory-agent-loop\",\"title\":\"Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Neelansh Sethi\",\"Adil Shaikh\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]}],\"hint\":\"Showing 5 of 7. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "",
+                    "signature": "CAQS4QUKEAgTGAI4AUIIdGhpbmtpbmcSDAeOm9/8gu8Kv5Rp0RoMarlb1oeTWmUTzjVNIjD/gEXZM4qGwTXk5dixoibW45BwnHGb4P5iE34JH1rraT/MIyuTvGzrJEsVRIRXxFYq/gTO0d9jZPTz1aAHKbHczulDtG8Ar8rhoEs/md5Q/PBz9IQR6fkHKes/N3JgaAjApRgleHS7jQwz3+npMk1pwcnGCQzxvEmy48eIsfwamTlWLrqWq6myEypoVYztw14OHa7209kc9hYuzOgA34yjq9ybXRxbjjXsCfx9QPSw7Wfh8HegA/AAXlXjB198m0T8qNbdl9asmiVYl7zWKpvfzrXtohEFOhhDsnD0kOT9m53TLQZVVUPm5HB/1cPlCx9PKHng7jPBQ35zlcMK/EMMgmBeC33hi33xJpjVPdbs+ojdjAXqprqMV/VRTNn1SaLVbca6tpjDj9JMxK0Ez3mGAIQEMgk3DiIvtb4h3Tbg7oS+5eEq/xVtLSY7rK+lNOEYAr/m9RLJrn213g54okJNeXcgSWThfOL4MSTiJ2uc6452L7r9PdVShUEluLJXkiPJbAogO/knd/E8IT5BbBmk0rE82iKxIOA2iQNyV7BpHWcf+2ZPAbDKLdLm1MKj5f64oicSNtQv/Jb0M2s/Tu1M64GQjmXeiUI0ib6mScSSap6yzgWFvqlWZymUj0kCrfgh4jQ1AAFy9Wunc+oriUpD0JRNsqpOUw3xvZZssEWSaGTOjlpUHrTHTz94/M6IOjjcJQupSNnpJ0e6Ju6SM7E1i83qz89yy/AZOl6+vBiKt9qCstDxGVVxltwegkxraZvf27V9CYMiHV5H14YblIHFUOSkI5QlBp6/mS0GZEzor6qP+RMkC3zGLhnlzQ5swl8T/TDwaQ0lRQvTbKWaiREWV3RiMAW4FpJCPBqN47CA/aS54B640k+OuS6EvlThL4VYGHV3XSVz+l8DRa3yELtn+RgB"
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01Dpwu1gT9dFhDCfnCvaPqyQ",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "10:00",
+                      "before": "11:05"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01Dpwu1gT9dFhDCfnCvaPqyQ",
+                    "content": "{\"count\":0,\"sessions\":[],\"hint\":\"No sessions matched \\\"AI\\\". Try a different keyword.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01X39ix5Soh7X79jqGmF1f2v",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "16:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01X39ix5Soh7X79jqGmF1f2v",
+                    "content": "{\"total\":3,\"sessions\":[{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]},{\"id\":\"ai-observability-for-llm-powered-flutter\",\"title\":\"AI Observability for LLM-Powered Flutter Apps\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pooja Bhaumik\"]},{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChAPi1ixtJ5oUj5fWQ21r",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS3gcKEAgTGAI4AUIIdGhpbmtpbmcSDLJuhwtiSLQ6z3fPQRoMWwmRxJDZc6yF2G9JIjBLrvVGG/1c1Qa/WUyOO4rGHwB+EZDUn29/lPmm20G+LumhCCyREnPxvnk6cIlM2Pgq+wau6kQmpgdJwOXxaVVZbJNy2RATHELDwiBCZuNLoOwCyaqjMCzDIdYECkfah/eOSUFwUP9Q1IHO7xUYXyAP2f0tOAo2w1yKyCFTqn0nlJcwk3dRmxQ8w0jW8k2raomVO628588xPJgYTj2EbthE1+J4ecnLwRQ2jCLiIieGtX+utAu3et2mOd0gTcu5vtWELg248LEDQhtlRTZpKlTu5yKJombOF/vyaGgmZSZorcmlc3lFbAGR6lzQ/wq7c2DAEwbh7lJa7NlCibnjrKfH3DYthX4cfWhx8H4ifrVEQg2XrOgSNNClsZzsoNl7bXXWyOLO0Vg8Th1BrtHrDjvgLekKBX49FWIM1cgIEMinKTm8kb0lF2sI9cq2XhyYZ3kSSiVMeARVrMtlaxxn1Kpk5w1V/hFYgACT0LwhD33yqv+UuiPjmlaANjSqJHJR2Kv8TJ4cKORHrcjZgk1n1fQf4RkUuo+PxvXfNm+H1A2mQudnW3+94VMgltx+FP0NsKfmcQeFfQsY4XjrIN9MJ7LzBpnbiUfOeHV4X9tQZvyf2Zv3MJX02MA5vrDYGEtu43ZnqJ7nHknUo1q62mLyqteCz7DcGUA9X6T/JPevX+HiThL41GQu/c7aqoyMTatAcEi2Bsk1bIs1bVx5XBSNNrC+KHa2U5kT6/tHoYVuqUloKxnAkWFa+N5mZdd/llRm4yGmAA+vpsX+3DduKa2osyErEwafOh/8WqDRmKDTKYtnGwrUAdyScoksnj3/d4g5NlCSZb3X16gaSZVE106Jbx09Pt5+YWscBnELbj+A78zfcaZRYLaPhvt6coms8HEUVFhGa5d5Yl2TWjbSeKMjylZ7ufID+xh9xpSSoDM/gbATIwO9AZRTxHH1F9bVGORgyLqxk5mz1kPzB8Al6O0oOlL196K01ZztynD03yFz5GTsV/5FrGg/P4sugn6CVPOXbXXcmY2IdzwbrRkFYzg7cl0HVrkVuWvgRRCiMH0CMrFaUA9iAnrMFMrMRoW5EHrOltV8o24y18+7/y3iaI3KSq7sAANhCpQgeF1MqNoiYlggoxN3ZLv55KL2OsuPAZvYD6Op03ymh+k+hR+tENPGaK5t3PyBQohrxV7HQlCyNRYE4P5z0o9P/aawjkPzfhtGHp6M7byqZrs0TBYQ3su4bPWl2Xvu34c2iopejYKcUlcYAQ=="
+              },
+              {
+                "type": "tool_use",
+                "id": "toolu_01PCwJfgWkNDFLJBtHUNfT7C",
+                "name": "showPlan",
+                "input": {
+                  "sessionIds": [
+                    "disciplined-by-design-tdd-driven-flutter",
+                    "i-shipped-a-local-ai-model-to-7-000-user",
+                    "beyond-prompts-context-memory-agent-loop",
+                    "ai-observability-for-llm-powered-flutter"
+                  ]
+                },
+                "caller": {
+                  "type": "direct"
+                }
+              }
+            ],
+            "container": null,
+            "stop_reason": "tool_use",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 2935,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 2935,
+                  "output_tokens": 249,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 249,
+              "output_tokens_details": {
+                "thinking_tokens": 117
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        },
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "Plan my day around AI talks. Nothing before 10, and no roundtables."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "10:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01U9b8t6CxgqAozqEGYf9CK4",
+                    "content": "{\"total\":15,\"sessions\":[{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"disciplined-by-design-tdd-driven-flutter\",\"title\":\"Disciplined by Design: TDD-Driven Flutter Development with AI\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"i-shipped-a-local-ai-model-to-7-000-user\",\"title\":\"I shipped a local AI Model to 7,000+ users. Here's what happened.\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Aditya Thakur\"]}],\"hint\":\"Showing 5 of 15. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "14:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01H3MkqyxfQUnQnWNtJ9kgVQ",
+                    "content": "{\"total\":7,\"sessions\":[{\"id\":\"the-catalog-is-the-cage-safe-generative\",\"title\":\"The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pawan Kumar\"]},{\"id\":\"tracking-the-unpredictable-monitoring-ai\",\"title\":\"Tracking the Unpredictable: Monitoring AI Costs and Performance\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Hema Sai Charan Kothamasu\",\"Jaldeep Asodariya\"]},{\"id\":\"beyond-prompts-context-memory-agent-loop\",\"title\":\"Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Neelansh Sethi\",\"Adil Shaikh\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]}],\"hint\":\"Showing 5 of 7. Narrow the keyword or time range to see the rest.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "",
+                    "signature": "CAQS4QUKEAgTGAI4AUIIdGhpbmtpbmcSDAeOm9/8gu8Kv5Rp0RoMarlb1oeTWmUTzjVNIjD/gEXZM4qGwTXk5dixoibW45BwnHGb4P5iE34JH1rraT/MIyuTvGzrJEsVRIRXxFYq/gTO0d9jZPTz1aAHKbHczulDtG8Ar8rhoEs/md5Q/PBz9IQR6fkHKes/N3JgaAjApRgleHS7jQwz3+npMk1pwcnGCQzxvEmy48eIsfwamTlWLrqWq6myEypoVYztw14OHa7209kc9hYuzOgA34yjq9ybXRxbjjXsCfx9QPSw7Wfh8HegA/AAXlXjB198m0T8qNbdl9asmiVYl7zWKpvfzrXtohEFOhhDsnD0kOT9m53TLQZVVUPm5HB/1cPlCx9PKHng7jPBQ35zlcMK/EMMgmBeC33hi33xJpjVPdbs+ojdjAXqprqMV/VRTNn1SaLVbca6tpjDj9JMxK0Ez3mGAIQEMgk3DiIvtb4h3Tbg7oS+5eEq/xVtLSY7rK+lNOEYAr/m9RLJrn213g54okJNeXcgSWThfOL4MSTiJ2uc6452L7r9PdVShUEluLJXkiPJbAogO/knd/E8IT5BbBmk0rE82iKxIOA2iQNyV7BpHWcf+2ZPAbDKLdLm1MKj5f64oicSNtQv/Jb0M2s/Tu1M64GQjmXeiUI0ib6mScSSap6yzgWFvqlWZymUj0kCrfgh4jQ1AAFy9Wunc+oriUpD0JRNsqpOUw3xvZZssEWSaGTOjlpUHrTHTz94/M6IOjjcJQupSNnpJ0e6Ju6SM7E1i83qz89yy/AZOl6+vBiKt9qCstDxGVVxltwegkxraZvf27V9CYMiHV5H14YblIHFUOSkI5QlBp6/mS0GZEzor6qP+RMkC3zGLhnlzQ5swl8T/TDwaQ0lRQvTbKWaiREWV3RiMAW4FpJCPBqN47CA/aS54B640k+OuS6EvlThL4VYGHV3XSVz+l8DRa3yELtn+RgB"
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01Dpwu1gT9dFhDCfnCvaPqyQ",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "10:00",
+                      "before": "11:05"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01Dpwu1gT9dFhDCfnCvaPqyQ",
+                    "content": "{\"count\":0,\"sessions\":[],\"hint\":\"No sessions matched \\\"AI\\\". Try a different keyword.\"}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01X39ix5Soh7X79jqGmF1f2v",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI",
+                      "after": "16:00"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01X39ix5Soh7X79jqGmF1f2v",
+                    "content": "{\"total\":3,\"sessions\":[{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]},{\"id\":\"ai-observability-for-llm-powered-flutter\",\"title\":\"AI Observability for LLM-Powered Flutter Apps\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pooja Bhaumik\"]},{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "",
+                    "signature": "CAQS3gcKEAgTGAI4AUIIdGhpbmtpbmcSDLJuhwtiSLQ6z3fPQRoMWwmRxJDZc6yF2G9JIjBLrvVGG/1c1Qa/WUyOO4rGHwB+EZDUn29/lPmm20G+LumhCCyREnPxvnk6cIlM2Pgq+wau6kQmpgdJwOXxaVVZbJNy2RATHELDwiBCZuNLoOwCyaqjMCzDIdYECkfah/eOSUFwUP9Q1IHO7xUYXyAP2f0tOAo2w1yKyCFTqn0nlJcwk3dRmxQ8w0jW8k2raomVO628588xPJgYTj2EbthE1+J4ecnLwRQ2jCLiIieGtX+utAu3et2mOd0gTcu5vtWELg248LEDQhtlRTZpKlTu5yKJombOF/vyaGgmZSZorcmlc3lFbAGR6lzQ/wq7c2DAEwbh7lJa7NlCibnjrKfH3DYthX4cfWhx8H4ifrVEQg2XrOgSNNClsZzsoNl7bXXWyOLO0Vg8Th1BrtHrDjvgLekKBX49FWIM1cgIEMinKTm8kb0lF2sI9cq2XhyYZ3kSSiVMeARVrMtlaxxn1Kpk5w1V/hFYgACT0LwhD33yqv+UuiPjmlaANjSqJHJR2Kv8TJ4cKORHrcjZgk1n1fQf4RkUuo+PxvXfNm+H1A2mQudnW3+94VMgltx+FP0NsKfmcQeFfQsY4XjrIN9MJ7LzBpnbiUfOeHV4X9tQZvyf2Zv3MJX02MA5vrDYGEtu43ZnqJ7nHknUo1q62mLyqteCz7DcGUA9X6T/JPevX+HiThL41GQu/c7aqoyMTatAcEi2Bsk1bIs1bVx5XBSNNrC+KHa2U5kT6/tHoYVuqUloKxnAkWFa+N5mZdd/llRm4yGmAA+vpsX+3DduKa2osyErEwafOh/8WqDRmKDTKYtnGwrUAdyScoksnj3/d4g5NlCSZb3X16gaSZVE106Jbx09Pt5+YWscBnELbj+A78zfcaZRYLaPhvt6coms8HEUVFhGa5d5Yl2TWjbSeKMjylZ7ufID+xh9xpSSoDM/gbATIwO9AZRTxHH1F9bVGORgyLqxk5mz1kPzB8Al6O0oOlL196K01ZztynD03yFz5GTsV/5FrGg/P4sugn6CVPOXbXXcmY2IdzwbrRkFYzg7cl0HVrkVuWvgRRCiMH0CMrFaUA9iAnrMFMrMRoW5EHrOltV8o24y18+7/y3iaI3KSq7sAANhCpQgeF1MqNoiYlggoxN3ZLv55KL2OsuPAZvYD6Op03ymh+k+hR+tENPGaK5t3PyBQohrxV7HQlCyNRYE4P5z0o9P/aawjkPzfhtGHp6M7byqZrs0TBYQ3su4bPWl2Xvu34c2iopejYKcUlcYAQ=="
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01PCwJfgWkNDFLJBtHUNfT7C",
+                    "name": "showPlan",
+                    "input": {
+                      "sessionIds": [
+                        "disciplined-by-design-tdd-driven-flutter",
+                        "i-shipped-a-local-ai-model-to-7-000-user",
+                        "beyond-prompts-context-memory-agent-loop",
+                        "ai-observability-for-llm-powered-flutter"
+                      ]
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01PCwJfgWkNDFLJBtHUNfT7C",
+                    "content": "Shown to the user."
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChAPiDXs3Aqmtwh45fXUh",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "text",
+                "text": "I put together four AI talks: TDD with AI at 12:00 in Ballroom 2, then shipping a local AI model at 13:20 in Ballroom 1, then context, memory and agent loops at 14:15 in Junior Ballroom, then AI observability for LLM apps at 16:40 in Ballroom 2. I left out roundtables, and I found no AI talks between 10:00 and 11:05. Two talks overlap with ones in the plan: the GenUI SDK talk at 14:15 in Ballroom 2, and the Genkit AI agents talk at 16:40 in Ballroom 1. You could pick either one instead."
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 3201,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 3201,
+                  "output_tokens": 212,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 212,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        }
+      ]
+    },
+    "L4/summarise/without/turn-0": {
+      "input": "What should I end the day with?",
+      "savedAt": "2026-11-18T17:57:52.688279",
+      "exchanges": [
+        {
+          "kind": "count_tokens",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "I’m planning my flutterCon day. Nothing before 10, and no roundtables please."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Got it: nothing before 10:00 and no roundtables. What do you want to focus on?"
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "Also, I’m leaving at 17:00."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Noted. I’ll keep everything finishing by 17:00."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about performance?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_01",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "performance"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_01",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"millions-of-users-zero-jank-advanced-per\",\"title\":\"Millions of Users, Zero Jank: Advanced Performance Profiling\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"engineering-flutter-for-wearables\",\"title\":\"Engineering Flutter for Wearables\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Likhitha Aralimara\"]},{\"id\":\"tracking-the-unpredictable-monitoring-ai\",\"title\":\"Tracking the Unpredictable: Monitoring AI Costs and Performance\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Hema Sai Charan Kothamasu\",\"Jaldeep Asodariya\"]},{\"id\":\"beyond-the-widget-tree-flutter-internals\",\"title\":\"Beyond the Widget Tree: Flutter Internals & Layout Mechanics\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shree Bhagwat\",\"Abdullah Deshmukh\"]},{\"id\":\"how-to-make-a-flutter-app-smooth-for-1-m\",\"title\":\"How To Make a Flutter App Smooth for 1 Million Users\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Gauri Panse\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 5 sessions touching on performance. The closest match is “Millions of Users, Zero Jank: Advanced Performance Profiling” at 10:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about testing?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_02",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "testing"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_02",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"under-the-hood-of-session-replay-capturi\",\"title\":\"Under the Hood of Session Replay: Capturing Every Interaction\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Abhay Sood\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 1 sessions touching on testing. The closest match is “Under the Hood of Session Replay: Capturing Every Interaction” at 12:00."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about architecture?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_03",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "architecture"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_03",
+                    "content": "{\"count\":10,\"sessions\":[{\"id\":\"migrating-to-event-driven-architecture-t\",\"title\":\"Migrating to Event Driven Architecture to Improve Communication Across 50+ Module\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Burhanuddin Rashid\"]},{\"id\":\"millions-of-users-zero-jank-advanced-per\",\"title\":\"Millions of Users, Zero Jank: Advanced Performance Profiling\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"navigation-in-a-multi-module-flutter-app\",\"title\":\"Navigation in a Multi-Module Flutter App at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Karem Ebrahim\"]},{\"id\":\"trust-sandbox-verify-hardening-flutter-c\",\"title\":\"Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Vivek Yadav\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"the-modular-monolith-scaling-architectur\",\"title\":\"The Modular Monolith: Scaling Architecture & Surviving Dependency Hell\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"online-offline-and-the-ugly-middle-cache\",\"title\":\"Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 10 sessions touching on architecture. The closest match is “Migrating to Event Driven Architecture to Improve Communication Across 50+ Module” at 10:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about security?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_04",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "security"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_04",
+                    "content": "{\"count\":4,\"sessions\":[{\"id\":\"death-to-passwords-implementing-biometri\",\"title\":\"Death to Passwords: Implementing Biometric Passkeys in Flutter\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"hardening-flutter-security-balancing-com\",\"title\":\"Hardening Flutter Security: Balancing Compliance & Operational Risks\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Bornak Paul\",\"Zaid Sayyed\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"beyond-the-widget-tree-flutter-internals\",\"title\":\"Beyond the Widget Tree: Flutter Internals & Layout Mechanics\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shree Bhagwat\",\"Abdullah Deshmukh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 4 sessions touching on security. The closest match is “Death to Passwords: Implementing Biometric Passkeys in Flutter” at 10:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about native?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_05",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "native"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_05",
+                    "content": "{\"count\":7,\"sessions\":[{\"id\":\"why-ai-makes-flutter-more-important-not\",\"title\":\"Why AI Makes Flutter More Important, Not Less\",\"start\":\"09:00\",\"end\":\"09:40\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\"]},{\"id\":\"death-to-passwords-implementing-biometri\",\"title\":\"Death to Passwords: Implementing Biometric Passkeys in Flutter\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"zero-jank-native-views-deep-dive-into-hy\",\"title\":\"Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Md Moinuddin\"]},{\"id\":\"building-home-screen-widgets-in-flutter\",\"title\":\"Building Home Screen Widgets in Flutter Without Writing Native Code Twice\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Akansha Jain\"]},{\"id\":\"hot-fixes-cold-logic-taming-shorebird-ot\",\"title\":\"Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Laksh Samdariya\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 7 sessions touching on native. The closest match is “Why AI Makes Flutter More Important, Not Less” at 09:00."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about AI?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_06",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_06",
+                    "content": "{\"count\":16,\"sessions\":[{\"id\":\"why-ai-makes-flutter-more-important-not\",\"title\":\"Why AI Makes Flutter More Important, Not Less\",\"start\":\"09:00\",\"end\":\"09:40\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\"]},{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"disciplined-by-design-tdd-driven-flutter\",\"title\":\"Disciplined by Design: TDD-Driven Flutter Development with AI\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"i-shipped-a-local-ai-model-to-7-000-user\",\"title\":\"I shipped a local AI Model to 7,000+ users. Here's what happened.\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Aditya Thakur\"]},{\"id\":\"beyond-crashlytics-building-autonomous-i\",\"title\":\"Beyond Crashlytics: Building Autonomous Incident Intelligence for Flutter\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Kamal Shree\",\"Hema Sai Charan Kothamasu\"]},{\"id\":\"architecting-apps-as-headless-toolchains\",\"title\":\"Architecting Apps as Headless Toolchains for OS AI Agents\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Rohan Joshi\"]},{\"id\":\"trust-sandbox-verify-hardening-flutter-c\",\"title\":\"Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Vivek Yadav\"]},{\"id\":\"the-catalog-is-the-cage-safe-generative\",\"title\":\"The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pawan Kumar\"]},{\"id\":\"tracking-the-unpredictable-monitoring-ai\",\"title\":\"Tracking the Unpredictable: Monitoring AI Costs and Performance\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Hema Sai Charan Kothamasu\",\"Jaldeep Asodariya\"]},{\"id\":\"beyond-prompts-context-memory-agent-loop\",\"title\":\"Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Neelansh Sethi\",\"Adil Shaikh\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]},{\"id\":\"ai-observability-for-llm-powered-flutter\",\"title\":\"AI Observability for LLM-Powered Flutter Apps\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pooja Bhaumik\"]},{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 16 sessions touching on AI. The closest match is “Why AI Makes Flutter More Important, Not Less” at 09:00."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about agents?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_07",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "agents"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_07",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"why-ai-makes-flutter-more-important-not\",\"title\":\"Why AI Makes Flutter More Important, Not Less\",\"start\":\"09:00\",\"end\":\"09:40\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\"]},{\"id\":\"architecting-apps-as-headless-toolchains\",\"title\":\"Architecting Apps as Headless Toolchains for OS AI Agents\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Rohan Joshi\"]},{\"id\":\"trust-sandbox-verify-hardening-flutter-c\",\"title\":\"Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Vivek Yadav\"]},{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]},{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 5 sessions touching on agents. The closest match is “Why AI Makes Flutter More Important, Not Less” at 09:00."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about state?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_08",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "state"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_08",
+                    "content": "{\"count\":8,\"sessions\":[{\"id\":\"beyond-breakpoints-flutter-apps-for-the\",\"title\":\"Beyond Breakpoints: Flutter Apps for the Foldable Era\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Abdullah Deshmukh\"]},{\"id\":\"building-realtime-collaborative-flutter\",\"title\":\"Building Realtime Collaborative Flutter Apps with CRDTs\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Mayur Mahajan\"]},{\"id\":\"trust-sandbox-verify-hardening-flutter-c\",\"title\":\"Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Vivek Yadav\"]},{\"id\":\"everything-is-not-a-widget-beneath-flutt\",\"title\":\"Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Shree Bhagwat\"]},{\"id\":\"beyond-prompts-context-memory-agent-loop\",\"title\":\"Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Neelansh Sethi\",\"Adil Shaikh\"]},{\"id\":\"online-offline-and-the-ugly-middle-cache\",\"title\":\"Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"beyond-the-widget-tree-flutter-internals\",\"title\":\"Beyond the Widget Tree: Flutter Internals & Layout Mechanics\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shree Bhagwat\",\"Abdullah Deshmukh\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 8 sessions touching on state. The closest match is “Beyond Breakpoints: Flutter Apps for the Foldable Era” at 10:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about scale?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_09",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "scale"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_09",
+                    "content": "{\"count\":6,\"sessions\":[{\"id\":\"millions-of-users-zero-jank-advanced-per\",\"title\":\"Millions of Users, Zero Jank: Advanced Performance Profiling\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"navigation-in-a-multi-module-flutter-app\",\"title\":\"Navigation in a Multi-Module Flutter App at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Karem Ebrahim\"]},{\"id\":\"zero-to-200-000-users-architecting-produ\",\"title\":\"Zero to 200,000 Users: Architecting Production-Grade Flutter Systems That Don’t Break\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Supratim Dhara\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"hot-fixes-cold-logic-taming-shorebird-ot\",\"title\":\"Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Laksh Samdariya\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 6 sessions touching on scale. The closest match is “Millions of Users, Zero Jank: Advanced Performance Profiling” at 10:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about CI?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_10",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "CI"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_10",
+                    "content": "{\"count\":4,\"sessions\":[{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 4 sessions touching on CI. The closest match is “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about widgets?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_11",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "widgets"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_11",
+                    "content": "{\"count\":3,\"sessions\":[{\"id\":\"everything-is-not-a-widget-beneath-flutt\",\"title\":\"Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Shree Bhagwat\"]},{\"id\":\"building-home-screen-widgets-in-flutter\",\"title\":\"Building Home Screen Widgets in Flutter Without Writing Native Code Twice\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Akansha Jain\"]},{\"id\":\"beyond-the-widget-tree-flutter-internals\",\"title\":\"Beyond the Widget Tree: Flutter Internals & Layout Mechanics\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shree Bhagwat\",\"Abdullah Deshmukh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 3 sessions touching on widgets. The closest match is “Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction” at 14:15."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about offline?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_12",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "offline"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_12",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"online-offline-and-the-ugly-middle-cache\",\"title\":\"Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Shekhar Patel\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 1 sessions touching on offline. The closest match is “Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about GenUI?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_13",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "GenUI"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_13",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"the-catalog-is-the-cage-safe-generative\",\"title\":\"The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pawan Kumar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 1 sessions touching on GenUI. The closest match is “The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK” at 14:15."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about Genkit?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_14",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "Genkit"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_14",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 1 sessions touching on Genkit. The closest match is “Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit” at 16:40."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about concurrency?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_15",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "concurrency"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_15",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"one-isolate-multiple-threads-understandi\",\"title\":\"One Isolate, Multiple Threads: Understanding Concurrency in Flutter\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Shubham Agrawal\",\"Sugam Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 1 sessions touching on concurrency. The closest match is “One Isolate, Multiple Threads: Understanding Concurrency in Flutter” at 14:15."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about maps?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_16",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "maps"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_16",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"how-i-built-a-route-optimized-delivery-m\",\"title\":\"How I Built a Route Optimized Delivery Map in Flutter Without Google Maps\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Zaid Sayyed\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 1 sessions touching on maps. The closest match is “How I Built a Route Optimized Delivery Map in Flutter Without Google Maps” at 16:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about wearables?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_17",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "wearables"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_17",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"engineering-flutter-for-wearables\",\"title\":\"Engineering Flutter for Wearables\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Likhitha Aralimara\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 1 sessions touching on wearables. The closest match is “Engineering Flutter for Wearables” at 11:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about packages?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_18",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "packages"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_18",
+                    "content": "{\"count\":3,\"sessions\":[{\"id\":\"migrating-to-event-driven-architecture-t\",\"title\":\"Migrating to Event Driven Architecture to Improve Communication Across 50+ Module\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Burhanuddin Rashid\"]},{\"id\":\"navigation-in-a-multi-module-flutter-app\",\"title\":\"Navigation in a Multi-Module Flutter App at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Karem Ebrahim\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 3 sessions touching on packages. The closest match is “Migrating to Event Driven Architecture to Improve Communication Across 50+ Module” at 10:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about DevTools?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_19",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "DevTools"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_19",
+                    "content": "{\"count\":2,\"sessions\":[{\"id\":\"how-to-make-a-flutter-app-smooth-for-1-m\",\"title\":\"How To Make a Flutter App Smooth for 1 Million Users\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Gauri Panse\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 2 sessions touching on DevTools. The closest match is “How To Make a Flutter App Smooth for 1 Million Users” at 16:40."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about releases?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_20",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "releases"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_20",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "There are 1 sessions touching on releases. The closest match is “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What should I end the day with?"
+              }
+            ]
+          },
+          "response": {
+            "input_tokens": 12613
+          }
+        }
+      ]
+    }
+  }
+}

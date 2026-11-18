@@ -114,7 +114,9 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ Live runner (`just run-live`), evaluator review, `just promote` and offline replay check (`just verify-replay`, part of `just check`)
 - ✅ Round 1, all 17 runs live: the evaluator flagged 3 app bugs (checks 1 and 2, vague search returning everything), unclear inputs, approval order and section totals. All fixed.
 - ⏸ **Round 2: Anthropic credits ran out** after L1–L3. Levels 4–6 failed with “credit balance is too low”. **User: top up credits**, then `just run-live L4`, `L5`, `L6` and `L3/vague`
-- 🔄 Evaluator reviewing the completed round 2 runs (L1, L2, L3 plan, L4 summarise without) before recording
+- ✅ Evaluator round 2: **recorded** L3 plan/with and L4 summarise/without; replay verified offline (`just verify-replay`)
+- ✅ Level 2 now adds history only (the context builder moved to level 3 with the tools), so its two runs differ by nothing else; level 1–2 inputs ask for two sentences or a short list
+- ⏸ To re-run once credits are topped up: L1, L2 (both sides), L3 plan/without, L3 vague (both), L4 summarise/with, L4 remove (both), L5 (all), L6 (both)
 - ⬜ L3 vague still didn’t loop (6 vs 5 steps). The input now asks it to read every AI talk’s details one at a time; re-run it
 - ⬜ Tune prompts and inputs where a failure doesn’t reproduce (for example the vague request, or the summary losing “leaving at 17:00”)
 - ⬜ Save good runs for every level, side and turn; replay them all end to end offline

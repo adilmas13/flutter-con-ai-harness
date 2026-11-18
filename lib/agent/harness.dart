@@ -2,7 +2,7 @@
 enum HarnessPiece {
   model('Model', 1),
   history('History', 2),
-  contextBuilder('Context builder', 2),
+  contextBuilder('Context builder', 3),
   tools('Tools', 3),
   loop('Loop', 3),
   validation('Validation', 3),
@@ -37,10 +37,17 @@ class HarnessConfig {
 
 class Harnesses {
   static const h1 = HarnessConfig({HarnessPiece.model});
-  static final h2 =
-      h1.plus({HarnessPiece.history, HarnessPiece.contextBuilder});
-  static final h3NoLimit = h2.plus(
-      {HarnessPiece.tools, HarnessPiece.loop, HarnessPiece.validation});
+  /// Level 2 adds history only, so its two runs differ by nothing else.
+  static final h2 = h1.plus({HarnessPiece.history});
+
+  /// Level 3 adds the context builder (system rules that describe the tools)
+  /// together with the tools themselves.
+  static final h3NoLimit = h2.plus({
+    HarnessPiece.contextBuilder,
+    HarnessPiece.tools,
+    HarnessPiece.loop,
+    HarnessPiece.validation,
+  });
   static final h3 = h3NoLimit.plus({HarnessPiece.stepLimit});
   static final h4Summarise = h3.plus({HarnessPiece.contextBudget},
       shrink: ShrinkStrategy.summarise);
