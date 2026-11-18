@@ -39,6 +39,10 @@ paste-schedule:
 run-live filter="":
     flutter test test/live/run_experiments_test.dart --run-skipped --dart-define-from-file=.env --dart-define=ONLY="{{filter}}" --reporter expanded
 
+# The whole talk live as one accumulating conversation; transcript in build/live_flow.md
+live-flow:
+    flutter test test/live/flow_test.dart --run-skipped --dart-define-from-file=.env --reporter expanded
+
 # Save reviewed live runs into recordings/recordings.json (e.g. just promote L2/follow-up/with, or all)
 promote +runs:
     python3 -I tool/promote_runs.py {{runs}}

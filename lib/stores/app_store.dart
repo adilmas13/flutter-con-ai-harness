@@ -33,8 +33,7 @@ abstract class _AppStore with Store implements LoopHost {
       {ModelClient Function()? liveClient, this.scheduleText = ''})
       : builder = ContextBuilder(schedule),
         _liveClient = liveClient ?? AnthropicClient.new {
-    replay = recordings.count > 0;
-    _resetConversation();
+    _startExperiment();
   }
 
   @override
@@ -130,30 +129,42 @@ abstract class _AppStore with Store implements LoopHost {
           0);
 
   // ================= selection =================
+  //
+  // One conversation accumulates across the levels. Within a level, the
+  // Without and With runs each continue that shared history, so the only
+  // difference between them is the harness. Moving on carries forward the
+  // run you used, preferring With.
+
+  Conversation _shared = Conversation();
+  List<ChatItem> _sharedChat = const [];
+  final Map<Side, _Branch> _branches = {};
 
   @action
   void selectLevel(int index) {
     if (state.isBusy) return;
+    _commit();
     levelIndex = index;
     experimentIndex = 0;
     side = Side.without;
     inspectorOpen = index > 0;
-    _resetConversation();
+    _startExperiment();
   }
 
   @action
   void selectExperiment(int index) {
     if (state.isBusy) return;
+    _commit();
     experimentIndex = index;
     side = Side.without;
-    _resetConversation();
+    _startExperiment();
   }
 
   @action
   void selectSide(Side value) {
     if (state.isBusy || value == side) return;
+    _saveBranch();
     side = value;
-    _resetConversation();
+    _showBranch();
   }
 
   @action
@@ -167,61 +178,116 @@ abstract class _AppStore with Store implements LoopHost {
   @action
   void dismissToast() => toast = null;
 
+  /// Runs this side of the experiment again from the shared history.
   @action
   void restart() {
     if (state.isBusy) return;
-    _resetConversation();
+    _branches[side] = _newBranch(side);
+    _showBranch();
   }
 
-  /// Back to the start of the talk: level 1, inspector closed, replay on if
-  /// anything is recorded.
+  /// Back to the start of the talk with an empty conversation.
   @action
   void resetForStage() {
     if (state.isBusy) return;
+    _shared = Conversation();
+    _sharedChat = const [];
+    memoryFacts.clear();
+    itinerary.clear();
     levelIndex = 0;
     experimentIndex = 0;
     side = Side.without;
     inspectorOpen = false;
-    replay = recordings.count > 0;
+    replay = false;
     toast = null;
-    _resetConversation();
+    _startExperiment();
   }
 
-  /// Every experiment starts from a fixed state, so a replayed run sees
-  /// exactly the requests that were recorded.
+  /// The run you used becomes the shared history for the next level.
+  void _commit() {
+    if (_branches.isEmpty) return;
+    _saveBranch();
+    final used = [_branches[Side.withPiece], _branches[Side.without]]
+        .firstWhere((b) => b != null && b.sentTurns > 0, orElse: () => null);
+    if (used == null) return;
+    _shared = used.conv;
+    _sharedChat = used.chat;
+  }
+
   @action
-  void _resetConversation() {
+  void _startExperiment() {
     final exp = experiment;
-    final demo = exp.seed == Seed.demoMemoryAndPlan;
-    memoryFacts
-      ..clear()
-      ..addAll(demo ? demoMemory : const []);
-    itinerary
-      ..clear()
-      ..addAll(demo ? demoPlanIds(schedule) : const []);
+    if (exp.id == 'save') memoryFacts.clear();
+    if (exp.seed == Seed.demoMemoryAndPlan) {
+      if (memoryFacts.isEmpty) memoryFacts.addAll(demoMemory);
+      if (itinerary.isEmpty) itinerary.addAll(demoPlanIds(schedule));
+    }
     calendar.clear();
     exports.clear();
-    conversation = Conversation(memorySnapshot: memoryFacts.toList());
-    chat.clear();
-    trace.clear();
-    checks = const [];
-    lastRequest = null;
-    lastExactTokens = null;
+    _branches
+      ..clear()
+      ..addAll({for (final s in Side.values) s: _newBranch(s)});
+    _showBranch();
+  }
+
+  _Branch _newBranch(Side s) {
+    final exp = experiment;
+    final Conversation conv;
+    final items = <ChatItem>[];
+    if (exp.id == 'new-conversation') {
+      conv = Conversation(memorySnapshot: memoryFacts.toList());
+      items.add(const DividerText('New conversation'));
+    } else {
+      conv = Conversation.continuing(_shared, memoryFacts.toList());
+      items.addAll(_sharedChat);
+      if (exp.seed == Seed.longChat && _estimate(conv) < AppConfig.contextBudget) {
+        final before = conv.userTurns;
+        seedLongChat(conv, schedule);
+        items.add(DividerText(
+            'Fast-forward: ${conv.userTurns - before} earlier turns. The rules were said at the start.'));
+      }
+    }
+    final label = exp.baseline
+        ? level.name
+        : '${s == Side.without ? 'Without' : 'With'} ${exp.change}';
+    items.add(DividerText('Level ${level.number} · $label'));
+    return _Branch(conv, items);
+  }
+
+  int _estimate(Conversation conv) => estimateTokens(conv.messages);
+
+  void _saveBranch() {
+    final b = _branches[side];
+    if (b == null) return;
+    b
+      ..chat = chat.toList()
+      ..trace = trace.toList()
+      ..checks = checks
+      ..sentTurns = sentTurns
+      ..request = lastRequest
+      ..exactTokens = lastExactTokens;
+  }
+
+  @action
+  void _showBranch() {
+    final b = _branches[side]!;
+    conversation = b.conv;
+    chat
+      ..clear()
+      ..addAll(b.chat);
+    trace
+      ..clear()
+      ..addAll(b.trace);
+    checks = b.checks;
+    sentTurns = b.sentTurns;
+    lastRequest =
+        b.request ?? builder.build(conversation, config, calendarTools: experiment.calendarTools);
+    lastExactTokens = b.exactTokens;
     canSave = false;
     _turns.clear();
-    _calendarTimedOut = false;
     _pending.clear();
     _cancel = Completer<void>();
     state = const Idle();
-    if (exp.seed == Seed.longChat) {
-      seedLongChat(conversation, schedule);
-      chat.add(DividerText(
-          '${conversation.seededTurns} earlier turns. The rules were said at the start.'));
-    }
-    if (demo) chat.add(const DividerText('New conversation'));
-    lastRequest = builder.build(conversation, config,
-        calendarTools: exp.calendarTools);
-    sentTurns = 0;
   }
 
   // ================= sending =================
@@ -261,6 +327,7 @@ abstract class _AppStore with Store implements LoopHost {
     }
 
     if (_cancel.isCompleted) _cancel = Completer<void>();
+    _calendarTimedOut = false;
     trace.clear();
     checks = const [];
     canSave = false;
@@ -526,4 +593,16 @@ abstract class _AppStore with Store implements LoopHost {
     _calendarTimedOut = true;
     return true;
   }
+}
+
+/// One side's run within a level, continuing the shared conversation.
+class _Branch {
+  _Branch(this.conv, this.chat);
+  final Conversation conv;
+  List<ChatItem> chat;
+  List<TraceEvent> trace = const [];
+  List<CheckOutcome> checks = const [];
+  int sentTurns = 0;
+  BuiltRequest? request;
+  int? exactTokens;
 }

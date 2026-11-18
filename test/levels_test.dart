@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:day_planner/agent/agent_state.dart';
 import 'package:day_planner/agent/checks.dart';
+import 'package:day_planner/agent/context_builder.dart';
 import 'package:day_planner/agent/levels.dart';
 import 'package:day_planner/agent/recordings.dart';
 import 'package:day_planner/data/schedule.dart';
@@ -51,7 +52,8 @@ void main() {
       final (:store, :client) = storeWith([text('09:30 Keynote. 11:00 Prompting Patterns. 15:00 Shipping LLMs.')]);
       await store.send('Plan my flutterCon day around AI talks.');
       final body = client.requests.single.body;
-      expect(body.containsKey('system'), isFalse);
+      expect((body['system'] as List).single['text'], replyStyle,
+          reason: 'only the reply style: nothing about the app');
       expect(body.containsKey('tools'), isFalse);
       expect(client.requests.single.messages, hasLength(1));
       expect(check(store, 1), CheckResult.fail, reason: 'a plan written as text');
@@ -235,6 +237,44 @@ void main() {
       expect(store.exports, isEmpty);
       expect(store.calendar.map((s) => s.id), [beyond()]);
       expect(check(store, 7), CheckResult.pass);
+    });
+  });
+
+  group('One conversation across the levels', () {
+    test('level 3 continues the conversation from level 2', () async {
+      final (:store, :client) = storeWith([
+        text('Noted.'),
+        text('Swapped.'),
+        toolUse('searchSessions', {'keyword': 'performance'}),
+        text('Here is the plan.'),
+      ]);
+      store.selectLevel(1);
+      store.selectSide(Side.withPiece);
+      await store.send('I’ve picked three talks.');
+      await store.send('Swap the second one.');
+      store.selectLevel(2);
+      store.selectSide(Side.withPiece);
+      await store.send('Use the schedule.');
+      final first = client.requests[2].messages;
+      expect(first.length, 5, reason: 'four earlier messages plus the new one');
+      expect(first.first['content'].toString(), contains('three talks'));
+      // Earlier turns are plain text, so a later tool loop never resends old thinking.
+      final later = client.requests.last.messages;
+      expect(later.take(4).every((m) => m['content'].toString().contains('thinking') == false), isTrue);
+    });
+
+    test('the without and with runs branch from the same history', () async {
+      final (:store, :client) = storeWith([text('A'), text('B'), text('C')]);
+      store.selectLevel(1);
+      store.selectSide(Side.withPiece);
+      await store.send('I’ve picked three talks.');
+      store.selectLevel(2); // carries the with-history run forward
+      await store.send('Use the schedule.'); // without
+      store.selectSide(Side.withPiece);
+      await store.send('Use the schedule.'); // with
+      expect(client.requests[1].messages.length, 3, reason: 'shared history plus the message');
+      expect(client.requests[2].messages.length, 3, reason: 'the same shared history, not the without run');
+      expect(client.requests[2].messages.toString(), isNot(contains('B')));
     });
   });
 

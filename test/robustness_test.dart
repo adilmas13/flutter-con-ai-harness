@@ -57,7 +57,7 @@ void main() {
     expect(store.canSave, isFalse);
   });
 
-  test('every experiment starts from the same state, whatever ran before', () async {
+  test('memory saved at level 5 carries into level 6', () async {
     final client = FakeModelClient([
       toolUse('savePreference', {'text': 'Something else'}),
       text('ok'),
@@ -74,8 +74,8 @@ void main() {
     expect(store.memoryFacts, ['Something else']);
 
     store.selectLevel(5);
-    expect(store.memoryFacts, ['Nothing before 10:00', 'No roundtables', 'Leaving at 17:00']);
-    expect(store.itinerary, hasLength(3));
+    expect(store.memoryFacts, ['Something else']);
+    expect(store.itinerary, hasLength(3), reason: 'demo plan when none was made');
     expect(store.calendar, isEmpty);
   });
 
@@ -169,7 +169,7 @@ void main() {
           liveClient: () => client, scheduleText: 'SCHEDULE LINES');
       await store.send('Plan my day. Here’s the schedule:\n\n{schedule}');
       expect(client.requests.single.messages.single['content'], contains('SCHEDULE LINES'));
-      expect((store.chat.first as UserText).pastedLines, 1);
+      expect(store.chat.whereType<UserText>().single.pastedLines, 1);
     });
 
     test('stating the rules is not a plan written as text', () {

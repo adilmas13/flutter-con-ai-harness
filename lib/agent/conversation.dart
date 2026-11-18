@@ -6,6 +6,19 @@ class Conversation {
   Conversation({List<String>? memorySnapshot, this.isNew = true})
       : memorySnapshot = List.unmodifiable(memorySnapshot ?? const []);
 
+  /// Continues [from]'s history in a new run (another level or side).
+  /// Messages are shared read-only; each run appends to its own list.
+  Conversation.continuing(Conversation from, List<String> memory)
+      : memorySnapshot = List.unmodifiable(memory),
+        isNew = from.messages.isEmpty {
+    messages.addAll(from.messages);
+    keptFrom = from.keptFrom;
+    summary = from.summary;
+    shrunkTurns = from.shrunkTurns;
+    turnStart = from.messages.length;
+    seededTurns = from.seededTurns;
+  }
+
   /// Everything ever said in this conversation, in API shape. Append-only:
   /// Claude's thinking blocks are only valid if earlier turns never change.
   final List<Map<String, dynamic>> messages = [];

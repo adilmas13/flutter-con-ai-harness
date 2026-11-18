@@ -460,12 +460,24 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void _resetConversation() {
+  void _startExperiment() {
     final _$actionInfo = _$_AppStoreActionController.startAction(
-      name: '_AppStore._resetConversation',
+      name: '_AppStore._startExperiment',
     );
     try {
-      return super._resetConversation();
+      return super._startExperiment();
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void _showBranch() {
+    final _$actionInfo = _$_AppStoreActionController.startAction(
+      name: '_AppStore._showBranch',
+    );
+    try {
+      return super._showBranch();
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

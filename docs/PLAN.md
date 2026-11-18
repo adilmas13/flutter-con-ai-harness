@@ -126,6 +126,16 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ⬜ `just release` after the final recordings; rehearse from the release build with Wi-Fi off (**next**)
 - ⬜ If level 3’s vague request or level 6’s injection doesn’t trigger live, adjust the input or the tool’s reply, then re-record both sides
 
+## Phase 4b: Rework after user review 🔄
+
+- ✅ **Concise replies:** a reply-style line goes into every request (at most three short sentences or five list items, no headings or tables). It shows as its own Inspector section and says nothing about the app.
+- ✅ **One conversation across levels (accumulator):** history carries from level to level. Within a level, Without and With each branch from the shared history. Moving on carries forward the run used (With first). Level 4 fast-forwards with seeded turns when history is short; level 5’s “New conversation” starts fresh by design.
+- ✅ Earlier turns are sent as plain text (old thinking dropped oldest-first, tool calls written as text), so history works across levels with different system prompts and tools
+- ✅ **No-paste story for levels 1–3:** L1 knows nothing; L2 the user names three talks, then “swap the second one”; L3 “use the schedule” to find a real performance talk with tools
+- ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match. The replay feature stays.
+- 🔄 Live run of the whole stage path as one conversation (`just live-flow`)
+- ⬜ Re-record once the flow is settled
+
 ## Phase 5: Polish ⬜
 
 - ⬜ Keyboard shortcuts for the presenter (level 1–6, toggle without/with, open inspector)

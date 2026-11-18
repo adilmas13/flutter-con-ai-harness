@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../config.dart';
 import '../data/schedule.dart';
 import 'conversation.dart';
@@ -25,6 +27,12 @@ class BuiltRequest {
 }
 
 /// Builds each request from app state: the "context = f(state)" idea.
+/// Sent at every level, so replies stay short enough to project. It says
+/// nothing about the app: level 1 still knows nothing about the event.
+const replyStyle =
+    'Reply in at most three short sentences, or a list of at most five items. '
+    'No headings, no tables, no preamble.';
+
 class ContextBuilder {
   ContextBuilder(this.schedule);
   final Schedule schedule;
@@ -40,7 +48,6 @@ class ContextBuilder {
         'When the user states a lasting preference, save it with savePreference, one call per preference.',
       if (c.has(HarnessPiece.appState))
         'The user’s saved plan for today is available through getItinerary.',
-      'Keep replies short: two or three sentences.',
     ];
     return lines.join('\n');
   }
@@ -55,7 +62,10 @@ class ContextBuilder {
     required bool calendarTools,
   }) {
     final sections = <RequestSection>[];
-    final system = <Map<String, dynamic>>[];
+    final system = <Map<String, dynamic>>[
+      {'type': 'text', 'text': replyStyle},
+    ];
+    sections.add(RequestSection(SectionKind.instructions, 'Reply style', replyStyle));
 
     if (config.has(HarnessPiece.contextBuilder)) {
       final r = rules(config), f = eventFacts();
@@ -78,22 +88,13 @@ class ContextBuilder {
     final start = config.has(HarnessPiece.history) ? conv.keptFrom : conv.turnStart;
     final sent = all.sublist(start).map(_copy).toList();
 
-    // After shrinking, kept turns lose their thinking blocks: those blocks were
-    // produced against a history that no longer exists.
-    if (conv.keptFrom > 0) {
-      final cutoff = conv.turnStart - start;
-      for (var i = 0; i < sent.length && i < cutoff; i++) {
-        final c = sent[i]['content'];
-        if (sent[i]['role'] == 'assistant' && c is List) {
-          sent[i] = {
-            'role': 'assistant',
-            'content': c
-                .cast<Map<String, dynamic>>()
-                .where((b) => b['type'] != 'thinking' && b['type'] != 'redacted_thinking')
-                .toList(),
-          };
-        }
-      }
+    // Earlier turns are sent as plain text. History carries across levels with
+    // different system prompts and tools, so earlier thinking blocks no longer
+    // match (they are dropped, oldest first), and earlier tool calls become text
+    // that any level can send, with or without tools.
+    final cutoff = (conv.turnStart - start).clamp(0, sent.length);
+    for (var i = 0; i < cutoff; i++) {
+      sent[i] = _asText(sent[i]);
     }
 
     // Dropped history, shown struck through in the inspector.
@@ -169,6 +170,27 @@ class ContextBuilder {
     return BuiltRequest(ModelRequest(body), sections);
   }
 
+  /// One earlier message as plain text blocks.
+  static Map<String, dynamic> _asText(Map<String, dynamic> m) {
+    final c = m['content'];
+    if (c is String) return m;
+    final blocks = <Map<String, dynamic>>[];
+    for (final b in (c as List).cast<Map>()) {
+      switch (b['type']) {
+        case 'text':
+          blocks.add({'type': 'text', 'text': b['text']});
+        case 'tool_use':
+          blocks.add({'type': 'text', 'text': '[Called ${b['name']} ${jsonEncode(b['input'])}]'});
+        case 'tool_result':
+          blocks.add({'type': 'text', 'text': '$toolResultMark ${b['content']}]'});
+      }
+    }
+    if (blocks.isEmpty) blocks.add({'type': 'text', 'text': '(no reply)'});
+    return {'role': m['role'], 'content': blocks};
+  }
+
+  static const toolResultMark = '[Tool result:';
+
   static Map<String, dynamic> _copy(Map<String, dynamic> m) =>
       {'role': m['role'], 'content': m['content']};
 
@@ -186,7 +208,10 @@ class ContextBuilder {
         for (final m in msgs)
           if (m['content'] is List)
             for (final b in (m['content'] as List).cast<Map>())
-              if (b['type'] == 'tool_result') '${b['content']}'
+              if (b['type'] == 'tool_result')
+                '${b['content']}'
+              else if (b['type'] == 'text' && '${b['text']}'.startsWith(toolResultMark))
+                '${b['text']}'
       ];
 
   static String _render(List<Map<String, dynamic>> msgs,
@@ -200,6 +225,8 @@ class ContextBuilder {
       }
       for (final b in (c as List).cast<Map>()) {
         switch (b['type']) {
+          case 'text' when !includeToolResults && '${b['text']}'.startsWith(toolResultMark):
+            break;
           case 'text':
             out.add('${m['role']}: ${b['text']}');
           case 'tool_use':
