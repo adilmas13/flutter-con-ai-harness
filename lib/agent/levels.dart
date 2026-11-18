@@ -123,7 +123,7 @@ final levels = <Level>[
           name: 'Summarise old turns',
           change: 'summarising',
           seed: Seed.longChat,
-          notes: 'Without: about 12.6k tokens against an 8k window, so nothing is sent. With: old turns become a short summary.',
+          notes: 'Without: about 13.8k tokens against an 8k window, so nothing is sent. With: old turns become a short summary.',
           inputs: const ['What should I end the day with?'],
           without: Harnesses.h3,
           withPiece: Harnesses.h4Summarise,

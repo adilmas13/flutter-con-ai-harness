@@ -123,6 +123,7 @@ class AgentLoop {
 
       rec.memoryIncluded =
           built.sections.any((s) => s.kind == SectionKind.memory);
+      rec.removedTurns = conv.shrunkTurns;
       rec.requestIncludedEarlierTurns = config.has(HarnessPiece.history) &&
           (conv.keptFrom < conv.turnStart || conv.summary != null);
 

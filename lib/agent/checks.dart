@@ -14,6 +14,7 @@ class TurnRecord {
   bool blocked = false;
   bool hadEarlierTurns = false;
   bool selfContained = false;
+  int removedTurns = 0;
   bool requestIncludedEarlierTurns = false;
   bool memoryAvailable = false;
   bool memoryIncluded = false;
@@ -146,7 +147,10 @@ List<CheckOutcome> runChecks(TurnRecord t, Rules rules, Schedule schedule) {
     else if (t.selfContained)
       c(2, CheckResult.notApplicable, 'The message carries its own data.')
     else if (t.requestIncludedEarlierTurns)
-      c(2, CheckResult.pass, 'The request carried the earlier turns.')
+      c(2, CheckResult.pass,
+          t.removedTurns > 0
+              ? 'The request carried the recent turns (${t.removedTurns} older ones were shrunk).'
+              : 'The request carried the earlier turns.')
     else
       c(2, CheckResult.fail, 'The request held only the newest message.'),
 
