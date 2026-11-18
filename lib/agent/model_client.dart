@@ -80,15 +80,45 @@ class AnthropicClient implements ModelClient {
   @override
   Future<ModelReply> send(ModelRequest request) async {
     _requireKey();
-    final res = await _http
-        .post(_base, headers: _headers, body: jsonEncode(request.body))
-        .timeout(const Duration(seconds: 120));
-    final body = jsonDecode(utf8.decode(res.bodyBytes)) as Map<String, dynamic>;
-    if (res.statusCode != 200) {
-      final err = (body['error'] as Map?)?['message'] ?? res.body;
-      throw ModelException('Claude API ${res.statusCode}: $err');
-    }
+    final body = await _post(_base, _headers, request.body);
     return ModelReply(body);
+  }
+
+  /// POST with up to two retries for rate limits, overload, server errors
+  /// and network failures.
+  Future<Map<String, dynamic>> _post(
+      Uri url, Map<String, String> headers, Map<String, dynamic> payload) async {
+    const retryable = {408, 409, 429, 500, 502, 503, 504, 529};
+    for (var attempt = 0;; attempt++) {
+      try {
+        final res = await _http
+            .post(url, headers: headers, body: jsonEncode(payload))
+            .timeout(const Duration(seconds: 90));
+        if (res.statusCode == 200) {
+          return jsonDecode(utf8.decode(res.bodyBytes)) as Map<String, dynamic>;
+        }
+        if (retryable.contains(res.statusCode) && attempt < 2) {
+          await Future<void>.delayed(Duration(milliseconds: 800 * (attempt + 1)));
+          continue;
+        }
+        String detail;
+        try {
+          final err = jsonDecode(utf8.decode(res.bodyBytes)) as Map<String, dynamic>;
+          detail = '${(err['error'] as Map?)?['message'] ?? res.body}';
+        } catch (_) {
+          detail = 'unexpected response (not JSON). Is the network behind a login page?';
+        }
+        throw ModelException('Claude API ${res.statusCode}: $detail');
+      } on ModelException {
+        rethrow;
+      } catch (e) {
+        if (attempt < 2) {
+          await Future<void>.delayed(Duration(milliseconds: 800 * (attempt + 1)));
+          continue;
+        }
+        throw ModelException('Network error: $e');
+      }
+    }
   }
 
   @override
@@ -98,16 +128,8 @@ class AnthropicClient implements ModelClient {
       ..remove('max_tokens')
       ..remove('fallbacks')
       ..remove('output_config');
-    final res = await _http
-        .post(Uri.parse('$_base/count_tokens'),
-            headers: {..._headers}..remove('anthropic-beta'),
-            body: jsonEncode(body))
-        .timeout(const Duration(seconds: 60));
-    final json = jsonDecode(utf8.decode(res.bodyBytes)) as Map<String, dynamic>;
-    if (res.statusCode != 200) {
-      final err = (json['error'] as Map?)?['message'] ?? res.body;
-      throw ModelException('Token count ${res.statusCode}: $err');
-    }
+    final json = await _post(Uri.parse('$_base/count_tokens'),
+        {..._headers}..remove('anthropic-beta'), body);
     return json['input_tokens'] as int;
   }
 }

@@ -48,7 +48,7 @@ void main() {
 
   group('Level 1 · the call', () {
     test('a bare model gets one message: no system, no tools', () async {
-      final (:store, :client) = storeWith([text('09:30 Keynote. 11:00 Prompting Patterns.')]);
+      final (:store, :client) = storeWith([text('09:30 Keynote. 11:00 Prompting Patterns. 15:00 Shipping LLMs.')]);
       await store.send('Plan my flutterCon day around AI talks.');
       final body = client.requests.single.body;
       expect(body.containsKey('system'), isFalse);
@@ -202,7 +202,7 @@ void main() {
   });
 
   group('Level 6 · trust', () {
-    final beyond = () => id('Beyond Prompts');
+    String beyond() => id('Beyond Prompts');
 
     test('without trust controls, contacts leak and the write runs unasked', () async {
       final (:store, :client) = storeWith([

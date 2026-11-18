@@ -8,6 +8,8 @@ import 'harness.dart';
 import 'model_client.dart';
 import 'tools.dart';
 
+class CancelledRun implements Exception {}
+
 enum TraceKind { model, summary, tool, failed, wait, limit }
 
 class TraceEvent {
@@ -25,6 +27,9 @@ class TraceEvent {
 /// Everything the loop reports back to the app.
 abstract interface class LoopHost implements ToolHost {
   List<String> get memoryFacts;
+
+  /// Completes when the presenter presses Cancel.
+  Future<void> get cancelled;
   void setState(AgentState state);
   void showRequest(BuiltRequest request, {int? exactTokens});
   int addTrace(TraceEvent event);
@@ -90,7 +95,7 @@ class AgentLoop {
       if (built.sections.fold(0, (a, s) => a + (s.dropped ? 0 : s.tokens)) >
           AppConfig.contextBudget * 0.6) {
         host.setState(const CheckingBudget());
-        var tokens = await client.countTokens(built.request);
+        var tokens = await _guard(client.countTokens(built.request));
         host.showRequest(built, exactTokens: tokens);
         if (tokens > AppConfig.contextBudget) {
           rec.wasOverBudget = true;
@@ -102,7 +107,7 @@ class AgentLoop {
           }
           await _shrink();
           built = _build();
-          tokens = await client.countTokens(built.request);
+          tokens = await _guard(client.countTokens(built.request));
           host.showRequest(built, exactTokens: tokens);
           if (tokens > AppConfig.contextBudget) {
             rec.blocked = true;
@@ -152,7 +157,7 @@ class AgentLoop {
         host.setState(Thinking(steps + 1));
         final t0 = _now;
         final ti = host.addTrace(TraceEvent(TraceKind.model, 'Model call', t0, 0));
-        final reply = await client.send(built.request);
+        final reply = await _guard(client.send(built.request));
         steps++;
         rec.modelCalls = steps;
         host.updateTrace(
@@ -187,10 +192,42 @@ class AgentLoop {
         }
         conv.messages.add({'role': 'user', 'content': results});
       }
+    } on CancelledRun {
+      _closeTurn('(Cancelled.)');
+      host.appText('Cancelled.');
+      host.setState(const Stopped('cancelled'));
+      return rec;
     } on ModelException catch (e) {
+      _closeTurn('(No reply.)');
       host.errorText(e.message);
       host.setState(Failed(e.message));
       return rec;
+    } catch (e) {
+      // Network errors, timeouts, a captive-portal page instead of JSON:
+      // never leave the app stuck in a busy state.
+      _closeTurn('(No reply.)');
+      final msg = 'The request failed: $e';
+      host.errorText(msg);
+      host.setState(Failed(msg));
+      return rec;
+    }
+  }
+
+  /// Races a model call against Cancel.
+  Future<T> _guard<T>(Future<T> call) => Future.any([
+        call,
+        host.cancelled.then<T>((_) => throw CancelledRun()),
+      ]);
+
+  /// Keeps user/assistant alternation when a turn ends early.
+  void _closeTurn(String text) {
+    if (conv.messages.isNotEmpty && conv.messages.last['role'] == 'user') {
+      conv.messages.add({
+        'role': 'assistant',
+        'content': [
+          {'type': 'text', 'text': text}
+        ]
+      });
     }
   }
 
@@ -333,7 +370,7 @@ class AgentLoop {
       });
       final t0 = _now;
       final ti = host.addTrace(TraceEvent(TraceKind.summary, 'Summarise old turns', t0, 0));
-      final reply = await client.send(req);
+      final reply = await _guard(client.send(req));
       host.updateTrace(ti,
           TraceEvent(TraceKind.summary, 'Summarise old turns', t0, _now - t0,
               '$turnsGone turns became ${reply.outputTokens} tokens'));

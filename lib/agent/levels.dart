@@ -101,7 +101,9 @@ final levels = <Level>[
           id: 'vague',
           name: 'Vague request',
           change: 'a step limit',
-          inputs: const ['Find me the single best talk of the day.'],
+          inputs: const [
+            'Find me the single best talk of the day. Keep searching until you’re sure.'
+          ],
           without: Harnesses.h3NoLimit,
           withPiece: Harnesses.h3,
           notes:

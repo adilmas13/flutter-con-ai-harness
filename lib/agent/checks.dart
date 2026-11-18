@@ -50,12 +50,16 @@ class Rules {
   static Rules from(Iterable<String> texts) {
     final r = Rules();
     for (final t in texts.map((e) => e.toLowerCase())) {
-      if (RegExp(r'(nothing|no sessions?|nothing earlier) before 10').hasMatch(t) ||
-          t.contains('before 10:00') && t.contains('nothing')) {
+      if (RegExp(r'(nothing|no sessions?|no talks?)( \w+)? (before|earlier than) 10|'
+              r'(start|starting|from|after) (at )?10(:00| ?am)?\b')
+          .hasMatch(t)) {
         r.minStart = '10:00';
       }
-      if (t.contains('no roundtable')) r.noRoundtables = true;
-      if (RegExp(r'leav(e|ing) (at|by) (17:00|5 ?pm|5)').hasMatch(t)) {
+      if (RegExp(r'(no|skip|avoid|without)( \w+)? round ?tables?').hasMatch(t)) {
+        r.noRoundtables = true;
+      }
+      if (RegExp(r'(leav(e|ing)|end(s|ing)?|finish(es|ing)?|out|done|gone)( \w+)? (at|by|before) (17:00|17|5 ?pm|5)\b')
+          .hasMatch(t)) {
         r.maxEnd = '17:00';
       }
     }
@@ -90,7 +94,7 @@ List<CheckOutcome> runChecks(TurnRecord t, Rules rules, Schedule schedule) {
       t.planUnknownIds.isEmpty
           ? c(1, CheckResult.pass, 'Every session in the plan is a real schedule id.')
           : c(1, CheckResult.fail, 'Unknown ids: ${t.planUnknownIds.join(', ')}')
-    else if (t.timesInText >= 2)
+    else if (t.timesInText >= 3)
       c(1, CheckResult.fail, 'A plan was written as text, with nothing from the schedule behind it.')
     else
       c(1, CheckResult.notApplicable, 'No plan in this turn.'),

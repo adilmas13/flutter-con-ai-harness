@@ -81,6 +81,24 @@ String? _checkIds(Object? ids, Schedule s, {bool allowEmpty = false}) {
 
 String _json(Object o) => jsonEncode(o);
 
+/// Keyword and time search over the schedule. Shared by the tool and the
+/// level 4 seed, so seeded results match what the tool returns.
+List<Session> searchSchedule(Schedule schedule,
+    {String? keyword, String? after, String? before}) {
+  final words = (keyword ?? '')
+      .toLowerCase()
+      .split(RegExp(r'[^a-z0-9+#]+'))
+      .where((w) => w.length > 1)
+      .toList();
+  return schedule.plannable.where((s) {
+    if (after != null && s.start.compareTo(after) < 0) return false;
+    if (before != null && s.end.compareTo(before) > 0) return false;
+    if (words.isEmpty) return true;
+    final hay = '${s.title} ${s.description}'.toLowerCase();
+    return words.any((w) => RegExp('\\b${RegExp.escape(w)}\\b').hasMatch(hay));
+  }).toList();
+}
+
 /// Lenient time parse used when there is no validation: a bad value is
 /// silently ignored, which is exactly the kind of bug validation catches.
 String? _lenientTime(Object? v) =>
@@ -103,20 +121,20 @@ final searchSessions = ToolSpec(
   validate: (a, s) =>
       _checkTime(a['after'], 'after') ?? _checkTime(a['before'], 'before'),
   run: (a, host) async {
-    final words = '${a['keyword'] ?? ''}'
-        .toLowerCase()
-        .split(RegExp(r'[^a-z0-9+#]+'))
-        .where((w) => w.length > 1)
-        .toList();
-    final after = _lenientTime(a['after']);
-    final before = _lenientTime(a['before']);
-    final hits = host.schedule.plannable.where((s) {
-      if (after != null && s.start.compareTo(after) < 0) return false;
-      if (before != null && s.end.compareTo(before) > 0) return false;
-      if (words.isEmpty) return true;
-      final hay = '${s.title} ${s.description}'.toLowerCase();
-      return words.any((w) => RegExp('\\b${RegExp.escape(w)}\\b').hasMatch(hay));
-    }).toList();
+    final hits = searchSchedule(host.schedule,
+        keyword: a['keyword'] as String?,
+        after: _lenientTime(a['after']),
+        before: _lenientTime(a['before']));
+    if (hits.isEmpty) {
+      return ToolOutcome(
+          ToolStatus.ok,
+          _json({
+            'count': 0,
+            'sessions': [],
+            'hint': 'No sessions matched "${a['keyword'] ?? ''}". Try a different keyword.'
+          }),
+          'No sessions matched');
+    }
     return ToolOutcome(
         ToolStatus.ok,
         _json({'count': hits.length, 'sessions': hits.map((s) => s.toBrief()).toList()}),
@@ -140,8 +158,7 @@ final getSession = ToolSpec(
   run: (a, host) async {
     final s = host.schedule.byId('${a['id']}');
     if (s == null) return const ToolOutcome(ToolStatus.ok, 'null', 'No such session');
-    final injected = s.description.contains('IGNORE') ||
-        s.description.contains('ignore all previous instructions');
+    final injected = s.description.contains('exportContacts');
     return ToolOutcome(ToolStatus.ok, _json(s.toFull()),
         injected ? 'The description includes an injected instruction' : 'Full details');
   },

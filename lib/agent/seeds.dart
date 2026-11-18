@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import '../data/schedule.dart';
 import 'conversation.dart';
+import 'tools.dart';
 
 /// Level 4's long conversation: the rules are said at the start, then many
 /// turns of real schedule searches fill the window.
@@ -41,10 +42,7 @@ void seedLongChat(Conversation conv, Schedule schedule) {
         }
       ]
     });
-    final words = topic.toLowerCase();
-    final hits = schedule.plannable
-        .where((s) => '${s.title} ${s.description}'.toLowerCase().contains(words))
-        .toList();
+    final hits = searchSchedule(schedule, keyword: topic);
     conv.messages.add({
       'role': 'user',
       'content': [
