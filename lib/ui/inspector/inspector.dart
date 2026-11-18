@@ -8,6 +8,7 @@ import '../../agent/agent_state.dart';
 import '../../agent/checks.dart';
 import '../../agent/context_builder.dart';
 import '../../agent/harness.dart';
+import '../../agent/levels.dart';
 import '../../config.dart';
 import '../../stores/app_store.dart';
 import '../theme.dart';
@@ -158,6 +159,8 @@ class _ContextTabState extends State<_ContextTab> {
               ]),
         ]),
         const SizedBox(height: 18),
+        _SystemPrompt(store: store),
+        const SizedBox(height: 18),
         Row(children: [
           const Cap('The request'),
           const Spacer(),
@@ -208,6 +211,74 @@ class _ContextTabState extends State<_ContextTab> {
     }
     if (v is String && v.length > 1200) return '${v.substring(0, 1200)}… (${v.length} chars)';
     return v;
+  }
+}
+
+/// The system prompt for this side, compared line by line with the other side:
+/// what this harness adds (+) and what only the other side has (struck through).
+class _SystemPrompt extends StatelessWidget {
+  const _SystemPrompt({required this.store});
+  final AppStore store;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.pal;
+    final exp = store.experiment;
+    final now = store.systemLines;
+    final other = exp.baseline ? now : store.otherSystemLines;
+    final otherName = store.side == Side.without ? 'With ${exp.change}' : 'Without ${exp.change}';
+    final added = now.where((l) => l.isNotEmpty && !other.contains(l)).length;
+    final removed = other.where((l) => l.isNotEmpty && !now.contains(l)).toList();
+
+    Widget line(String text, {Color? fg, Color? bg, String mark = ' ', bool strike = false}) =>
+        Container(
+          color: bg,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            SizedBox(
+                width: 14,
+                child: Text(mark,
+                    style: TextStyle(fontFamily: monoFamily, fontSize: 12, color: fg ?? p.faint))),
+            Expanded(
+              child: Text(text.isEmpty ? ' ' : text,
+                  style: TextStyle(
+                      fontFamily: monoFamily,
+                      fontSize: 12,
+                      height: 1.5,
+                      color: fg ?? p.fg,
+                      decoration: strike ? TextDecoration.lineThrough : null)),
+            ),
+          ]),
+        );
+
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Row(children: [
+        const Cap('System prompt'),
+        const Spacer(),
+        if (!exp.baseline)
+          Text(
+              added == 0 && removed.isEmpty
+                  ? 'Same as $otherName'
+                  : 'vs $otherName: +$added, −${removed.length} lines',
+              style: TextStyle(fontSize: 12.5, color: p.muted)),
+      ]),
+      const SizedBox(height: 6),
+      Container(
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        decoration: BoxDecoration(
+            color: p.window,
+            border: Border.all(color: p.line),
+            borderRadius: BorderRadius.circular(8)),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          for (final l in now)
+            if (l.isNotEmpty && !other.contains(l))
+              line(l, fg: p.ok, bg: p.okBg, mark: '+')
+            else
+              line(l),
+          for (final l in removed) line(l, fg: p.crit, bg: p.critBg, mark: '−', strike: true),
+        ]),
+      ),
+    ]);
   }
 }
 

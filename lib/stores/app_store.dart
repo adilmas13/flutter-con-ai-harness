@@ -118,6 +118,23 @@ abstract class _AppStore with Store implements LoopHost {
   @observable
   String? toast;
 
+  /// The system prompt this side sends, as lines.
+  List<String> get systemLines => _systemLines(config);
+
+  /// The system prompt the other side of this experiment sends.
+  List<String> get otherSystemLines => _systemLines(otherConfig);
+
+  List<String> _systemLines(HarnessConfig c) {
+    final body = builder.build(conversation, c, calendarTools: experiment.calendarTools).request.body;
+    final blocks = (body['system'] as List? ?? const []).cast<Map>();
+    final lines = <String>[];
+    for (final b in blocks) {
+      if (lines.isNotEmpty) lines.add('');
+      lines.addAll('${b['text']}'.split('\n'));
+    }
+    return lines;
+  }
+
   Rules get rules => Rules.from([...conversation.userTexts, ...memoryFacts]);
 
   @computed
