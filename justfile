@@ -26,6 +26,11 @@ test:
 live-smoke:
     flutter test test/live --run-skipped --dart-define-from-file=.env --reporter expanded
 
+# Copy the compact schedule (titles, times, rooms, speakers) to the clipboard, for pasting at levels 1–2
+paste-schedule:
+    pbcopy < assets/schedule_paste.txt
+    @echo "Schedule copied to the clipboard ($(wc -l < assets/schedule_paste.txt | tr -d ' ') lines)."
+
 # Analyze and test: run before every commit
 check: analyze test
 

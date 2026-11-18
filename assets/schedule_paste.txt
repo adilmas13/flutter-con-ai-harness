@@ -1,0 +1,46 @@
+flutterCon India 2026 · Saturday 21 Nov · Conrad Bengaluru
+
+09:00–09:40 · Ballroom 2 · Why AI Makes Flutter More Important, Not Less · Eric Seidel
+10:10–10:50 · Ballroom 2 · Death to Passwords: Implementing Biometric Passkeys in Flutter · Lukas Klingsbo
+10:10–10:50 · Ballroom 1 · Beyond Breakpoints: Flutter Apps for the Foldable Era · Abdullah Deshmukh
+10:10–10:50 · Ballroom 3 · Migrating to Event Driven Architecture to Improve Communication Across 50+ Module · Burhanuddin Rashid
+10:10–10:50 · Roundtables (roundtable) · Millions of Users, Zero Jank: Advanced Performance Profiling · Shekhar Patel
+10:10–10:50 · Junior Ballroom · From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms · Hamdaan Ali
+11:05–11:45 · Ballroom 2 · Hundreds of Features, Zero Collisions: Composable Flutter at Scale · Pavan Podila
+11:05–11:45 · Ballroom 1 · Navigation in a Multi-Module Flutter App at Scale · Karem Ebrahim
+11:05–11:45 · Ballroom 3 · Zero to 200,000 Users: Architecting Production-Grade Flutter Systems That Don’t Break · Supratim Dhara
+11:05–11:45 · Roundtables (roundtable) · Surviving the AI Code Flood: CI/CD & Quality Gates · Vivek Yadav, Toseef Ali Khan
+11:05–11:45 · Junior Ballroom · Engineering Flutter for Wearables · Likhitha Aralimara
+12:00–12:20 · Ballroom 2 · Disciplined by Design: TDD-Driven Flutter Development with AI · Toseef Ali Khan
+12:00–12:20 · Ballroom 1 · Building Realtime Collaborative Flutter Apps with CRDTs · Mayur Mahajan
+12:00–12:20 · Ballroom 3 · Under the Hood of Session Replay: Capturing Every Interaction · Abhay Sood
+12:00–12:20 · Roundtables (roundtable) · Hardening Flutter Security: Balancing Compliance & Operational Risks · Bornak Paul, Zaid Sayyed
+12:00–12:20 · Junior Ballroom · Offloading Heavy Lifting: Scaling Flutter Apps with Rust FFI · Ponnam Karthik
+13:20–14:00 · Ballroom 2 · Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons · Eric Seidel, Ajin Asokan, Avinash Singh Yadav, Somesh Karthik
+13:20–14:00 · Ballroom 1 · I shipped a local AI Model to 7,000+ users. Here's what happened. · Aditya Thakur
+13:20–14:00 · Ballroom 3 · Beyond Crashlytics: Building Autonomous Incident Intelligence for Flutter · Kamal Shree, Hema Sai Charan Kothamasu
+13:20–14:00 · Roundtables (roundtable) · Architecting Apps as Headless Toolchains for OS AI Agents · Rohan Joshi
+13:20–14:00 · Junior Ballroom · Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development · Vivek Yadav
+14:15–14:55 · Ballroom 2 · The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK · Pawan Kumar
+14:15–14:55 · Ballroom 1 · One Isolate, Multiple Threads: Understanding Concurrency in Flutter · Shubham Agrawal, Sugam Singh
+14:15–14:55 · Ballroom 3 · Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction · Shree Bhagwat
+14:15–14:55 · Roundtables (roundtable) · Tracking the Unpredictable: Monitoring AI Costs and Performance · Hema Sai Charan Kothamasu, Jaldeep Asodariya
+14:15–14:55 · Junior Ballroom · Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps · Neelansh Sethi, Adil Shaikh
+15:10–15:50 · Ballroom 2 · Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+ · Md Moinuddin
+15:10–15:50 · Ballroom 1 · From Android Things to Flutter: Building a Smart Home App on Raspberry Pi · Jaldeep Asodariya
+15:10–15:50 · Ballroom 3 · When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide · Saheb Singh
+15:10–15:50 · Roundtables (roundtable) · The Modular Monolith: Scaling Architecture & Surviving Dependency Hell · Lukas Klingsbo
+15:10–15:50 · Junior Ballroom · Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps · Shekhar Patel
+16:05–16:25 · Ballroom 2 · How I Built a Route Optimized Delivery Map in Flutter Without Google Maps · Zaid Sayyed
+16:05–16:25 · Ballroom 1 · Flutter Package Version Hell: A Field Guide · Abhishek Doshi
+16:05–16:25 · Ballroom 3 · Beyond HTTPS: Preventing MITM Attacks in Flutter with Certificate Pinning · Bornak Paul
+16:05–16:25 · Roundtables (roundtable) · The Wild West of Gen UI: Taming Runtime Layouts · Supratim Dhara
+16:05–16:25 · Junior Ballroom · Keys That Never Leave the Chip: Secure Enclave & Hardware Keystore in Flutter · Roopesh LR
+16:40–17:20 · Ballroom 2 · AI Observability for LLM-Powered Flutter Apps · Pooja Bhaumik
+16:40–17:20 · Ballroom 1 · Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit · Renuka Kelkar
+16:40–17:20 · Ballroom 3 · Building Home Screen Widgets in Flutter Without Writing Native Code Twice · Akansha Jain
+16:40–17:20 · Roundtables (roundtable) · Beyond the Widget Tree: Flutter Internals & Layout Mechanics · Shree Bhagwat, Abdullah Deshmukh
+16:40–17:20 · Junior Ballroom · How To Make a Flutter App Smooth for 1 Million Users · Gauri Panse
+17:35–18:15 · Ballroom 2 · Building Your Own Flutter DevTools Extension · Bhavik Makwana
+17:35–18:15 · Ballroom 1 · Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale · Laksh Samdariya
+17:35–18:15 · Ballroom 3 · Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities · Pranav Masekar
