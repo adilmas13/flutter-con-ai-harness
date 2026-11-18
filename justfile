@@ -49,11 +49,12 @@ recordings:
 clean:
     flutter clean
 
-# Commit everything staged plus tracked changes, with a message (never includes .env)
+# Commit all changes with a Conventional Commit message, e.g. "feat(agent): add retry" (never includes .env)
 commit message:
+    @printf '%s' "{{message}}" | grep -qE '^(feat|fix|docs|test|refactor|chore|build|ci|perf|style)(\([a-z0-9-]+\))?!?: [^ ].{0,70}$' || { echo 'Not a Conventional Commit. Use: type(scope): summary (see .agents/skills/phase-complete)'; exit 1; }
     git add -A
     @git diff --cached --name-only | grep -qxE '(.*/)?\.env' && { echo ".env is staged, aborting"; exit 1; } || true
-    git commit -m "{{message}}" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+    git commit -m "{{message}}"
 
 # Push the current branch to origin
 push:

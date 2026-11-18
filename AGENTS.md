@@ -34,7 +34,19 @@ Every project command is a [`just`](https://just.systems) recipe; run `just` to 
 | `just recordings` | List saved recordings |
 | `just commit "message"` / `just push` | Commit (refuses if `.env` is staged) and push |
 
-Commit and push after each phase in `docs/PLAN.md` is completed.
+Commit and push after each phase in `docs/PLAN.md` is completed. Commit messages follow [Conventional Commits](https://www.conventionalcommits.org) (`type(scope): summary`); `just commit` rejects anything else.
+
+## Skills
+
+Project skills live in `.agents/skills/` (`.claude/skills` links there). Read the matching one before the task:
+
+| Skill | Use when |
+|---|---|
+| `phase-complete` | Finishing a task or phase: verify, update the plan, commit, push |
+| `add-experiment` | Adding or changing a level, experiment, harness piece, tool, check or seed |
+| `record-runs` | Recording live runs and checking replay for the stage |
+| `mobx-store` | Changing the store or a widget that observes it |
+| `model-calls` | Anything that shapes a request to Claude; append-only history rules |
 
 - `.env` holds `ANTHROPIC_API_KEY` and is git-ignored. **Never commit it, print it, or put the key anywhere else.**
 - `PROJECT_DIR` lets the app write recordings back to `recordings/recordings.json`. Without it, recordings are read-only from the bundled copy.
