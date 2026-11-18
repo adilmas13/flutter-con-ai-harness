@@ -247,14 +247,13 @@ abstract class _AppStore with Store implements LoopHost {
     chat.add(UserText(shown,
         pastedLines: pasted ? '\n'.allMatches(scheduleText.trim()).length + 1 : 0));
     if (replay) {
+      // A recording only plays back for the exact message it was recorded
+      // with, in the same position. Anything else would show a reply to a
+      // different question.
       final rec = recordings[key];
-      if (rec == null) {
-        chat.add(const ErrorText(
-            'Nothing is recorded for this turn yet. Switch to Live, run it, and save the run.'));
+      if (rec == null || rec.input != text) {
+        chat.add(ErrorText(_replayMismatch(text)));
         return;
-      }
-      if (rec.input != text) {
-        chat.add(DividerText('Replaying the run recorded for “${rec.input}”'));
       }
       client = ReplayClient(rec.exchanges);
     } else {
@@ -277,6 +276,23 @@ abstract class _AppStore with Store implements LoopHost {
     );
     final record = await loop.run(text, selfContained: pasted);
     _finishTurn(record, key, text, capture);
+  }
+
+  /// Explains why a message can't be replayed, and what to do instead.
+  String _replayMismatch(String text) {
+    final suggestions = experiment.inputs
+        .map((i) => i.replaceAll(pasteSchedule, scheduleText.trim()).trim())
+        .toList();
+    final at = suggestions.indexOf(text);
+    if (at >= 0 && at != sentTurns) {
+      return 'In Replay, send the suggestions in order. This one was recorded as message ${at + 1}. '
+          'Press restart (↻) to begin the conversation again.';
+    }
+    if (at < 0) {
+      return 'This message wasn’t recorded, so Replay can’t answer it. '
+          'Use the suggestions below, or switch to Live to ask anything.';
+    }
+    return 'Nothing is recorded for this message yet. Switch to Live, run it, and save the run.';
   }
 
   @action

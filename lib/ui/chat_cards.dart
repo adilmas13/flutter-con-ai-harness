@@ -60,9 +60,16 @@ class ChatCard extends StatelessWidget {
         ),
       DividerText(:final text) => Row(children: [
           Expanded(child: Divider(color: p.line)),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Text(text, style: TextStyle(fontSize: 12.5, color: p.faint)),
+          Flexible(
+            flex: 4,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(text,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 12.5, color: p.faint)),
+            ),
           ),
           Expanded(child: Divider(color: p.line)),
         ]),

@@ -97,6 +97,38 @@ void main() {
     dir.deleteSync(recursive: true);
   });
 
+  test('replay plays only the exact recorded message, in order', () async {
+    final dir = Directory.systemTemp.createTempSync('rec');
+    final path = '${dir.path}/r.json';
+    File(path).writeAsStringSync('{"version":1,"recordings":{}}');
+    final recs = RecordingStore(path: path);
+    await recs.load();
+    final live = AppStore(schedule, recs,
+        scheduleText: 'S', liveClient: () => FakeModelClient([text('Plan.'), text('Swapped.')]));
+    live.selectLevel(1);
+    live.selectSide(Side.without);
+    await live.send(levels[1].experiments[0].inputs[0]);
+    await live.send(levels[1].experiments[0].inputs[1]);
+    await live.saveRun();
+
+    final replay = AppStore(schedule, recs, scheduleText: 'S',
+        liveClient: () => throw StateError('no network in replay'));
+    replay.selectLevel(1);
+    replay.selectSide(Side.without);
+    replay.setReplay(true);
+    // Out of order: the follow-up first.
+    await replay.send(levels[1].experiments[0].inputs[1]);
+    expect((replay.chat.last as ErrorText).text, contains('in order'));
+    // Something never recorded.
+    await replay.send('What is the weather?');
+    expect((replay.chat.last as ErrorText).text, contains('wasn’t recorded'));
+    expect(replay.chat.whereType<AssistantText>(), isEmpty);
+    // The right message plays.
+    await replay.send(levels[1].experiments[0].inputs[0]);
+    expect(replay.chat.whereType<AssistantText>().single.text, 'Plan.');
+    dir.deleteSync(recursive: true);
+  });
+
   group('rules are read from how people actually say them', () {
     for (final (text, field) in [
       ('Nothing before 10, and no roundtables.', 'min'),
