@@ -66,7 +66,7 @@ _Last updated: 2026-11-18_
 - ✅ Tests with a fake model client: every level’s without and with run, plus replay (`test/levels_test.dart`)
 - ✅ Robustness tests: network error, Cancel, fixed starting state, multi-turn save, rule phrasing (`test/robustness_test.dart`); 27 tests pass
 - ✅ The level 4 seed’s local estimate is over the 4,800-token threshold, so the budget check runs (covered by a test)
-- ⏸ Confirm with real `count_tokens` that the seed is over 8,000 (needs the key)
+- ✅ Confirmed with real `count_tokens`: the seed is 12,576 tokens
 
 ## Phase 3: App UI ✅
 
@@ -104,7 +104,9 @@ Still open from the review:
 Order matters: **freeze prompts, tool descriptions and seeds before recording.** Any later change makes replay show “request differs”. Record along the stage order (levels 1→6), then build the release app.
 
 
-- ⏸ Add `ANTHROPIC_API_KEY` to `.env` (**user**)
+- ✅ Add `ANTHROPIC_API_KEY` to `.env` (user)
+- ✅ Live smoke test (`just live-smoke`): key, model, fallback header, `count_tokens`, and the tool loop all work. The level 4 seed is 12,576 real tokens (over 8,000).
+- ⏸ **Level 1 story:** Opus 5.5 doesn’t invent sessions; it says it has no schedule and asks for it. Proposed: change “it invents things” to “it knows nothing about your app” (decision pending with the user)
 - ⬜ Run each experiment live, without and with; check that each failure shows up
 - ⬜ Tune prompts and inputs where a failure doesn’t reproduce (for example the vague request, or the summary losing “leaving at 17:00”)
 - ⬜ Save good runs for every level, side and turn; replay them all end to end offline

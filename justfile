@@ -22,6 +22,10 @@ analyze:
 test:
     flutter test
 
+# Live smoke test against Claude (uses the key in .env; costs a few cents)
+live-smoke:
+    flutter test test/live --run-skipped --dart-define-from-file=.env --reporter expanded
+
 # Analyze and test: run before every commit
 check: analyze test
 
