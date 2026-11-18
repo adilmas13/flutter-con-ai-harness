@@ -176,6 +176,7 @@ class AgentLoop {
         }
         if (reply.text.isNotEmpty) {
           host.assistantText(reply.text);
+          rec.replyTexts.add(reply.text);
           rec.timesInText +=
               RegExp(r'\b([01]\d|2[0-3]):[0-5]\d\b').allMatches(reply.text).length;
         }

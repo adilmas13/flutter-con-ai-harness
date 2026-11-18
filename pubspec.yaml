@@ -25,4 +25,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/schedule.json
+    - assets/schedule_paste.txt
     - recordings/recordings.json

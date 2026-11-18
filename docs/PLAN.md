@@ -106,7 +106,11 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 
 - ✅ Add `ANTHROPIC_API_KEY` to `.env` (user)
 - ✅ Live smoke test (`just live-smoke`): key, model, fallback header, `count_tokens`, and the tool loop all work. The level 4 seed is 12,576 real tokens (over 8,000).
-- ⏸ **Level 1 story:** Opus 5.5 doesn’t invent sessions; it says it has no schedule and asks for it. Proposed: change “it invents things” to “it knows nothing about your app” (decision pending with the user)
+- ✅ **Level 1 story:** Opus 5.5 doesn’t invent sessions; it says it has no schedule and asks for it. New story: “it knows only what you send it”.
+- ✅ **Pasted schedule at levels 1–2** (user tested, works): suggestions paste the compact schedule (`{schedule}` → `assets/schedule_paste.txt`, always the same text). Level 1: without the schedule, then with it. Level 2: paste, then the follow-up, without and with history. Level 3 swaps pasting for tools.
+- ✅ Check 1 accepts a text plan whose sessions are named in the schedule (pasted), and fails one whose sessions aren’t
+- ✅ Agenda scraper: `just scrape` regenerates `assets/schedule.json`, `assets/schedule_paste.txt` and `docs/agenda.md`; run it again on Friday
+- ⬜ Update the v2 talk-flow slides for the new level 1–2 story (knows only what you send; paste, then tools)
 - ⬜ Run each experiment live, without and with; check that each failure shows up
 - ⬜ Tune prompts and inputs where a failure doesn’t reproduce (for example the vague request, or the summary losing “leaving at 17:00”)
 - ⬜ Save good runs for every level, side and turn; replay them all end to end offline

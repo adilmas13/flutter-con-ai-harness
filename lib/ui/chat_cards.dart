@@ -25,7 +25,15 @@ class ChatCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
             decoration: BoxDecoration(
                 color: p.userBubble, borderRadius: BorderRadius.circular(16)),
-            child: SelectableText(text, style: const TextStyle(fontSize: 15.5)),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              SelectableText(text, style: const TextStyle(fontSize: 15.5)),
+              if ((item as UserText).pastedLines > 0)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Pill('Pasted schedule · ${(item as UserText).pastedLines} lines',
+                      fg: p.muted, bg: p.window, bold: false),
+                ),
+            ]),
           ),
         ),
       AssistantText(:final text, :final fromRecording) => Column(

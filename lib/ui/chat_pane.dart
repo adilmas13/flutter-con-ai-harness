@@ -166,7 +166,9 @@ class _Composer extends StatelessWidget {
                   child: Wrap(spacing: 6, runSpacing: 6, children: [
                     for (final t in inputs)
                       ActionChip(
-                        label: Text(t, style: const TextStyle(fontSize: 12.5)),
+                        label: Text(
+                            t.replaceAll(RegExp(r'\s*\{schedule\}'), '  + pasted schedule'),
+                            style: const TextStyle(fontSize: 12.5)),
                         onPressed: busy ? null : () => onSend(t),
                         backgroundColor: p.window,
                         side: BorderSide(color: p.line),

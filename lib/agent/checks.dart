@@ -6,6 +6,7 @@ class TurnRecord {
   final List<String> planUnknownIds = [];
   bool showedPlan = false;
   int timesInText = 0;
+  final List<String> replyTexts = [];
   int modelCalls = 0;
   bool stoppedByLimit = false;
   bool stoppedBySafetyCap = false;
@@ -82,6 +83,21 @@ class CheckOutcome {
   final String detail;
 }
 
+/// A plan written as text: real if the sessions it names are in the schedule
+/// (for example, when the user pasted it), invented otherwise.
+CheckOutcome _textPlan(TurnRecord t, Schedule schedule,
+    CheckOutcome Function(int, CheckResult, String) c) {
+  final text = t.replyTexts.join('\n').toLowerCase();
+  String key(String title) {
+    final head = title.split(':').first.trim().toLowerCase();
+    return head.length > 28 ? head.substring(0, 28) : head;
+  }
+  final named = schedule.plannable.where((s) => text.contains(key(s.title))).length;
+  return named >= 2
+      ? c(1, CheckResult.pass, '$named sessions named in the reply are in the schedule.')
+      : c(1, CheckResult.fail, 'A plan was written as text, and its sessions aren’t in the schedule.');
+}
+
 /// Deterministic checks over one turn: the same seven at every level.
 List<CheckOutcome> runChecks(TurnRecord t, Rules rules, Schedule schedule) {
   CheckOutcome c(int n, CheckResult r, String d) =>
@@ -95,7 +111,7 @@ List<CheckOutcome> runChecks(TurnRecord t, Rules rules, Schedule schedule) {
           ? c(1, CheckResult.pass, 'Every session in the plan is a real schedule id.')
           : c(1, CheckResult.fail, 'Unknown ids: ${t.planUnknownIds.join(', ')}')
     else if (t.timesInText >= 3)
-      c(1, CheckResult.fail, 'A plan was written as text, with nothing from the schedule behind it.')
+      _textPlan(t, schedule, c)
     else
       c(1, CheckResult.notApplicable, 'No plan in this turn.'),
 

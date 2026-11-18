@@ -119,6 +119,27 @@ void main() {
       });
     }
 
+    test('a text plan built from a pasted schedule counts as real', () {
+      final t = TurnRecord()
+        ..timesInText = 4
+        ..replyTexts.add('12:00 Disciplined by Design. 13:20 I shipped a local AI Model. '
+            '14:15 Beyond Prompts. 16:40 AI Observability for LLM-Powered Flutter Apps.');
+      expect(runChecks(t, Rules(), schedule).first.result, CheckResult.pass);
+      final invented = TurnRecord()
+        ..timesInText = 3
+        ..replyTexts.add('09:30 Keynote: Flutter in 2030. 11:00 Prompting Patterns. 15:00 LLMs.');
+      expect(runChecks(invented, Rules(), schedule).first.result, CheckResult.fail);
+    });
+
+    test('the pasted schedule replaces the placeholder when sent', () async {
+      final client = FakeModelClient([text('ok')]);
+      final store = AppStore(schedule, RecordingStore(),
+          liveClient: () => client, scheduleText: 'SCHEDULE LINES');
+      await store.send('Plan my day. Here’s the schedule:\n\n{schedule}');
+      expect(client.requests.single.messages.single['content'], contains('SCHEDULE LINES'));
+      expect((store.chat.first as UserText).pastedLines, 1);
+    });
+
     test('stating the rules is not a plan written as text', () {
       final t = TurnRecord()..timesInText = 2;
       final out = runChecks(t, Rules(), schedule);

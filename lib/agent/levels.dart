@@ -2,6 +2,11 @@ import 'harness.dart';
 
 enum Seed { none, longChat, demoMemory, demoMemoryAndPlan }
 
+/// Placeholder in a suggested input, replaced by the compact schedule
+/// (`assets/schedule_paste.txt`) when sent. Always the same text, so runs
+/// can be recorded and replayed.
+const pasteSchedule = '{schedule}';
+
 enum Side { without, withPiece }
 
 /// One before-and-after experiment: the same input, run on two harnesses.
@@ -61,11 +66,11 @@ final levels = <Level>[
           baseline: true,
           inputs: const [
             'Plan my flutterCon day around AI talks.',
-            'Swap the 11:00 one for something on testing.',
+            'Plan my day around AI talks. Here’s the schedule:\n\n$pasteSchedule',
           ],
           without: Harnesses.h1,
           withPiece: Harnesses.h1,
-          notes: 'A bare model. Open the inspector: each request is one message.',
+          notes: 'Each message stands alone: first without the schedule, then with it pasted.',
         ),
       ]),
   Level(2, 'History and context',
@@ -76,12 +81,12 @@ final levels = <Level>[
           name: 'Follow-up',
           change: 'history',
           inputs: const [
-            'Plan my flutterCon day around AI talks.',
+            'Plan my day around AI talks. Here’s the schedule:\n\n$pasteSchedule',
             'Swap the second one for something on testing.',
           ],
           without: Harnesses.h1,
           withPiece: Harnesses.h2,
-          notes: 'Send both messages on each side. Only the follow-up differs.',
+          notes: 'The schedule is pasted in the first message. Send both on each side; only the follow-up differs.',
         ),
       ]),
   Level(3, 'Tools and the loop',

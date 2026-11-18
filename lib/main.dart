@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 import 'agent/recordings.dart';
 import 'data/schedule.dart';
@@ -11,7 +12,9 @@ Future<void> main() async {
   final schedule = await Schedule.load();
   final recordings = RecordingStore();
   await recordings.load();
-  runApp(DayPlannerApp(store: AppStore(schedule, recordings)));
+  final pasteText = await rootBundle.loadString('assets/schedule_paste.txt');
+  runApp(DayPlannerApp(
+      store: AppStore(schedule, recordings, scheduleText: pasteText)));
 }
 
 class DayPlannerApp extends StatelessWidget {

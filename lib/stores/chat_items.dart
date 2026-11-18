@@ -7,8 +7,11 @@ sealed class ChatItem {
 }
 
 class UserText extends ChatItem {
-  const UserText(this.text);
+  const UserText(this.text, {this.pastedLines = 0});
   final String text;
+
+  /// When the user pasted the schedule: how many lines were pasted.
+  final int pastedLines;
 }
 
 class AssistantText extends ChatItem {

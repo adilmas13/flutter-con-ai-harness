@@ -27,7 +27,10 @@ enum InspectorTab { context, trace, memory, checks }
 class AppStore = _AppStore with _$AppStore;
 
 abstract class _AppStore with Store implements LoopHost {
-  _AppStore(this.schedule, this.recordings, {ModelClient Function()? liveClient})
+  _AppStore(this.schedule, this.recordings,
+      // Passed through the generated AppStore constructor.
+      // ignore: unused_element_parameter
+      {ModelClient Function()? liveClient, this.scheduleText = ''})
       : builder = ContextBuilder(schedule),
         _liveClient = liveClient ?? AnthropicClient.new {
     replay = recordings.count > 0;
@@ -39,6 +42,9 @@ abstract class _AppStore with Store implements LoopHost {
   final RecordingStore recordings;
   final ContextBuilder builder;
   final ModelClient Function() _liveClient;
+
+  /// The compact schedule users paste at levels 1 and 2.
+  final String scheduleText;
   late Conversation conversation;
 
   // ---- what is selected ----
@@ -231,11 +237,15 @@ abstract class _AppStore with Store implements LoopHost {
   Future<void> send(String text) async {
     text = text.trim();
     if (text.isEmpty || state.isBusy) return;
+    final pasted = text.contains(pasteSchedule);
+    final shown = text.replaceAll(pasteSchedule, '').trim();
+    text = text.replaceAll(pasteSchedule, scheduleText.trim());
 
     final key = nextRecordingKey;
     ModelClient client;
     RecordingClient? capture;
-    chat.add(UserText(text));
+    chat.add(UserText(shown,
+        pastedLines: pasted ? '\n'.allMatches(scheduleText.trim()).length + 1 : 0));
     if (replay) {
       final rec = recordings[key];
       if (rec == null) {
