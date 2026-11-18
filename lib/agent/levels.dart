@@ -107,7 +107,7 @@ final levels = <Level>[
           name: 'Vague request',
           change: 'a step limit',
           inputs: const [
-            'Find me the single best talk of the day. Compare the candidates’ details before you decide.'
+            'Which is the single best AI talk today? Read the full details of every AI talk, one at a time, before you decide.'
           ],
           without: Harnesses.h3NoLimit,
           withPiece: Harnesses.h3,
