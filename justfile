@@ -35,6 +35,18 @@ paste-schedule:
     pbcopy < assets/schedule_paste.txt
     @echo "Schedule copied to the clipboard ($(wc -l < assets/schedule_paste.txt | tr -d ' ') lines)."
 
+# Run experiments live and write each run to build/live_runs/ for review (filter: just run-live L3/vague)
+run-live filter="":
+    flutter test test/live/run_experiments_test.dart --run-skipped --dart-define-from-file=.env --dart-define=ONLY="{{filter}}" --reporter expanded
+
+# Save reviewed live runs into recordings/recordings.json (e.g. just promote L2/follow-up/with, or all)
+promote +runs:
+    python3 -I tool/promote_runs.py {{runs}}
+
+# Replay every recorded experiment offline and confirm it matches the live run
+verify-replay:
+    flutter test test/replay_test.dart --reporter expanded
+
 # Analyze and test: run before every commit
 check: analyze test
 
