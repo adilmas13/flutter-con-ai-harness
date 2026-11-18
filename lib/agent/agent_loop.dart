@@ -260,9 +260,10 @@ class AgentLoop {
 
     host.setState(CallingTool(name));
     final handle = host.toolStarted(name, args);
-    final t0 = _now;
-    final ti = host.addTrace(TraceEvent(TraceKind.tool, name, t0, 0));
-    outcome ??= await _execute(spec!, args, rec, t0);
+    _rowStart = _now;
+    _row = host.addTrace(TraceEvent(TraceKind.tool, name, _rowStart, 0));
+    outcome ??= await _execute(spec!, args, rec);
+    final ti = _row, t0 = _rowStart;
 
     if (spec == showPlan && outcome.status == ToolStatus.ok) {
       final ids = (args['sessionIds'] as List? ?? const []).map((e) => '$e');
@@ -319,8 +320,12 @@ class AgentLoop {
     return null;
   }
 
+  /// The trace row for the tool call in progress; a retry opens a new one.
+  int _row = 0;
+  int _rowStart = 0;
+
   Future<ToolOutcome> _execute(
-      ToolSpec spec, Map<String, dynamic> args, TurnRecord rec, int t0) async {
+      ToolSpec spec, Map<String, dynamic> args, TurnRecord rec) async {
     if (spec == savePreference) {
       final fact = '${args['text']}'.trim();
       host.saveMemory(fact);
@@ -333,8 +338,10 @@ class AgentLoop {
     } on TransientToolError catch (e) {
       // Retry: one more attempt with the same, already-approved request.
       if (config.has(HarnessPiece.retry)) {
-        host.addTrace(TraceEvent(
-            TraceKind.failed, spec.name, t0, _now - t0, '${e.message} Retrying once.'));
+        host.updateTrace(_row, TraceEvent(TraceKind.failed, spec.name, _rowStart,
+            _now - _rowStart, '${e.message} Retrying once.'));
+        _rowStart = _now;
+        _row = host.addTrace(TraceEvent(TraceKind.tool, spec.name, _rowStart, 0));
         try {
           final out = await spec.run(args, host);
           return ToolOutcome(out.status, out.content, '${out.summary} · retried once');

@@ -162,7 +162,7 @@ final levels = <Level>[
           without: Harnesses.h4Summarise,
           withPiece: Harnesses.h5,
           notes:
-              'A fresh conversation. If memory is empty, demo preferences and a plan are loaded.',
+              'A fresh conversation. It starts from the three saved preferences and this morning’s plan.',
         ),
       ]),
   Level(6, 'Trust',

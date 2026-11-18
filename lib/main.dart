@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 import 'agent/recordings.dart';
+import 'dev/autopilot.dart';
 import 'data/schedule.dart';
 import 'stores/app_store.dart';
 import 'ui/home_page.dart';
@@ -13,8 +14,11 @@ Future<void> main() async {
   final recordings = RecordingStore();
   await recordings.load();
   final pasteText = await rootBundle.loadString('assets/schedule_paste.txt');
-  runApp(DayPlannerApp(
-      store: AppStore(schedule, recordings, scheduleText: pasteText)));
+  final store = AppStore(schedule, recordings, scheduleText: pasteText);
+  runApp(DayPlannerApp(store: store));
+  if (autopilot) {
+    WidgetsBinding.instance.addPostFrameCallback((_) => runAutopilot(store));
+  }
 }
 
 class DayPlannerApp extends StatelessWidget {
@@ -27,6 +31,6 @@ class DayPlannerApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: buildTheme(Brightness.light),
         darkTheme: buildTheme(Brightness.dark),
-        home: HomePage(store: store),
+        home: RepaintBoundary(key: screenKey, child: HomePage(store: store)),
       );
 }

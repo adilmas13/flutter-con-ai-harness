@@ -47,6 +47,14 @@ promote +runs:
 verify-replay:
     flutter test test/replay_test.dart --reporter expanded
 
+# Replay every recorded experiment in the real window and screenshot each to build/screens/
+screens:
+    rm -rf build/screens
+    flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}" --dart-define=AUTOPILOT=true
+    build/macos/Build/Products/Debug/day_planner.app/Contents/MacOS/day_planner
+    @ls build/screens | wc -l | xargs echo "screenshots:"
+    flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}"
+
 # Analyze and test: run before every commit
 check: analyze test
 

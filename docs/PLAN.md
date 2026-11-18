@@ -79,7 +79,8 @@ _Last updated: 2026-11-18_
 - ✅ Inspector: Context (exact total, stacked bar, sections, raw JSON), Trace (waterfall, loop state, steps), Memory (memory, plan, calendar, leaked data), Checks
 - ✅ `flutter analyze` clean
 - ✅ macOS build and launch smoke test (no key: shows the missing-key state)
-- ⬜ Screenshot review of each level at stage resolution, light and dark (needs live or recorded runs to show content)
+- ✅ Visual pass: `just screens` replays every recorded experiment in the real window and saves 34 screenshots to `build/screens/`. It found and fixed the budget-card labels, retry order in the trace, and an outdated level 5 note
+- ⬜ Light-theme screenshot pass (screens were taken in dark mode)
 - ✅ Window opens centred at 1440×900, titled “Day Planner”
 
 ## Phase 3b: Fixes from the plan review ✅
@@ -122,7 +123,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ L3 vague loops now: 16 model calls without the limit (safety cap), stopped at 8 with it
 - ⬜ Tune prompts and inputs where a failure doesn’t reproduce (for example the vague request, or the summary losing “leaving at 17:00”)
 - ✅ Save good runs for every level, side and turn; replay them all end to end offline
-- ⬜ `just release` after the final recordings; rehearse from the release build with Wi-Fi off
+- ⬜ `just release` after the final recordings; rehearse from the release build with Wi-Fi off (**next**)
 - ⬜ If level 3’s vague request or level 6’s injection doesn’t trigger live, adjust the input or the tool’s reply, then re-record both sides
 
 ## Phase 5: Polish ⬜

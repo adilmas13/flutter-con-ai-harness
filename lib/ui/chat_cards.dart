@@ -140,6 +140,7 @@ class _BudgetCard extends StatelessWidget {
             const SizedBox(height: 4),
             LayoutBuilder(builder: (_, c) {
               return SizedBox(
+                width: c.maxWidth,
                 height: 16,
                 child: Stack(children: [
                   Text('0', style: TextStyle(fontSize: 12, color: p.muted)),
