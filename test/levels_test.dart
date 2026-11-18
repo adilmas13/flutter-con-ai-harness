@@ -278,6 +278,17 @@ void main() {
     });
   });
 
+  test('experiments in one level start from the same history', () async {
+    final (:store, :client) = storeWith([text('summary'), text('A'), text('B')]);
+    store.selectLevel(3);
+    store.selectSide(Side.withPiece);
+    await store.send('What should I end the day with?');
+    expect(store.conversation.summary, isNotNull);
+    store.selectExperiment(1); // remove old turns
+    expect(store.conversation.summary, isNull, reason: 'starts from the level’s history');
+    expect(store.conversation.keptFrom, 0);
+  });
+
   group('Replay', () {
     test('a saved run replays with identical requests', () async {
       final dir = Directory.systemTemp.createTempSync('rec');

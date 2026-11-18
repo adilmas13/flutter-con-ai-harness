@@ -133,7 +133,9 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ Earlier turns are sent as plain text (old thinking dropped oldest-first, tool calls written as text), so history works across levels with different system prompts and tools
 - ✅ **No-paste story for levels 1–3:** L1 knows nothing; L2 the user names three talks, then “swap the second one”; L3 “use the schedule” to find a real performance talk with tools
 - ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match. The replay feature stays.
-- 🔄 Live run of the whole stage path as one conversation (`just live-flow`)
+- ✅ Live run of the whole stage path as one conversation (`just live-flow`, transcript in `build/live_flow.md`): no API errors, every check as intended, replies mostly 2–4 sentences
+- ✅ Fix: experiments within one level start from the level’s history (L4 “remove” had started from the summarised chat)
+- ✅ Inspector **System prompt** panel: the full prompt for this side, compared line by line with the other side
 - ⬜ Re-record once the flow is settled
 
 ## Phase 5: Polish ⬜

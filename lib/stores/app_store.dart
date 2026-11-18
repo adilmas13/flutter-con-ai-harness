@@ -149,8 +149,9 @@ abstract class _AppStore with Store implements LoopHost {
   //
   // One conversation accumulates across the levels. Within a level, the
   // Without and With runs each continue that shared history, so the only
-  // difference between them is the harness. Moving on carries forward the
-  // run you used, preferring With.
+  // difference between them is the harness. Experiments in a level share
+  // the level's starting point. Changing level carries forward the run you
+  // used last, preferring With.
 
   Conversation _shared = Conversation();
   List<ChatItem> _sharedChat = const [];
@@ -167,10 +168,12 @@ abstract class _AppStore with Store implements LoopHost {
     _startExperiment();
   }
 
+  /// Experiments in one level all start from where the level started; history
+  /// only carries forward when you change level.
   @action
   void selectExperiment(int index) {
     if (state.isBusy) return;
-    _commit();
+    _saveBranch();
     experimentIndex = index;
     side = Side.without;
     _startExperiment();
