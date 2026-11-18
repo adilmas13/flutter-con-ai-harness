@@ -99,7 +99,7 @@ Still open from the review:
 - ⬜ The budget check runs once per turn, before the first call. Tool results later in the turn can go over without being caught (acceptable for the demo; note it if asked).
 - ⬜ “Follow-ups work” checks that history was sent, not that the answer was right (by design: it tests the harness).
 
-## Phase 4: Live runs and recordings ⏸ needs the API key
+## Phase 4: Live runs and recordings ✅ (rehearsal pending)
 
 Order matters: **freeze prompts, tool descriptions and seeds before recording.** Any later change makes replay show “request differs”. Record along the stage order (levels 1→6), then build the release app.
 
@@ -116,10 +116,12 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ⏸ **Round 2: Anthropic credits ran out** after L1–L3. Levels 4–6 failed with “credit balance is too low”. **User: top up credits**, then `just run-live L4`, `L5`, `L6` and `L3/vague`
 - ✅ Evaluator round 2: **recorded** L3 plan/with and L4 summarise/without; replay verified offline (`just verify-replay`)
 - ✅ Level 2 now adds history only (the context builder moved to level 3 with the tools), so its two runs differ by nothing else; level 1–2 inputs ask for two sentences or a short list
-- ⏸ To re-run once credits are topped up: L1, L2 (both sides), L3 plan/without, L3 vague (both), L4 summarise/with, L4 remove (both), L5 (all), L6 (both)
-- ⬜ L3 vague still didn’t loop (6 vs 5 steps). The input now asks it to read every AI talk’s details one at a time; re-run it
+- ✅ Credits topped up (new key); rounds 3–6 run live. Fixes along the way: L2 talks-only input, a rule-aware L4 seed, a neutral getSession label, check 1 matches on 4 words, check 2 wording after shrinking
+- ✅ **All 17 experiment sides recorded (20 turns)**, each approved by the evaluator agent and fact-checked against the schedule. Presenter notes cover the known quirks (L2 re-sorts the swapped talk to #4; L4 remove “corrects” answers it can’t see; L6 resisted the injection and retried on its own)
+- ✅ `just verify-replay`: every recording replays offline with identical requests, state and checks
+- ✅ L3 vague loops now: 16 model calls without the limit (safety cap), stopped at 8 with it
 - ⬜ Tune prompts and inputs where a failure doesn’t reproduce (for example the vague request, or the summary losing “leaving at 17:00”)
-- ⬜ Save good runs for every level, side and turn; replay them all end to end offline
+- ✅ Save good runs for every level, side and turn; replay them all end to end offline
 - ⬜ `just release` after the final recordings; rehearse from the release build with Wi-Fi off
 - ⬜ If level 3’s vague request or level 6’s injection doesn’t trigger live, adjust the input or the tool’s reply, then re-record both sides
 

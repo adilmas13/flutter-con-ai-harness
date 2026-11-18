@@ -151,6 +151,174 @@
         }
       ]
     },
+    "L2/follow-up/with/turn-0": {
+      "input": "Plan my day as a short list of 5 AI talks, talks only, no empty slots. Here’s the schedule:\n\nflutterCon India 2026 · Saturday 21 Nov · Conrad Bengaluru\n\n09:00–09:40 · Ballroom 2 · Why AI Makes Flutter More Important, Not Less · Eric Seidel\n10:10–10:50 · Ballroom 2 · Death to Passwords: Implementing Biometric Passkeys in Flutter · Lukas Klingsbo\n10:10–10:50 · Ballroom 1 · Beyond Breakpoints: Flutter Apps for the Foldable Era · Abdullah Deshmukh\n10:10–10:50 · Ballroom 3 · Migrating to Event Driven Architecture to Improve Communication Across 50+ Module · Burhanuddin Rashid\n10:10–10:50 · Roundtables (roundtable) · Millions of Users, Zero Jank: Advanced Performance Profiling · Shekhar Patel\n10:10–10:50 · Junior Ballroom · From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms · Hamdaan Ali\n11:05–11:45 · Ballroom 2 · Hundreds of Features, Zero Collisions: Composable Flutter at Scale · Pavan Podila\n11:05–11:45 · Ballroom 1 · Navigation in a Multi-Module Flutter App at Scale · Karem Ebrahim\n11:05–11:45 · Ballroom 3 · Zero to 200,000 Users: Architecting Production-Grade Flutter Systems That Don’t Break · Supratim Dhara\n11:05–11:45 · Roundtables (roundtable) · Surviving the AI Code Flood: CI/CD & Quality Gates · Vivek Yadav, Toseef Ali Khan\n11:05–11:45 · Junior Ballroom · Engineering Flutter for Wearables · Likhitha Aralimara\n12:00–12:20 · Ballroom 2 · Disciplined by Design: TDD-Driven Flutter Development with AI · Toseef Ali Khan\n12:00–12:20 · Ballroom 1 · Building Realtime Collaborative Flutter Apps with CRDTs · Mayur Mahajan\n12:00–12:20 · Ballroom 3 · Under the Hood of Session Replay: Capturing Every Interaction · Abhay Sood\n12:00–12:20 · Roundtables (roundtable) · Hardening Flutter Security: Balancing Compliance & Operational Risks · Bornak Paul, Zaid Sayyed\n12:00–12:20 · Junior Ballroom · Offloading Heavy Lifting: Scaling Flutter Apps with Rust FFI · Ponnam Karthik\n13:20–14:00 · Ballroom 2 · Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons · Eric Seidel, Ajin Asokan, Avinash Singh Yadav, Somesh Karthik\n13:20–14:00 · Ballroom 1 · I shipped a local AI Model to 7,000+ users. Here's what happened. · Aditya Thakur\n13:20–14:00 · Ballroom 3 · Beyond Crashlytics: Building Autonomous Incident Intelligence for Flutter · Kamal Shree, Hema Sai Charan Kothamasu\n13:20–14:00 · Roundtables (roundtable) · Architecting Apps as Headless Toolchains for OS AI Agents · Rohan Joshi\n13:20–14:00 · Junior Ballroom · Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development · Vivek Yadav\n14:15–14:55 · Ballroom 2 · The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK · Pawan Kumar\n14:15–14:55 · Ballroom 1 · One Isolate, Multiple Threads: Understanding Concurrency in Flutter · Shubham Agrawal, Sugam Singh\n14:15–14:55 · Ballroom 3 · Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction · Shree Bhagwat\n14:15–14:55 · Roundtables (roundtable) · Tracking the Unpredictable: Monitoring AI Costs and Performance · Hema Sai Charan Kothamasu, Jaldeep Asodariya\n14:15–14:55 · Junior Ballroom · Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps · Neelansh Sethi, Adil Shaikh\n15:10–15:50 · Ballroom 2 · Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+ · Md Moinuddin\n15:10–15:50 · Ballroom 1 · From Android Things to Flutter: Building a Smart Home App on Raspberry Pi · Jaldeep Asodariya\n15:10–15:50 · Ballroom 3 · When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide · Saheb Singh\n15:10–15:50 · Roundtables (roundtable) · The Modular Monolith: Scaling Architecture & Surviving Dependency Hell · Lukas Klingsbo\n15:10–15:50 · Junior Ballroom · Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps · Shekhar Patel\n16:05–16:25 · Ballroom 2 · How I Built a Route Optimized Delivery Map in Flutter Without Google Maps · Zaid Sayyed\n16:05–16:25 · Ballroom 1 · Flutter Package Version Hell: A Field Guide · Abhishek Doshi\n16:05–16:25 · Ballroom 3 · Beyond HTTPS: Preventing MITM Attacks in Flutter with Certificate Pinning · Bornak Paul\n16:05–16:25 · Roundtables (roundtable) · The Wild West of Gen UI: Taming Runtime Layouts · Supratim Dhara\n16:05–16:25 · Junior Ballroom · Keys That Never Leave the Chip: Secure Enclave & Hardware Keystore in Flutter · Roopesh LR\n16:40–17:20 · Ballroom 2 · AI Observability for LLM-Powered Flutter Apps · Pooja Bhaumik\n16:40–17:20 · Ballroom 1 · Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit · Renuka Kelkar\n16:40–17:20 · Ballroom 3 · Building Home Screen Widgets in Flutter Without Writing Native Code Twice · Akansha Jain\n16:40–17:20 · Roundtables (roundtable) · Beyond the Widget Tree: Flutter Internals & Layout Mechanics · Shree Bhagwat, Abdullah Deshmukh\n16:40–17:20 · Junior Ballroom · How To Make a Flutter App Smooth for 1 Million Users · Gauri Panse\n17:35–18:15 · Ballroom 2 · Building Your Own Flutter DevTools Extension · Bhavik Makwana\n17:35–18:15 · Ballroom 1 · Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale · Laksh Samdariya\n17:35–18:15 · Ballroom 3 · Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities · Pranav Masekar",
+      "savedAt": "2026-11-18T18:36:23.838640",
+      "exchanges": [
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Plan my day as a short list of 5 AI talks, talks only, no empty slots. Here’s the schedule:\n\nflutterCon India 2026 · Saturday 21 Nov · Conrad Bengaluru\n\n09:00–09:40 · Ballroom 2 · Why AI Makes Flutter More Important, Not Less · Eric Seidel\n10:10–10:50 · Ballroom 2 · Death to Passwords: Implementing Biometric Passkeys in Flutter · Lukas Klingsbo\n10:10–10:50 · Ballroom 1 · Beyond Breakpoints: Flutter Apps for the Foldable Era · Abdullah Deshmukh\n10:10–10:50 · Ballroom 3 · Migrating to Event Driven Architecture to Improve Communication Across 50+ Module · Burhanuddin Rashid\n10:10–10:50 · Roundtables (roundtable) · Millions of Users, Zero Jank: Advanced Performance Profiling · Shekhar Patel\n10:10–10:50 · Junior Ballroom · From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms · Hamdaan Ali\n11:05–11:45 · Ballroom 2 · Hundreds of Features, Zero Collisions: Composable Flutter at Scale · Pavan Podila\n11:05–11:45 · Ballroom 1 · Navigation in a Multi-Module Flutter App at Scale · Karem Ebrahim\n11:05–11:45 · Ballroom 3 · Zero to 200,000 Users: Architecting Production-Grade Flutter Systems That Don’t Break · Supratim Dhara\n11:05–11:45 · Roundtables (roundtable) · Surviving the AI Code Flood: CI/CD & Quality Gates · Vivek Yadav, Toseef Ali Khan\n11:05–11:45 · Junior Ballroom · Engineering Flutter for Wearables · Likhitha Aralimara\n12:00–12:20 · Ballroom 2 · Disciplined by Design: TDD-Driven Flutter Development with AI · Toseef Ali Khan\n12:00–12:20 · Ballroom 1 · Building Realtime Collaborative Flutter Apps with CRDTs · Mayur Mahajan\n12:00–12:20 · Ballroom 3 · Under the Hood of Session Replay: Capturing Every Interaction · Abhay Sood\n12:00–12:20 · Roundtables (roundtable) · Hardening Flutter Security: Balancing Compliance & Operational Risks · Bornak Paul, Zaid Sayyed\n12:00–12:20 · Junior Ballroom · Offloading Heavy Lifting: Scaling Flutter Apps with Rust FFI · Ponnam Karthik\n13:20–14:00 · Ballroom 2 · Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons · Eric Seidel, Ajin Asokan, Avinash Singh Yadav, Somesh Karthik\n13:20–14:00 · Ballroom 1 · I shipped a local AI Model to 7,000+ users. Here's what happened. · Aditya Thakur\n13:20–14:00 · Ballroom 3 · Beyond Crashlytics: Building Autonomous Incident Intelligence for Flutter · Kamal Shree, Hema Sai Charan Kothamasu\n13:20–14:00 · Roundtables (roundtable) · Architecting Apps as Headless Toolchains for OS AI Agents · Rohan Joshi\n13:20–14:00 · Junior Ballroom · Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development · Vivek Yadav\n14:15–14:55 · Ballroom 2 · The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK · Pawan Kumar\n14:15–14:55 · Ballroom 1 · One Isolate, Multiple Threads: Understanding Concurrency in Flutter · Shubham Agrawal, Sugam Singh\n14:15–14:55 · Ballroom 3 · Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction · Shree Bhagwat\n14:15–14:55 · Roundtables (roundtable) · Tracking the Unpredictable: Monitoring AI Costs and Performance · Hema Sai Charan Kothamasu, Jaldeep Asodariya\n14:15–14:55 · Junior Ballroom · Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps · Neelansh Sethi, Adil Shaikh\n15:10–15:50 · Ballroom 2 · Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+ · Md Moinuddin\n15:10–15:50 · Ballroom 1 · From Android Things to Flutter: Building a Smart Home App on Raspberry Pi · Jaldeep Asodariya\n15:10–15:50 · Ballroom 3 · When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide · Saheb Singh\n15:10–15:50 · Roundtables (roundtable) · The Modular Monolith: Scaling Architecture & Surviving Dependency Hell · Lukas Klingsbo\n15:10–15:50 · Junior Ballroom · Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps · Shekhar Patel\n16:05–16:25 · Ballroom 2 · How I Built a Route Optimized Delivery Map in Flutter Without Google Maps · Zaid Sayyed\n16:05–16:25 · Ballroom 1 · Flutter Package Version Hell: A Field Guide · Abhishek Doshi\n16:05–16:25 · Ballroom 3 · Beyond HTTPS: Preventing MITM Attacks in Flutter with Certificate Pinning · Bornak Paul\n16:05–16:25 · Roundtables (roundtable) · The Wild West of Gen UI: Taming Runtime Layouts · Supratim Dhara\n16:05–16:25 · Junior Ballroom · Keys That Never Leave the Chip: Secure Enclave & Hardware Keystore in Flutter · Roopesh LR\n16:40–17:20 · Ballroom 2 · AI Observability for LLM-Powered Flutter Apps · Pooja Bhaumik\n16:40–17:20 · Ballroom 1 · Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit · Renuka Kelkar\n16:40–17:20 · Ballroom 3 · Building Home Screen Widgets in Flutter Without Writing Native Code Twice · Akansha Jain\n16:40–17:20 · Roundtables (roundtable) · Beyond the Widget Tree: Flutter Internals & Layout Mechanics · Shree Bhagwat, Abdullah Deshmukh\n16:40–17:20 · Junior Ballroom · How To Make a Flutter App Smooth for 1 Million Users · Gauri Panse\n17:35–18:15 · Ballroom 2 · Building Your Own Flutter DevTools Extension · Bhavik Makwana\n17:35–18:15 · Ballroom 1 · Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale · Laksh Samdariya\n17:35–18:15 · Ballroom 3 · Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities · Pranav Masekar"
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChASfnJNHNwvAoi7Xpwe2",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS+gkKEAgTGAI4AUIIdGhpbmtpbmcSDILkvm9X1fn+FJeMHhoMrloLPHUmRKkF6TIHIjC4P5vjJIHqKJASGQnBSh9hN6nw+4g3EQmdR2Q//SCh7mmuj9Vv+dYqpNalxrWdSnAqlwkOgVqFSOzrI9Wtvp/7ck4dqRwJo4n6Q0KoxM3XqPVUgPrqAE7WP0vb+sjetvHcBa0Py1fPP00OWSVqPfexbxUYYgdhpnc//uNugQDdeKJSj2f9PzKEFKgw25/0akpbsPPiQhyaYAqrDdMngHNA+Ks51YG/1ZAfNuCtMPAl1N06Q9xAdFwWBxzh3dfUijQm75Zjq6UVqsw44Zb0f9gIRbQ4jxMObyma1kZ+rnFCjhAMD9m9+4Iq5I8W2F4aJJ3OfVmsGrKLZ5L7oYR38fFStmNMqbtpXgEd1QZ24Wl2pPkqs7awqXJt8I72w6zKIR8GSynO3HOyZstk/dq2dP1ptbKhPRmP9wBlqtoq6YZqAUg1HovxJxH9frgM6y0DRXyq8sKHvt/C07/gby7YLr862+oEqn6gBaRUfafFlDvC6VnDdBWZFuAMSRX/lnLAQfH7/9QkdMeSOgCM5BKyeRwU+ONJfTfbuH4o2kjMEUkXDYfButLk8zXHtnuEhl7EerO5R7F1UMavT47RE71RWIBLySt4xZP8dzWrpKkhOJnKEiJvF0jfLBgpc2BQXEZus08WLBE890WvCjUFD0UXrAs2BMJlChTk2N0pksH90GoD9MDOtX6K8Feb9+uRMc/7j/KNe3s6oyU0dUqIJY2dZHzxVRuK20RNiM/4PSJEjW45XHyFjDM5zQoQbBOCKdEtEJhCfgZJTLSFPl/4IBZyCquxgXDqYzzB8p0uYz+ruA7mlZPjlYzrJ5AZIpYe7X4HYrtniugFCN/GfPmRuOeCG0mxL+63m0jFDCFMo8c0K4vw7Ti+47SdG2YlYMIvqZppP3f58iOCCzLEquYBS7TIcLoK5KbKGixZAI/GPIN+ib+7aYFopPjpRB+yHk6f+uRBBwTpo6uXSRP/N6FQb5bkQcuXWY5RAmzc3afARyiwOxnoYoTgijBqgIo0F/5hC+WmWdEIYbd19WmRP3tvuJaUQAa7AnoNF4VSzHaDV8EIVESZQiDBcooXREOW+Yi2KezMKym8aud+ZzEPG04sdYEAl/noqK9+726BIO/M2tBO12LMZ6cQ8Ozct1Ad3tKJ5tnte4+yqfT/HQb7U+lbBHzqM/bSAn2D7C3el+PAvbtF1aVbHuwW+IpWXcEQea45kMqb/JB+0+tTOr6nR/eJUe034aErixouzdZALA8FoxaFoDMrAxvcrYrIe4nfuYmRMQsxKajbl+N6R98LoKu68uMl3yAHOjISDKaiwumw4bdIRuFAL7X0lHD1JqpiopyzgOBfqQHwGLB7wOyfCW0of1ACMy9bUoRWxD4Z1s2nu+KLf3ekIYIq9x38u9oYUl0i0CpNrxpHuLhnd156ibs8mR0yw5au3kSLWqEsG62Uqe9sokKDW4w+mXmb5E19nPy0FgVKmgVPxE/8myJC++4WzY4ywV/2fwsDnFhVw03aoPk1QTmWtgTS3jNZEy9tZLGzWmmwKDT0ycXS39rAdREMA0I796zUpTRtc3WvdUFiuPdZlskJtBa3OgODF5J8/ye73OUoTOt9/vvnXAhw4J+9Y4Ev5KpI2qchZruq/OOanRgB"
+              },
+              {
+                "type": "text",
+                "text": "**Your AI Day at flutterCon India 2026**\n\n1. **09:00–09:40** · Ballroom 2 · *Why AI Makes Flutter More Important, Not Less* · Eric Seidel\n2. **12:00–12:20** · Ballroom 2 · *Disciplined by Design: TDD-Driven Flutter Development with AI* · Toseef Ali Khan\n3. **13:20–14:00** · Ballroom 1 · *I shipped a local AI Model to 7,000+ users. Here's what happened.* · Aditya Thakur\n4. **14:15–14:55** · Junior Ballroom · *Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps* · Neelansh Sethi, Adil Shaikh\n5. **16:40–17:20** · Ballroom 1 · *Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit* · Renuka Kelkar"
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 2734,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 2734,
+                  "output_tokens": 673,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 673,
+              "output_tokens_details": {
+                "thinking_tokens": 326
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        }
+      ]
+    },
+    "L2/follow-up/with/turn-1": {
+      "input": "Swap the second one for a performance talk.",
+      "savedAt": "2026-11-18T18:36:29.893915",
+      "exchanges": [
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "messages": [
+              {
+                "role": "user",
+                "content": "Plan my day as a short list of 5 AI talks, talks only, no empty slots. Here’s the schedule:\n\nflutterCon India 2026 · Saturday 21 Nov · Conrad Bengaluru\n\n09:00–09:40 · Ballroom 2 · Why AI Makes Flutter More Important, Not Less · Eric Seidel\n10:10–10:50 · Ballroom 2 · Death to Passwords: Implementing Biometric Passkeys in Flutter · Lukas Klingsbo\n10:10–10:50 · Ballroom 1 · Beyond Breakpoints: Flutter Apps for the Foldable Era · Abdullah Deshmukh\n10:10–10:50 · Ballroom 3 · Migrating to Event Driven Architecture to Improve Communication Across 50+ Module · Burhanuddin Rashid\n10:10–10:50 · Roundtables (roundtable) · Millions of Users, Zero Jank: Advanced Performance Profiling · Shekhar Patel\n10:10–10:50 · Junior Ballroom · From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms · Hamdaan Ali\n11:05–11:45 · Ballroom 2 · Hundreds of Features, Zero Collisions: Composable Flutter at Scale · Pavan Podila\n11:05–11:45 · Ballroom 1 · Navigation in a Multi-Module Flutter App at Scale · Karem Ebrahim\n11:05–11:45 · Ballroom 3 · Zero to 200,000 Users: Architecting Production-Grade Flutter Systems That Don’t Break · Supratim Dhara\n11:05–11:45 · Roundtables (roundtable) · Surviving the AI Code Flood: CI/CD & Quality Gates · Vivek Yadav, Toseef Ali Khan\n11:05–11:45 · Junior Ballroom · Engineering Flutter for Wearables · Likhitha Aralimara\n12:00–12:20 · Ballroom 2 · Disciplined by Design: TDD-Driven Flutter Development with AI · Toseef Ali Khan\n12:00–12:20 · Ballroom 1 · Building Realtime Collaborative Flutter Apps with CRDTs · Mayur Mahajan\n12:00–12:20 · Ballroom 3 · Under the Hood of Session Replay: Capturing Every Interaction · Abhay Sood\n12:00–12:20 · Roundtables (roundtable) · Hardening Flutter Security: Balancing Compliance & Operational Risks · Bornak Paul, Zaid Sayyed\n12:00–12:20 · Junior Ballroom · Offloading Heavy Lifting: Scaling Flutter Apps with Rust FFI · Ponnam Karthik\n13:20–14:00 · Ballroom 2 · Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons · Eric Seidel, Ajin Asokan, Avinash Singh Yadav, Somesh Karthik\n13:20–14:00 · Ballroom 1 · I shipped a local AI Model to 7,000+ users. Here's what happened. · Aditya Thakur\n13:20–14:00 · Ballroom 3 · Beyond Crashlytics: Building Autonomous Incident Intelligence for Flutter · Kamal Shree, Hema Sai Charan Kothamasu\n13:20–14:00 · Roundtables (roundtable) · Architecting Apps as Headless Toolchains for OS AI Agents · Rohan Joshi\n13:20–14:00 · Junior Ballroom · Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development · Vivek Yadav\n14:15–14:55 · Ballroom 2 · The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK · Pawan Kumar\n14:15–14:55 · Ballroom 1 · One Isolate, Multiple Threads: Understanding Concurrency in Flutter · Shubham Agrawal, Sugam Singh\n14:15–14:55 · Ballroom 3 · Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction · Shree Bhagwat\n14:15–14:55 · Roundtables (roundtable) · Tracking the Unpredictable: Monitoring AI Costs and Performance · Hema Sai Charan Kothamasu, Jaldeep Asodariya\n14:15–14:55 · Junior Ballroom · Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps · Neelansh Sethi, Adil Shaikh\n15:10–15:50 · Ballroom 2 · Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+ · Md Moinuddin\n15:10–15:50 · Ballroom 1 · From Android Things to Flutter: Building a Smart Home App on Raspberry Pi · Jaldeep Asodariya\n15:10–15:50 · Ballroom 3 · When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide · Saheb Singh\n15:10–15:50 · Roundtables (roundtable) · The Modular Monolith: Scaling Architecture & Surviving Dependency Hell · Lukas Klingsbo\n15:10–15:50 · Junior Ballroom · Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps · Shekhar Patel\n16:05–16:25 · Ballroom 2 · How I Built a Route Optimized Delivery Map in Flutter Without Google Maps · Zaid Sayyed\n16:05–16:25 · Ballroom 1 · Flutter Package Version Hell: A Field Guide · Abhishek Doshi\n16:05–16:25 · Ballroom 3 · Beyond HTTPS: Preventing MITM Attacks in Flutter with Certificate Pinning · Bornak Paul\n16:05–16:25 · Roundtables (roundtable) · The Wild West of Gen UI: Taming Runtime Layouts · Supratim Dhara\n16:05–16:25 · Junior Ballroom · Keys That Never Leave the Chip: Secure Enclave & Hardware Keystore in Flutter · Roopesh LR\n16:40–17:20 · Ballroom 2 · AI Observability for LLM-Powered Flutter Apps · Pooja Bhaumik\n16:40–17:20 · Ballroom 1 · Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit · Renuka Kelkar\n16:40–17:20 · Ballroom 3 · Building Home Screen Widgets in Flutter Without Writing Native Code Twice · Akansha Jain\n16:40–17:20 · Roundtables (roundtable) · Beyond the Widget Tree: Flutter Internals & Layout Mechanics · Shree Bhagwat, Abdullah Deshmukh\n16:40–17:20 · Junior Ballroom · How To Make a Flutter App Smooth for 1 Million Users · Gauri Panse\n17:35–18:15 · Ballroom 2 · Building Your Own Flutter DevTools Extension · Bhavik Makwana\n17:35–18:15 · Ballroom 1 · Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale · Laksh Samdariya\n17:35–18:15 · Ballroom 3 · Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities · Pranav Masekar"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "",
+                    "signature": "CAQS+gkKEAgTGAI4AUIIdGhpbmtpbmcSDILkvm9X1fn+FJeMHhoMrloLPHUmRKkF6TIHIjC4P5vjJIHqKJASGQnBSh9hN6nw+4g3EQmdR2Q//SCh7mmuj9Vv+dYqpNalxrWdSnAqlwkOgVqFSOzrI9Wtvp/7ck4dqRwJo4n6Q0KoxM3XqPVUgPrqAE7WP0vb+sjetvHcBa0Py1fPP00OWSVqPfexbxUYYgdhpnc//uNugQDdeKJSj2f9PzKEFKgw25/0akpbsPPiQhyaYAqrDdMngHNA+Ks51YG/1ZAfNuCtMPAl1N06Q9xAdFwWBxzh3dfUijQm75Zjq6UVqsw44Zb0f9gIRbQ4jxMObyma1kZ+rnFCjhAMD9m9+4Iq5I8W2F4aJJ3OfVmsGrKLZ5L7oYR38fFStmNMqbtpXgEd1QZ24Wl2pPkqs7awqXJt8I72w6zKIR8GSynO3HOyZstk/dq2dP1ptbKhPRmP9wBlqtoq6YZqAUg1HovxJxH9frgM6y0DRXyq8sKHvt/C07/gby7YLr862+oEqn6gBaRUfafFlDvC6VnDdBWZFuAMSRX/lnLAQfH7/9QkdMeSOgCM5BKyeRwU+ONJfTfbuH4o2kjMEUkXDYfButLk8zXHtnuEhl7EerO5R7F1UMavT47RE71RWIBLySt4xZP8dzWrpKkhOJnKEiJvF0jfLBgpc2BQXEZus08WLBE890WvCjUFD0UXrAs2BMJlChTk2N0pksH90GoD9MDOtX6K8Feb9+uRMc/7j/KNe3s6oyU0dUqIJY2dZHzxVRuK20RNiM/4PSJEjW45XHyFjDM5zQoQbBOCKdEtEJhCfgZJTLSFPl/4IBZyCquxgXDqYzzB8p0uYz+ruA7mlZPjlYzrJ5AZIpYe7X4HYrtniugFCN/GfPmRuOeCG0mxL+63m0jFDCFMo8c0K4vw7Ti+47SdG2YlYMIvqZppP3f58iOCCzLEquYBS7TIcLoK5KbKGixZAI/GPIN+ib+7aYFopPjpRB+yHk6f+uRBBwTpo6uXSRP/N6FQb5bkQcuXWY5RAmzc3afARyiwOxnoYoTgijBqgIo0F/5hC+WmWdEIYbd19WmRP3tvuJaUQAa7AnoNF4VSzHaDV8EIVESZQiDBcooXREOW+Yi2KezMKym8aud+ZzEPG04sdYEAl/noqK9+726BIO/M2tBO12LMZ6cQ8Ozct1Ad3tKJ5tnte4+yqfT/HQb7U+lbBHzqM/bSAn2D7C3el+PAvbtF1aVbHuwW+IpWXcEQea45kMqb/JB+0+tTOr6nR/eJUe034aErixouzdZALA8FoxaFoDMrAxvcrYrIe4nfuYmRMQsxKajbl+N6R98LoKu68uMl3yAHOjISDKaiwumw4bdIRuFAL7X0lHD1JqpiopyzgOBfqQHwGLB7wOyfCW0of1ACMy9bUoRWxD4Z1s2nu+KLf3ekIYIq9x38u9oYUl0i0CpNrxpHuLhnd156ibs8mR0yw5au3kSLWqEsG62Uqe9sokKDW4w+mXmb5E19nPy0FgVKmgVPxE/8myJC++4WzY4ywV/2fwsDnFhVw03aoPk1QTmWtgTS3jNZEy9tZLGzWmmwKDT0ycXS39rAdREMA0I796zUpTRtc3WvdUFiuPdZlskJtBa3OgODF5J8/ye73OUoTOt9/vvnXAhw4J+9Y4Ev5KpI2qchZruq/OOanRgB"
+                  },
+                  {
+                    "type": "text",
+                    "text": "**Your AI Day at flutterCon India 2026**\n\n1. **09:00–09:40** · Ballroom 2 · *Why AI Makes Flutter More Important, Not Less* · Eric Seidel\n2. **12:00–12:20** · Ballroom 2 · *Disciplined by Design: TDD-Driven Flutter Development with AI* · Toseef Ali Khan\n3. **13:20–14:00** · Ballroom 1 · *I shipped a local AI Model to 7,000+ users. Here's what happened.* · Aditya Thakur\n4. **14:15–14:55** · Junior Ballroom · *Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps* · Neelansh Sethi, Adil Shaikh\n5. **16:40–17:20** · Ballroom 1 · *Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit* · Renuka Kelkar"
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "Swap the second one for a performance talk."
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChASgEN1gaJCNapCUXgwU",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQS5QgKEAgTGAI4AUIIdGhpbmtpbmcSDOqUm4XYU29biLsEwhoMtRLkZ1DzsdNoQ+ZmIjAFQB+RqS42wT7mkgFIyWeV12FJHsrhnKTqlna8sBy01eceJAAjQ1YCfNWPLeiQzAYqgghpc/NXpMPMZZu6pcH/xghiuE2X+FrIDzMiKFlY0pwPjX/GbyH3ANvU1brqwMVP0t54FaesvUvCsuOK5JaaHGv/CHtBOdEIIZJsFYBLQ6RjleJZr8K0Dx+GtIEK+hI3q2mwb3MrIg8ToWhH10KJUXU3DzLmEfFVT66YSvOCy0DfW+uLi5umuK6cTyrXbZQMLpZZiMLQW+FK7uHpFXhh36kBVyFWZkskPqYGde1ZN+a7avalIqeGKqc92sPmEUaxO9fndIkjBYCn/Zn0bzbV7v11cB+Ea2BxjdbiY6/UVLV9pWMQO0pNBT3it068rR3Zdt/Ena7d79YC5q5a6li0J2Ip+v9vrPbsar/E4Le92nQr5Gwm9I3erZccjnvp3qjoErxenL7Kqc4OA/vqFE01odlVfLDL8D9PhtdB6hElZ6MMDUrWGTSxUlLSMM8Utp89WgVKyhpL8qHluc5xLzeAdniM8TENShbAJqlvLJHUrXwYIWVQhWm/aJELPeKE/lbjo653GsxOt1J0uzonjjjt3NuGZadAs+Z2Xb2k2eL5L1GB5O1fN3EYUTsW9ufDo09BS9mnqIGnlQ/HxBl93NcPZUFaIqMKQ4PRgrTysfp1ZWuaF1mP8+opOS7LhoenzyJaCdYjINcJltJkvos6biF9jk8B0qVBv93aeBU7exNDzwlh0PYxyW8RbGAro1VDvmjE6ejZGkSUadoeJk04qJQGzZtmEfgv9BtBgtYZgbAy7lrTp7CZY1U1wMCF2kof7V6XpltFNL1ejT5iaDAP9W0stffyMpAk6rJ7dJHAyNVHfv6m/W58h5QTuLHqWEhOnURbYtQ3p9vlQdzeNZmc9kVtzUNHKe0aH5Q0+SdDOyfzpqeXVeUQHees7nx5zwZsP+0ISLi74aTlkhokIFdl7rKKrgb8lKMia3V0tAQAAbvVdI3bE6znH5Vka8vMaU6XlLEhJwibZJmTEDZp3zs/wIB5Dqyiw4Fhfjm5gquzKkIz3VQw0u04olPIqGWCKRtthrAAbGsXRbnajTwKwrdu3cHwGMO+fmkNYPFRVXDZpQH8eCBK8ToEMf5vscR9s2sbG9TU7MUiVhENFibtH9ZSRuYfwTcKSkN3B30c+QG3A029OEc8XaQDfl6lKtv9DNnLz4EJrLoLh0eO7qQxwWKPBIfQlc7d3fk0bVzrUz4c85H2V1X09oGwN9APz7u1vp9c3qsviAXe/Bx4WWo2SUBdORKL9imutjPC+jlV9cQ2x2YO+G+tnoHo4XywR5H2coDxM1qWs0Mre9yqA7/UiuDi3K+BmK2YLrAKgY9pKNqbYx2kT0qlBoGtTCScyE344Wr+T9fyLD4RsjwM6O8QJdZBlhMc2hHP2RMYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "**Your AI Day at flutterCon India 2026**\n\n1. **09:00–09:40** · Ballroom 2 · *Why AI Makes Flutter More Important, Not Less* · Eric Seidel\n2. **13:20–14:00** · Ballroom 1 · *I shipped a local AI Model to 7,000+ users. Here's what happened.* · Aditya Thakur\n3. **14:15–14:55** · Junior Ballroom · *Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps* · Neelansh Sethi, Adil Shaikh\n4. **15:10–15:50** · Ballroom 2 · *Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+* · Md Moinuddin\n5. **16:40–17:20** · Ballroom 1 · *Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit* · Renuka Kelkar\n\nI swapped out the TDD talk for the performance talk at 15:10, so the list moved around to stay in time order. If you'd rather keep the 12:00 slot, *Offloading Heavy Lifting: Scaling Flutter Apps with Rust FFI* (Junior Ballroom) is a performance-leaning option there."
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 3424,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 3424,
+                  "output_tokens": 675,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 675,
+              "output_tokens_details": {
+                "thinking_tokens": 202
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        }
+      ]
+    },
     "L2/follow-up/without/turn-0": {
       "input": "Plan my day as a short list of 5 AI talks, talks only, no empty slots. Here’s the schedule:\n\nflutterCon India 2026 · Saturday 21 Nov · Conrad Bengaluru\n\n09:00–09:40 · Ballroom 2 · Why AI Makes Flutter More Important, Not Less · Eric Seidel\n10:10–10:50 · Ballroom 2 · Death to Passwords: Implementing Biometric Passkeys in Flutter · Lukas Klingsbo\n10:10–10:50 · Ballroom 1 · Beyond Breakpoints: Flutter Apps for the Foldable Era · Abdullah Deshmukh\n10:10–10:50 · Ballroom 3 · Migrating to Event Driven Architecture to Improve Communication Across 50+ Module · Burhanuddin Rashid\n10:10–10:50 · Roundtables (roundtable) · Millions of Users, Zero Jank: Advanced Performance Profiling · Shekhar Patel\n10:10–10:50 · Junior Ballroom · From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms · Hamdaan Ali\n11:05–11:45 · Ballroom 2 · Hundreds of Features, Zero Collisions: Composable Flutter at Scale · Pavan Podila\n11:05–11:45 · Ballroom 1 · Navigation in a Multi-Module Flutter App at Scale · Karem Ebrahim\n11:05–11:45 · Ballroom 3 · Zero to 200,000 Users: Architecting Production-Grade Flutter Systems That Don’t Break · Supratim Dhara\n11:05–11:45 · Roundtables (roundtable) · Surviving the AI Code Flood: CI/CD & Quality Gates · Vivek Yadav, Toseef Ali Khan\n11:05–11:45 · Junior Ballroom · Engineering Flutter for Wearables · Likhitha Aralimara\n12:00–12:20 · Ballroom 2 · Disciplined by Design: TDD-Driven Flutter Development with AI · Toseef Ali Khan\n12:00–12:20 · Ballroom 1 · Building Realtime Collaborative Flutter Apps with CRDTs · Mayur Mahajan\n12:00–12:20 · Ballroom 3 · Under the Hood of Session Replay: Capturing Every Interaction · Abhay Sood\n12:00–12:20 · Roundtables (roundtable) · Hardening Flutter Security: Balancing Compliance & Operational Risks · Bornak Paul, Zaid Sayyed\n12:00–12:20 · Junior Ballroom · Offloading Heavy Lifting: Scaling Flutter Apps with Rust FFI · Ponnam Karthik\n13:20–14:00 · Ballroom 2 · Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons · Eric Seidel, Ajin Asokan, Avinash Singh Yadav, Somesh Karthik\n13:20–14:00 · Ballroom 1 · I shipped a local AI Model to 7,000+ users. Here's what happened. · Aditya Thakur\n13:20–14:00 · Ballroom 3 · Beyond Crashlytics: Building Autonomous Incident Intelligence for Flutter · Kamal Shree, Hema Sai Charan Kothamasu\n13:20–14:00 · Roundtables (roundtable) · Architecting Apps as Headless Toolchains for OS AI Agents · Rohan Joshi\n13:20–14:00 · Junior Ballroom · Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development · Vivek Yadav\n14:15–14:55 · Ballroom 2 · The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK · Pawan Kumar\n14:15–14:55 · Ballroom 1 · One Isolate, Multiple Threads: Understanding Concurrency in Flutter · Shubham Agrawal, Sugam Singh\n14:15–14:55 · Ballroom 3 · Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction · Shree Bhagwat\n14:15–14:55 · Roundtables (roundtable) · Tracking the Unpredictable: Monitoring AI Costs and Performance · Hema Sai Charan Kothamasu, Jaldeep Asodariya\n14:15–14:55 · Junior Ballroom · Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps · Neelansh Sethi, Adil Shaikh\n15:10–15:50 · Ballroom 2 · Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+ · Md Moinuddin\n15:10–15:50 · Ballroom 1 · From Android Things to Flutter: Building a Smart Home App on Raspberry Pi · Jaldeep Asodariya\n15:10–15:50 · Ballroom 3 · When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide · Saheb Singh\n15:10–15:50 · Roundtables (roundtable) · The Modular Monolith: Scaling Architecture & Surviving Dependency Hell · Lukas Klingsbo\n15:10–15:50 · Junior Ballroom · Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps · Shekhar Patel\n16:05–16:25 · Ballroom 2 · How I Built a Route Optimized Delivery Map in Flutter Without Google Maps · Zaid Sayyed\n16:05–16:25 · Ballroom 1 · Flutter Package Version Hell: A Field Guide · Abhishek Doshi\n16:05–16:25 · Ballroom 3 · Beyond HTTPS: Preventing MITM Attacks in Flutter with Certificate Pinning · Bornak Paul\n16:05–16:25 · Roundtables (roundtable) · The Wild West of Gen UI: Taming Runtime Layouts · Supratim Dhara\n16:05–16:25 · Junior Ballroom · Keys That Never Leave the Chip: Secure Enclave & Hardware Keystore in Flutter · Roopesh LR\n16:40–17:20 · Ballroom 2 · AI Observability for LLM-Powered Flutter Apps · Pooja Bhaumik\n16:40–17:20 · Ballroom 1 · Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit · Renuka Kelkar\n16:40–17:20 · Ballroom 3 · Building Home Screen Widgets in Flutter Without Writing Native Code Twice · Akansha Jain\n16:40–17:20 · Roundtables (roundtable) · Beyond the Widget Tree: Flutter Internals & Layout Mechanics · Shree Bhagwat, Abdullah Deshmukh\n16:40–17:20 · Junior Ballroom · How To Make a Flutter App Smooth for 1 Million Users · Gauri Panse\n17:35–18:15 · Ballroom 2 · Building Your Own Flutter DevTools Extension · Bhavik Makwana\n17:35–18:15 · Ballroom 1 · Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale · Laksh Samdariya\n17:35–18:15 · Ballroom 3 · Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities · Pranav Masekar",
       "savedAt": "2026-11-18T18:28:46.729072",
@@ -9438,6 +9606,1904 @@
               "output_tokens": 62,
               "output_tokens_details": {
                 "thinking_tokens": 0
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        }
+      ]
+    },
+    "L4/remove/with/turn-0": {
+      "input": "What should I end the day with?",
+      "savedAt": "2026-11-18T18:36:40.228698",
+      "exchanges": [
+        {
+          "kind": "count_tokens",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "I’m planning my flutterCon day. Nothing before 10, and no roundtables please."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Got it: nothing before 10:00 and no roundtables. What do you want to focus on?"
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "Also, I’m leaving at 17:00."
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Noted. I’ll keep everything finishing by 17:00."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about performance?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_01",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "performance"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_01",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"millions-of-users-zero-jank-advanced-per\",\"title\":\"Millions of Users, Zero Jank: Advanced Performance Profiling\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"engineering-flutter-for-wearables\",\"title\":\"Engineering Flutter for Wearables\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Likhitha Aralimara\"]},{\"id\":\"tracking-the-unpredictable-monitoring-ai\",\"title\":\"Tracking the Unpredictable: Monitoring AI Costs and Performance\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Hema Sai Charan Kothamasu\",\"Jaldeep Asodariya\"]},{\"id\":\"beyond-the-widget-tree-flutter-internals\",\"title\":\"Beyond the Widget Tree: Flutter Internals & Layout Mechanics\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shree Bhagwat\",\"Abdullah Deshmukh\"]},{\"id\":\"how-to-make-a-flutter-app-smooth-for-1-m\",\"title\":\"How To Make a Flutter App Smooth for 1 Million Users\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Gauri Panse\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On performance, these fit your day: “Engineering Flutter for Wearables” at 11:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about testing?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_02",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "testing"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_02",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"under-the-hood-of-session-replay-capturi\",\"title\":\"Under the Hood of Session Replay: Capturing Every Interaction\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Abhay Sood\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On testing, these fit your day: “Under the Hood of Session Replay: Capturing Every Interaction” at 12:00."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about architecture?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_03",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "architecture"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_03",
+                    "content": "{\"count\":10,\"sessions\":[{\"id\":\"migrating-to-event-driven-architecture-t\",\"title\":\"Migrating to Event Driven Architecture to Improve Communication Across 50+ Module\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Burhanuddin Rashid\"]},{\"id\":\"millions-of-users-zero-jank-advanced-per\",\"title\":\"Millions of Users, Zero Jank: Advanced Performance Profiling\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"navigation-in-a-multi-module-flutter-app\",\"title\":\"Navigation in a Multi-Module Flutter App at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Karem Ebrahim\"]},{\"id\":\"trust-sandbox-verify-hardening-flutter-c\",\"title\":\"Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Vivek Yadav\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"the-modular-monolith-scaling-architectur\",\"title\":\"The Modular Monolith: Scaling Architecture & Surviving Dependency Hell\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"online-offline-and-the-ugly-middle-cache\",\"title\":\"Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On architecture, these fit your day: “Migrating to Event Driven Architecture to Improve Communication Across 50+ Module” at 10:10; “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10; “Hundreds of Features, Zero Collisions: Composable Flutter at Scale” at 11:05; “Navigation in a Multi-Module Flutter App at Scale” at 11:05; “Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development” at 13:20; “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10; “Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about security?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_04",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "security"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_04",
+                    "content": "{\"count\":4,\"sessions\":[{\"id\":\"death-to-passwords-implementing-biometri\",\"title\":\"Death to Passwords: Implementing Biometric Passkeys in Flutter\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"hardening-flutter-security-balancing-com\",\"title\":\"Hardening Flutter Security: Balancing Compliance & Operational Risks\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Bornak Paul\",\"Zaid Sayyed\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"beyond-the-widget-tree-flutter-internals\",\"title\":\"Beyond the Widget Tree: Flutter Internals & Layout Mechanics\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shree Bhagwat\",\"Abdullah Deshmukh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On security, these fit your day: “Death to Passwords: Implementing Biometric Passkeys in Flutter” at 10:10; “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about native?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_05",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "native"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_05",
+                    "content": "{\"count\":7,\"sessions\":[{\"id\":\"why-ai-makes-flutter-more-important-not\",\"title\":\"Why AI Makes Flutter More Important, Not Less\",\"start\":\"09:00\",\"end\":\"09:40\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\"]},{\"id\":\"death-to-passwords-implementing-biometri\",\"title\":\"Death to Passwords: Implementing Biometric Passkeys in Flutter\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"zero-jank-native-views-deep-dive-into-hy\",\"title\":\"Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Md Moinuddin\"]},{\"id\":\"building-home-screen-widgets-in-flutter\",\"title\":\"Building Home Screen Widgets in Flutter Without Writing Native Code Twice\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Akansha Jain\"]},{\"id\":\"hot-fixes-cold-logic-taming-shorebird-ot\",\"title\":\"Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Laksh Samdariya\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On native, these fit your day: “Death to Passwords: Implementing Biometric Passkeys in Flutter” at 10:10; “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10; “Zero-Jank Native Views: Deep Dive into Hybrid Composition++ (HCPP) in Flutter 3.47+” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about AI?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_06",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "AI"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_06",
+                    "content": "{\"count\":16,\"sessions\":[{\"id\":\"why-ai-makes-flutter-more-important-not\",\"title\":\"Why AI Makes Flutter More Important, Not Less\",\"start\":\"09:00\",\"end\":\"09:40\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\"]},{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"disciplined-by-design-tdd-driven-flutter\",\"title\":\"Disciplined by Design: TDD-Driven Flutter Development with AI\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"i-shipped-a-local-ai-model-to-7-000-user\",\"title\":\"I shipped a local AI Model to 7,000+ users. Here's what happened.\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Aditya Thakur\"]},{\"id\":\"beyond-crashlytics-building-autonomous-i\",\"title\":\"Beyond Crashlytics: Building Autonomous Incident Intelligence for Flutter\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Kamal Shree\",\"Hema Sai Charan Kothamasu\"]},{\"id\":\"architecting-apps-as-headless-toolchains\",\"title\":\"Architecting Apps as Headless Toolchains for OS AI Agents\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Rohan Joshi\"]},{\"id\":\"trust-sandbox-verify-hardening-flutter-c\",\"title\":\"Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Vivek Yadav\"]},{\"id\":\"the-catalog-is-the-cage-safe-generative\",\"title\":\"The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pawan Kumar\"]},{\"id\":\"tracking-the-unpredictable-monitoring-ai\",\"title\":\"Tracking the Unpredictable: Monitoring AI Costs and Performance\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Hema Sai Charan Kothamasu\",\"Jaldeep Asodariya\"]},{\"id\":\"beyond-prompts-context-memory-agent-loop\",\"title\":\"Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Neelansh Sethi\",\"Adil Shaikh\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]},{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]},{\"id\":\"ai-observability-for-llm-powered-flutter\",\"title\":\"AI Observability for LLM-Powered Flutter Apps\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pooja Bhaumik\"]},{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On AI, these fit your day: “Hundreds of Features, Zero Collisions: Composable Flutter at Scale” at 11:05; “Disciplined by Design: TDD-Driven Flutter Development with AI” at 12:00; “Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons” at 13:20; “I shipped a local AI Model to 7,000+ users. Here's what happened.” at 13:20; “Beyond Crashlytics: Building Autonomous Incident Intelligence for Flutter” at 13:20; “Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development” at 13:20; “The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK” at 14:15; “Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps” at 14:15; “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about agents?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_07",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "agents"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_07",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"why-ai-makes-flutter-more-important-not\",\"title\":\"Why AI Makes Flutter More Important, Not Less\",\"start\":\"09:00\",\"end\":\"09:40\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\"]},{\"id\":\"architecting-apps-as-headless-toolchains\",\"title\":\"Architecting Apps as Headless Toolchains for OS AI Agents\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Rohan Joshi\"]},{\"id\":\"trust-sandbox-verify-hardening-flutter-c\",\"title\":\"Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Vivek Yadav\"]},{\"id\":\"the-wild-west-of-gen-ui-taming-runtime-l\",\"title\":\"The Wild West of Gen UI: Taming Runtime Layouts\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Supratim Dhara\"]},{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On agents, these fit your day: “Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development” at 13:20."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about state?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_08",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "state"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_08",
+                    "content": "{\"count\":8,\"sessions\":[{\"id\":\"beyond-breakpoints-flutter-apps-for-the\",\"title\":\"Beyond Breakpoints: Flutter Apps for the Foldable Era\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Abdullah Deshmukh\"]},{\"id\":\"building-realtime-collaborative-flutter\",\"title\":\"Building Realtime Collaborative Flutter Apps with CRDTs\",\"start\":\"12:00\",\"end\":\"12:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Mayur Mahajan\"]},{\"id\":\"trust-sandbox-verify-hardening-flutter-c\",\"title\":\"Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Vivek Yadav\"]},{\"id\":\"everything-is-not-a-widget-beneath-flutt\",\"title\":\"Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Shree Bhagwat\"]},{\"id\":\"beyond-prompts-context-memory-agent-loop\",\"title\":\"Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Neelansh Sethi\",\"Adil Shaikh\"]},{\"id\":\"online-offline-and-the-ugly-middle-cache\",\"title\":\"Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"beyond-the-widget-tree-flutter-internals\",\"title\":\"Beyond the Widget Tree: Flutter Internals & Layout Mechanics\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shree Bhagwat\",\"Abdullah Deshmukh\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On state, these fit your day: “Beyond Breakpoints: Flutter Apps for the Foldable Era” at 10:10; “Building Realtime Collaborative Flutter Apps with CRDTs” at 12:00; “Trust, Sandbox, Verify: Hardening Flutter Codebases for Multi-Agent AI Development” at 13:20; “Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction” at 14:15; “Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps” at 14:15; “Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about scale?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_09",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "scale"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_09",
+                    "content": "{\"count\":6,\"sessions\":[{\"id\":\"millions-of-users-zero-jank-advanced-per\",\"title\":\"Millions of Users, Zero Jank: Advanced Performance Profiling\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shekhar Patel\"]},{\"id\":\"hundreds-of-features-zero-collisions-com\",\"title\":\"Hundreds of Features, Zero Collisions: Composable Flutter at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pavan Podila\"]},{\"id\":\"navigation-in-a-multi-module-flutter-app\",\"title\":\"Navigation in a Multi-Module Flutter App at Scale\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Karem Ebrahim\"]},{\"id\":\"zero-to-200-000-users-architecting-produ\",\"title\":\"Zero to 200,000 Users: Architecting Production-Grade Flutter Systems That Don’t Break\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Supratim Dhara\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"hot-fixes-cold-logic-taming-shorebird-ot\",\"title\":\"Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Laksh Samdariya\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On scale, these fit your day: “Hundreds of Features, Zero Collisions: Composable Flutter at Scale” at 11:05; “Navigation in a Multi-Module Flutter App at Scale” at 11:05; “Zero to 200,000 Users: Architecting Production-Grade Flutter Systems That Don’t Break” at 11:05; “Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons” at 13:20."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about CI?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_10",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "CI"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_10",
+                    "content": "{\"count\":4,\"sessions\":[{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"surviving-the-ai-code-flood-ci-cd-qualit\",\"title\":\"Surviving the AI Code Flood: CI/CD & Quality Gates\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Vivek Yadav\",\"Toseef Ali Khan\"]},{\"id\":\"flutter-at-scale-real-decisions-trade-of\",\"title\":\"Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons\",\"start\":\"13:20\",\"end\":\"14:00\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Eric Seidel\",\"Ajin Asokan\",\"Avinash Singh Yadav\",\"Somesh Karthik\"]},{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On CI, these fit your day: “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10; “Flutter at Scale: Real Decisions, Trade-offs, and Hard Lessons” at 13:20; “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about widgets?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_11",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "widgets"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_11",
+                    "content": "{\"count\":3,\"sessions\":[{\"id\":\"everything-is-not-a-widget-beneath-flutt\",\"title\":\"Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Shree Bhagwat\"]},{\"id\":\"building-home-screen-widgets-in-flutter\",\"title\":\"Building Home Screen Widgets in Flutter Without Writing Native Code Twice\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Akansha Jain\"]},{\"id\":\"beyond-the-widget-tree-flutter-internals\",\"title\":\"Beyond the Widget Tree: Flutter Internals & Layout Mechanics\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Shree Bhagwat\",\"Abdullah Deshmukh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On widgets, these fit your day: “Everything Is NOT a Widget: Beneath Flutter’s Most Famous Abstraction” at 14:15."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about offline?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_12",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "offline"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_12",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"online-offline-and-the-ugly-middle-cache\",\"title\":\"Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Shekhar Patel\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On offline, these fit your day: “Online, Offline, and the Ugly Middle: Cache and Sync Architecture for Flutter Apps” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about GenUI?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_13",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "GenUI"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_13",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"the-catalog-is-the-cage-safe-generative\",\"title\":\"The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Pawan Kumar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On GenUI, these fit your day: “The Catalog Is the Cage: Safe Generative UI with Flutter's GenUI SDK” at 14:15."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about Genkit?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_14",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "Genkit"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_14",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"beyond-chatbots-building-production-read\",\"title\":\"Beyond Chatbots: Building Production-Ready Goal-Driven AI Agents with Flutter & Genkit\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Renuka Kelkar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Nothing on Genkit fits your day."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about concurrency?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_15",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "concurrency"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_15",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"one-isolate-multiple-threads-understandi\",\"title\":\"One Isolate, Multiple Threads: Understanding Concurrency in Flutter\",\"start\":\"14:15\",\"end\":\"14:55\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Shubham Agrawal\",\"Sugam Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On concurrency, these fit your day: “One Isolate, Multiple Threads: Understanding Concurrency in Flutter” at 14:15."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about maps?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_16",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "maps"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_16",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"how-i-built-a-route-optimized-delivery-m\",\"title\":\"How I Built a Route Optimized Delivery Map in Flutter Without Google Maps\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Zaid Sayyed\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On maps, these fit your day: “How I Built a Route Optimized Delivery Map in Flutter Without Google Maps” at 16:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about wearables?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_17",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "wearables"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_17",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"engineering-flutter-for-wearables\",\"title\":\"Engineering Flutter for Wearables\",\"start\":\"11:05\",\"end\":\"11:45\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Likhitha Aralimara\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On wearables, these fit your day: “Engineering Flutter for Wearables” at 11:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about package?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_18",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "package"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_18",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"the-modular-monolith-scaling-architectur\",\"title\":\"The Modular Monolith: Scaling Architecture & Surviving Dependency Hell\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"flutter-package-version-hell-a-field-gui\",\"title\":\"Flutter Package Version Hell: A Field Guide\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Abhishek Doshi\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On package, these fit your day: “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10; “Flutter Package Version Hell: A Field Guide” at 16:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about DevTools?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_19",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "DevTools"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_19",
+                    "content": "{\"count\":2,\"sessions\":[{\"id\":\"how-to-make-a-flutter-app-smooth-for-1-m\",\"title\":\"How To Make a Flutter App Smooth for 1 Million Users\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Gauri Panse\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Nothing on DevTools fits your day."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about releases?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_20",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "releases"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_20",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On releases, these fit your day: “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What should I end the day with?"
+              }
+            ]
+          },
+          "response": {
+            "input_tokens": 13765
+          }
+        },
+        {
+          "kind": "count_tokens",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "What’s on about package?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_18",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "package"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_18",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"the-modular-monolith-scaling-architectur\",\"title\":\"The Modular Monolith: Scaling Architecture & Surviving Dependency Hell\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"flutter-package-version-hell-a-field-gui\",\"title\":\"Flutter Package Version Hell: A Field Guide\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Abhishek Doshi\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On package, these fit your day: “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10; “Flutter Package Version Hell: A Field Guide” at 16:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about DevTools?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_19",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "DevTools"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_19",
+                    "content": "{\"count\":2,\"sessions\":[{\"id\":\"how-to-make-a-flutter-app-smooth-for-1-m\",\"title\":\"How To Make a Flutter App Smooth for 1 Million Users\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Gauri Panse\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Nothing on DevTools fits your day."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about releases?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_20",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "releases"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_20",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On releases, these fit your day: “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What should I end the day with?"
+              }
+            ]
+          },
+          "response": {
+            "input_tokens": 2179
+          }
+        },
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "What’s on about package?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_18",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "package"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_18",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"the-modular-monolith-scaling-architectur\",\"title\":\"The Modular Monolith: Scaling Architecture & Surviving Dependency Hell\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"flutter-package-version-hell-a-field-gui\",\"title\":\"Flutter Package Version Hell: A Field Guide\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Abhishek Doshi\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On package, these fit your day: “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10; “Flutter Package Version Hell: A Field Guide” at 16:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about DevTools?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_19",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "DevTools"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_19",
+                    "content": "{\"count\":2,\"sessions\":[{\"id\":\"how-to-make-a-flutter-app-smooth-for-1-m\",\"title\":\"How To Make a Flutter App Smooth for 1 Million Users\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Gauri Panse\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Nothing on DevTools fits your day."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about releases?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_20",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "releases"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_20",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On releases, these fit your day: “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What should I end the day with?"
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChASgw4ykMBh6NVg8E4rW",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSjQgKEAgTGAI4AUIIdGhpbmtpbmcSDDLaXFSHHS0MPL334BoMmV6U2iG9kgeRfL1KIjBv6QHm+rSSKD854RlFTUqKKZ+21WS0a2qsQQ0zmp4RXPnnJc9TQ0P0UZs0DCal4scqqgeVPqOXDnSWZNMgWRV1W9vLqZpLNv8o4pJ3nsbQHQD9ARGwWqM/cFGzp2r84L0O+HR4jynBzmKkboCPQWcF0HMkC8yK68AReGNIXzm0gwNKD62Y5bBVFAmf9UPMnaiJssZvUY1ZAzQxbxG92KnrfaG4DHv5+1QG6UEv16h1hbV4PEpLY5DoDT96weBIOZFTRqLXt/y5RRiLBPj252XJgo7+eQLW7jxebisylBPKrbqW7Db+1unvdzHaCFL6S2XekWfy0Lvm1QDe62jR+aQyc2I2xK4S8APsn09/clybRHzvq6BT/1ZtLejQwKGqDqfMIguV520FUr8pdb2j9ZyMeDkLVceU07wyGqgHpEK4cvDdNa0IRTmZIWXcBHARzn0UjQ7D7Botc8TBXCbXBw+f4qorzXZLJQqAFyEPWdTeCaq3JeNFOAmnGqNC3OCfnKPk8fseviSYKp0Va97UglD9PJWjPj4u01DrCkOGE8K9UMVQqPXz95cZZ/nSMACPheAynp4xSvmEn4VY6voFcvGUjiOB1cv8DuIOkFxB6mPWxn5+BGgnmMimxyfmhpFUf30Q3p20e8jZUjrKA9gVra4x1MMtOfX6qVhb6d8v0Ahg5ZpJyJV14Pc5yYy0idoSlNUSE8kRPUmzgQi5apqjqz3Y62XqouSzyt09ZHZXzbdxXTb/fwBPJU87HF037UtyI5EFe+Gr/ITJmYs4z5dWoF2eWgVwTCO9wSGr0nkRudyWmSeVQRK4dy8MPTOEsLrs3G8n+prp7j0UNQh6XxaNH0z1VoNdQRP91r7nluyMQAOhFtWf8dB4Sg5IDVTuPuIfELPsWNU27n3lYaxt8D94qCypq2wFTCwtx52EaPQ8iyjDmd+vQU6qx6LSJdPMxQiJmVO0VHfCe9WkpCozCUyWKxQBB4c1B2mwbZk4nfeM1cA268GUTp5hxDfCkgMpKJoBviqhnXQjLvxSZnimgI3sP36MIzD6oYA+HPTSGcx9Uuo0U8iw3BmEgThGxJPQ6oEdI0nDBXftXzkj+f4J6SQhAGu8s7a5lz5p2gKGUqgVUuUsiRkgthdPIija4/5e9Bd8CxvEL9peR2FguTBRBbmugJahXycjzsbnWZAQ5Q84asKf6NZDX2INkBANgwAj2X5Zj8iondi0bRk1OvLyiVVIOGr9M5/z640VUegT2ErlqYo9uWEa0JQe4xCYHnSWHGBwqqPz+9WWFnJNZnJo8slF8I0biJJu6+9uUSSygDbKhRgB"
+              },
+              {
+                "type": "tool_use",
+                "id": "toolu_017ummjcuJX7UuYHaDzDVCY1",
+                "name": "searchSessions",
+                "input": {
+                  "after": "17:30"
+                },
+                "caller": {
+                  "type": "direct"
+                }
+              }
+            ],
+            "container": null,
+            "stop_reason": "tool_use",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 2179,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 2179,
+                  "output_tokens": 189,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 189,
+              "output_tokens_details": {
+                "thinking_tokens": 139
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        },
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "What’s on about package?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_18",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "package"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_18",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"the-modular-monolith-scaling-architectur\",\"title\":\"The Modular Monolith: Scaling Architecture & Surviving Dependency Hell\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"flutter-package-version-hell-a-field-gui\",\"title\":\"Flutter Package Version Hell: A Field Guide\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Abhishek Doshi\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On package, these fit your day: “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10; “Flutter Package Version Hell: A Field Guide” at 16:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about DevTools?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_19",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "DevTools"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_19",
+                    "content": "{\"count\":2,\"sessions\":[{\"id\":\"how-to-make-a-flutter-app-smooth-for-1-m\",\"title\":\"How To Make a Flutter App Smooth for 1 Million Users\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Gauri Panse\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Nothing on DevTools fits your day."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about releases?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_20",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "releases"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_20",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On releases, these fit your day: “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What should I end the day with?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "",
+                    "signature": "CAQSjQgKEAgTGAI4AUIIdGhpbmtpbmcSDDLaXFSHHS0MPL334BoMmV6U2iG9kgeRfL1KIjBv6QHm+rSSKD854RlFTUqKKZ+21WS0a2qsQQ0zmp4RXPnnJc9TQ0P0UZs0DCal4scqqgeVPqOXDnSWZNMgWRV1W9vLqZpLNv8o4pJ3nsbQHQD9ARGwWqM/cFGzp2r84L0O+HR4jynBzmKkboCPQWcF0HMkC8yK68AReGNIXzm0gwNKD62Y5bBVFAmf9UPMnaiJssZvUY1ZAzQxbxG92KnrfaG4DHv5+1QG6UEv16h1hbV4PEpLY5DoDT96weBIOZFTRqLXt/y5RRiLBPj252XJgo7+eQLW7jxebisylBPKrbqW7Db+1unvdzHaCFL6S2XekWfy0Lvm1QDe62jR+aQyc2I2xK4S8APsn09/clybRHzvq6BT/1ZtLejQwKGqDqfMIguV520FUr8pdb2j9ZyMeDkLVceU07wyGqgHpEK4cvDdNa0IRTmZIWXcBHARzn0UjQ7D7Botc8TBXCbXBw+f4qorzXZLJQqAFyEPWdTeCaq3JeNFOAmnGqNC3OCfnKPk8fseviSYKp0Va97UglD9PJWjPj4u01DrCkOGE8K9UMVQqPXz95cZZ/nSMACPheAynp4xSvmEn4VY6voFcvGUjiOB1cv8DuIOkFxB6mPWxn5+BGgnmMimxyfmhpFUf30Q3p20e8jZUjrKA9gVra4x1MMtOfX6qVhb6d8v0Ahg5ZpJyJV14Pc5yYy0idoSlNUSE8kRPUmzgQi5apqjqz3Y62XqouSzyt09ZHZXzbdxXTb/fwBPJU87HF037UtyI5EFe+Gr/ITJmYs4z5dWoF2eWgVwTCO9wSGr0nkRudyWmSeVQRK4dy8MPTOEsLrs3G8n+prp7j0UNQh6XxaNH0z1VoNdQRP91r7nluyMQAOhFtWf8dB4Sg5IDVTuPuIfELPsWNU27n3lYaxt8D94qCypq2wFTCwtx52EaPQ8iyjDmd+vQU6qx6LSJdPMxQiJmVO0VHfCe9WkpCozCUyWKxQBB4c1B2mwbZk4nfeM1cA268GUTp5hxDfCkgMpKJoBviqhnXQjLvxSZnimgI3sP36MIzD6oYA+HPTSGcx9Uuo0U8iw3BmEgThGxJPQ6oEdI0nDBXftXzkj+f4J6SQhAGu8s7a5lz5p2gKGUqgVUuUsiRkgthdPIija4/5e9Bd8CxvEL9peR2FguTBRBbmugJahXycjzsbnWZAQ5Q84asKf6NZDX2INkBANgwAj2X5Zj8iondi0bRk1OvLyiVVIOGr9M5/z640VUegT2ErlqYo9uWEa0JQe4xCYHnSWHGBwqqPz+9WWFnJNZnJo8slF8I0biJJu6+9uUSSygDbKhRgB"
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_017ummjcuJX7UuYHaDzDVCY1",
+                    "name": "searchSessions",
+                    "input": {
+                      "after": "17:30"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_017ummjcuJX7UuYHaDzDVCY1",
+                    "content": "{\"total\":3,\"sessions\":[{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]},{\"id\":\"hot-fixes-cold-logic-taming-shorebird-ot\",\"title\":\"Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Laksh Samdariya\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChASh7jvgvcf75hstmYFR",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "tool_use",
+                "id": "toolu_01LZCnyXFCwqpBnTfAVbGzjz",
+                "name": "showPlan",
+                "input": {
+                  "sessionIds": [
+                    "from-flutter-plugin-to-native-asset-ship",
+                    "when-releases-can-t-fail-scaling-ci-cd-a",
+                    "flutter-package-version-hell-a-field-gui",
+                    "building-your-own-flutter-devtools-exten"
+                  ]
+                },
+                "caller": {
+                  "type": "direct"
+                }
+              }
+            ],
+            "container": null,
+            "stop_reason": "tool_use",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 2705,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 2705,
+                  "output_tokens": 130,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 130,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "service_tier": "standard",
+              "inference_geo": "global",
+              "speed": "standard"
+            },
+            "diagnostics": null
+          }
+        },
+        {
+          "kind": "messages",
+          "request": {
+            "model": "claude-opus-5-5",
+            "max_tokens": 8000,
+            "output_config": {
+              "effort": "low"
+            },
+            "fallbacks": "default",
+            "system": [
+              {
+                "type": "text",
+                "text": "You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.\nOnly recommend sessions returned by the tools. Never invent sessions.\nWhenever you recommend sessions, call showPlan with their ids.\nKeep replies short: two or three sentences."
+              },
+              {
+                "type": "text",
+                "text": "Today is Saturday 21 November 2026, at Conrad Bengaluru.\nRooms: Ballroom 1, Ballroom 2, Ballroom 3, Junior Ballroom, Roundtables."
+              }
+            ],
+            "tools": [
+              {
+                "name": "searchSessions",
+                "description": "Search today’s flutterCon schedule. Matches keywords in titles and descriptions, optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; use more specific keywords or times to see others.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "description": "Words to match, e.g. \"AI testing\"."
+                    },
+                    "after": {
+                      "type": "string",
+                      "description": "Earliest start time, HH:MM."
+                    },
+                    "before": {
+                      "type": "string",
+                      "description": "Latest end time, HH:MM."
+                    }
+                  }
+                }
+              },
+              {
+                "name": "getSession",
+                "description": "Get one session’s full details, including its description.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A session id from searchSessions."
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              },
+              {
+                "name": "showPlan",
+                "description": "Show a plan of sessions to the user as a card. Call this whenever you recommend sessions, with their ids in time order.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Session ids from searchSessions, in time order."
+                    }
+                  },
+                  "required": [
+                    "sessionIds"
+                  ]
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "auto",
+              "disable_parallel_tool_use": true
+            },
+            "messages": [
+              {
+                "role": "user",
+                "content": "What’s on about package?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_18",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "package"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_18",
+                    "content": "{\"count\":5,\"sessions\":[{\"id\":\"from-flutter-plugin-to-native-asset-ship\",\"title\":\"From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms\",\"start\":\"10:10\",\"end\":\"10:50\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Hamdaan Ali\"]},{\"id\":\"the-modular-monolith-scaling-architectur\",\"title\":\"The Modular Monolith: Scaling Architecture & Surviving Dependency Hell\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Roundtables\",\"type\":\"roundtable\",\"speakers\":[\"Lukas Klingsbo\"]},{\"id\":\"flutter-package-version-hell-a-field-gui\",\"title\":\"Flutter Package Version Hell: A Field Guide\",\"start\":\"16:05\",\"end\":\"16:25\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Abhishek Doshi\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On package, these fit your day: “From Flutter Plugin to Native Asset: Shipping webcrypto.dart for Dart, Flutter, and Six Platforms” at 10:10; “Flutter Package Version Hell: A Field Guide” at 16:05."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about DevTools?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_19",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "DevTools"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_19",
+                    "content": "{\"count\":2,\"sessions\":[{\"id\":\"how-to-make-a-flutter-app-smooth-for-1-m\",\"title\":\"How To Make a Flutter App Smooth for 1 Million Users\",\"start\":\"16:40\",\"end\":\"17:20\",\"room\":\"Junior Ballroom\",\"type\":\"talk\",\"speakers\":[\"Gauri Panse\"]},{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Nothing on DevTools fits your day."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What’s on about releases?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_seed_20",
+                    "name": "searchSessions",
+                    "input": {
+                      "keyword": "releases"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_seed_20",
+                    "content": "{\"count\":1,\"sessions\":[{\"id\":\"when-releases-can-t-fail-scaling-ci-cd-a\",\"title\":\"When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide\",\"start\":\"15:10\",\"end\":\"15:50\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Saheb Singh\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "On releases, these fit your day: “When Releases Can’t Fail: Scaling CI/CD and Code Quality at Tide” at 15:10."
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": "What should I end the day with?"
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "",
+                    "signature": "CAQSjQgKEAgTGAI4AUIIdGhpbmtpbmcSDDLaXFSHHS0MPL334BoMmV6U2iG9kgeRfL1KIjBv6QHm+rSSKD854RlFTUqKKZ+21WS0a2qsQQ0zmp4RXPnnJc9TQ0P0UZs0DCal4scqqgeVPqOXDnSWZNMgWRV1W9vLqZpLNv8o4pJ3nsbQHQD9ARGwWqM/cFGzp2r84L0O+HR4jynBzmKkboCPQWcF0HMkC8yK68AReGNIXzm0gwNKD62Y5bBVFAmf9UPMnaiJssZvUY1ZAzQxbxG92KnrfaG4DHv5+1QG6UEv16h1hbV4PEpLY5DoDT96weBIOZFTRqLXt/y5RRiLBPj252XJgo7+eQLW7jxebisylBPKrbqW7Db+1unvdzHaCFL6S2XekWfy0Lvm1QDe62jR+aQyc2I2xK4S8APsn09/clybRHzvq6BT/1ZtLejQwKGqDqfMIguV520FUr8pdb2j9ZyMeDkLVceU07wyGqgHpEK4cvDdNa0IRTmZIWXcBHARzn0UjQ7D7Botc8TBXCbXBw+f4qorzXZLJQqAFyEPWdTeCaq3JeNFOAmnGqNC3OCfnKPk8fseviSYKp0Va97UglD9PJWjPj4u01DrCkOGE8K9UMVQqPXz95cZZ/nSMACPheAynp4xSvmEn4VY6voFcvGUjiOB1cv8DuIOkFxB6mPWxn5+BGgnmMimxyfmhpFUf30Q3p20e8jZUjrKA9gVra4x1MMtOfX6qVhb6d8v0Ahg5ZpJyJV14Pc5yYy0idoSlNUSE8kRPUmzgQi5apqjqz3Y62XqouSzyt09ZHZXzbdxXTb/fwBPJU87HF037UtyI5EFe+Gr/ITJmYs4z5dWoF2eWgVwTCO9wSGr0nkRudyWmSeVQRK4dy8MPTOEsLrs3G8n+prp7j0UNQh6XxaNH0z1VoNdQRP91r7nluyMQAOhFtWf8dB4Sg5IDVTuPuIfELPsWNU27n3lYaxt8D94qCypq2wFTCwtx52EaPQ8iyjDmd+vQU6qx6LSJdPMxQiJmVO0VHfCe9WkpCozCUyWKxQBB4c1B2mwbZk4nfeM1cA268GUTp5hxDfCkgMpKJoBviqhnXQjLvxSZnimgI3sP36MIzD6oYA+HPTSGcx9Uuo0U8iw3BmEgThGxJPQ6oEdI0nDBXftXzkj+f4J6SQhAGu8s7a5lz5p2gKGUqgVUuUsiRkgthdPIija4/5e9Bd8CxvEL9peR2FguTBRBbmugJahXycjzsbnWZAQ5Q84asKf6NZDX2INkBANgwAj2X5Zj8iondi0bRk1OvLyiVVIOGr9M5/z640VUegT2ErlqYo9uWEa0JQe4xCYHnSWHGBwqqPz+9WWFnJNZnJo8slF8I0biJJu6+9uUSSygDbKhRgB"
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_017ummjcuJX7UuYHaDzDVCY1",
+                    "name": "searchSessions",
+                    "input": {
+                      "after": "17:30"
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_017ummjcuJX7UuYHaDzDVCY1",
+                    "content": "{\"total\":3,\"sessions\":[{\"id\":\"building-your-own-flutter-devtools-exten\",\"title\":\"Building Your Own Flutter DevTools Extension\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 2\",\"type\":\"talk\",\"speakers\":[\"Bhavik Makwana\"]},{\"id\":\"hot-fixes-cold-logic-taming-shorebird-ot\",\"title\":\"Hot Fixes, Cold Logic - Taming Shorebird OTA Updates at Scale\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 1\",\"type\":\"talk\",\"speakers\":[\"Laksh Samdariya\"]},{\"id\":\"flutter-can-t-do-that-shipping-airplay-h\",\"title\":\"Flutter Can't Do That: Shipping AirPlay, HealthKit, and Live Activities\",\"start\":\"17:35\",\"end\":\"18:15\",\"room\":\"Ballroom 3\",\"type\":\"talk\",\"speakers\":[\"Pranav Masekar\"]}]}"
+                  }
+                ]
+              },
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "toolu_01LZCnyXFCwqpBnTfAVbGzjz",
+                    "name": "showPlan",
+                    "input": {
+                      "sessionIds": [
+                        "from-flutter-plugin-to-native-asset-ship",
+                        "when-releases-can-t-fail-scaling-ci-cd-a",
+                        "flutter-package-version-hell-a-field-gui",
+                        "building-your-own-flutter-devtools-exten"
+                      ]
+                    },
+                    "caller": {
+                      "type": "direct"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "user",
+                "content": [
+                  {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01LZCnyXFCwqpBnTfAVbGzjz",
+                    "content": "Shown to the user."
+                  }
+                ]
+              }
+            ]
+          },
+          "response": {
+            "model": "claude-opus-5-5",
+            "id": "msg_011ChAShFMKae2TLMBbwU75L",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "thinking",
+                "thinking": "",
+                "signature": "CAQSjwYKEAgTGAI4AUIIdGhpbmtpbmcSDHy46J28ik8a3n4OkRoM5DVaNV7ZHTiYtW2WIjCEFLuewBdqv8nt/8WfnNdpS5vmybQWr3Z3TZ4EcdvMuieqTJSLaBA012HPDifxCLwqrAVc+pxucfTwA9dY65vtesx3UBsS5FC95VC519bRcW7myfUMt3wl6CyF/thQJEq0fd29ci681PtfCmoH39U/CAxhpYgJKsMywR3cNnrlssV2tmBK5/8IVts+1JUB9JUVu9745RCx2JulAjWMLsiNL19fEZn0/tq00d750hVSu1kOE/Q4cTPP6PDCAqCZ7ETDm7P4x4wc3BiDAwxwDShWbPLn6yaRDVPsBbzdcHHpgXq2urg+jeYp3Uh8bebnh6Y3G9kKm33T6y9DKNOOXAOF15rNehsCjHt8UjfzYahPx41lrlpLUhbuCP99A71F7R6An6gW9O9sOTxXl7PUku8z4opAeh2U4x+53OemmaM4gcDurXTjciqAUMq9/UrbMLDuHvR0UviyRHx7fbsTNUlKYGw8DHk2eaH9GVdzEsGB5xYglptMvMy4OCtfy65eqwDOV5I4B92wycP64F1QbfpEQYLTsv7/4+qtM1PyL7LfQvuDd+xFxlKsHOa5lEgD5IHQhovZEQ3BjsWNZaU9BLk5SxMvzF+zrkak+SAyYk9cx39p23T8QVwhwm61Bo5FakelwfcmrFodM1ylC2J/4NPeYlXKeCExfh/sYsWl1GlRA0IoGIJuOWYg1nTFk25Q0n/4lHpFRYKK9xF5NToxKwxoSeaPBfFkptT8JKrah59TMcuGfYTbB05LF30fAc7PQ/ZqXIuKAKUxtnI3CGYCz9CsJ2eMrZQNCjekbIZuZPlaYsNZA9OISXZCJHX0l9fxW3RSznAHnBNnAI7wlsEHLfkfnhwDDB91dkeHxrTHfrgdzjt9ygtzI1Elj/vWJQh8OHv4/l+bcCFfAyz8nQc0saq9bPEM0Pf6qiNEO393R76lP4iH2TWcm8XDriKuS36rbTKQlTJ8auFMCjN2h3q/k5kYAQ=="
+              },
+              {
+                "type": "text",
+                "text": "I got something wrong earlier: DevTools sessions do fit your day. I'd end with “Building Your Own Flutter DevTools Extension” (17:35, Ballroom 2), or “Hot Fixes, Cold Logic – Taming Shorebird OTA Updates at Scale” (17:35, Ballroom 1) if you'd rather stay on releases. Your plan card now has both package talks, the Tide CI/CD talk and the DevTools session, and none of them clash."
+              }
+            ],
+            "container": null,
+            "stop_reason": "end_turn",
+            "stop_sequence": null,
+            "stop_details": null,
+            "usage": {
+              "input_tokens": 2852,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 0
+              },
+              "iterations": [
+                {
+                  "input_tokens": 2852,
+                  "output_tokens": 172,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 0,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 0
+                  },
+                  "type": "message",
+                  "model": null
+                }
+              ],
+              "output_tokens": 172,
+              "output_tokens_details": {
+                "thinking_tokens": 11
               },
               "service_tier": "standard",
               "inference_geo": "global",
