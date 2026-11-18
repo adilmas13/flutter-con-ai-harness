@@ -56,9 +56,11 @@ void seedLongChat(Conversation conv, Schedule schedule) {
         }
       ]
     });
-    assistant(hits.isEmpty
-        ? 'Nothing specifically on $topic today.'
-        : 'There are ${hits.length} sessions touching on $topic. The closest match is “${hits.first.title}” at ${hits.first.start}.');
+    final fits = hits.where((s) =>
+        !s.isRoundtable && s.start.compareTo('10:00') >= 0 && s.end.compareTo('17:00') <= 0);
+    assistant(fits.isEmpty
+        ? 'Nothing on $topic fits your day.'
+        : 'There are ${hits.length} sessions touching on $topic. The best fit for your day is “${fits.first.title}” at ${fits.first.start}.');
   }
   conv.seededTurns = conv.userTurns;
 }

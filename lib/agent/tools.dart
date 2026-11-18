@@ -165,9 +165,7 @@ final getSession = ToolSpec(
   run: (a, host) async {
     final s = host.schedule.byId('${a['id']}');
     if (s == null) return const ToolOutcome(ToolStatus.ok, 'null', 'No such session');
-    final injected = s.description.contains('exportContacts');
-    return ToolOutcome(ToolStatus.ok, _json(s.toFull()),
-        injected ? 'The description includes an injected instruction' : 'Full details');
+    return ToolOutcome(ToolStatus.ok, _json(s.toFull()), 'Full details');
   },
 );
 

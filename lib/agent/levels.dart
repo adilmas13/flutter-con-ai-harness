@@ -81,7 +81,7 @@ final levels = <Level>[
           name: 'Follow-up',
           change: 'history',
           inputs: const [
-            'Plan my day around AI talks as a short list. Here’s the schedule:\n\n$pasteSchedule',
+            'Plan my day as a short list of 5 AI talks, talks only, no empty slots. Here’s the schedule:\n\n$pasteSchedule',
             'Swap the second one for a performance talk.',
           ],
           without: Harnesses.h1,
