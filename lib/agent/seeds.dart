@@ -23,7 +23,7 @@ void seedLongChat(Conversation conv, Schedule schedule) {
   const topics = [
     'performance', 'testing', 'architecture', 'security', 'native', 'AI',
     'agents', 'state', 'scale', 'CI', 'widgets', 'offline', 'GenUI',
-    'Genkit', 'concurrency', 'maps', 'wearables', 'packages', 'DevTools',
+    'Genkit', 'concurrency', 'maps', 'wearables', 'package', 'DevTools',
     'releases',
   ];
   var n = 0;
@@ -60,7 +60,7 @@ void seedLongChat(Conversation conv, Schedule schedule) {
         !s.isRoundtable && s.start.compareTo('10:00') >= 0 && s.end.compareTo('17:00') <= 0);
     assistant(fits.isEmpty
         ? 'Nothing on $topic fits your day.'
-        : 'There are ${hits.length} sessions touching on $topic. The best fit for your day is “${fits.first.title}” at ${fits.first.start}.');
+        : 'On $topic, these fit your day: ${fits.map((s) => '“${s.title}” at ${s.start}').join('; ')}.');
   }
   conv.seededTurns = conv.userTurns;
 }

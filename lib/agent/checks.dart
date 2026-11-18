@@ -95,12 +95,14 @@ CheckOutcome _textPlan(TurnRecord t, Schedule schedule,
       .replaceAll(RegExp(r"[^a-z0-9' ]+"), ' ')
       .replaceAll(RegExp(r'\s+'), ' ');
   final text = norm(t.replyTexts.join(' '));
-  // A session counts as named if any three consecutive words of its title appear.
+  // A session counts as named if four consecutive words of its title appear
+  // (or the whole title, if shorter), so shared phrases don't double-count.
   bool named(String title) {
     final w = norm(title).trim().split(' ');
-    if (w.length < 3) return text.contains(w.join(' '));
-    for (var i = 0; i + 3 <= w.length; i++) {
-      if (text.contains(' ${w.sublist(i, i + 3).join(' ')} ')) return true;
+    const n = 4;
+    if (w.length <= n) return text.contains(w.join(' '));
+    for (var i = 0; i + n <= w.length; i++) {
+      if (text.contains(' ${w.sublist(i, i + n).join(' ')} ')) return true;
     }
     return false;
   }

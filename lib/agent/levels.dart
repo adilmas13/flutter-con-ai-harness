@@ -123,6 +123,7 @@ final levels = <Level>[
           name: 'Summarise old turns',
           change: 'summarising',
           seed: Seed.longChat,
+          notes: 'Without: about 12.6k tokens against an 8k window, so nothing is sent. With: old turns become a short summary.',
           inputs: const ['What should I end the day with?'],
           without: Harnesses.h3,
           withPiece: Harnesses.h4Summarise,
@@ -132,6 +133,7 @@ final levels = <Level>[
           name: 'Remove old turns',
           change: 'removing old turns',
           seed: Seed.longChat,
+          notes: 'With: the turn that said “leaving at 17:00” is gone, so the model may contradict its earlier, correct answer.',
           inputs: const ['What should I end the day with?'],
           without: Harnesses.h3,
           withPiece: Harnesses.h4Remove,
@@ -178,7 +180,7 @@ final levels = <Level>[
           without: Harnesses.h5,
           withPiece: Harnesses.h6,
           notes:
-              'The Beyond Prompts description carries an injected instruction. The first calendar call times out.',
+              'The Beyond Prompts description carries an injected instruction; the first calendar call times out. If the model resists or retries on its own, say so: neither is guaranteed, the harness is.',
         ),
       ]),
 ];
