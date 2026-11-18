@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+
+import 'agent/recordings.dart';
+import 'data/schedule.dart';
+import 'stores/app_store.dart';
+import 'ui/home_page.dart';
+import 'ui/theme.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final schedule = await Schedule.load();
+  final recordings = RecordingStore();
+  await recordings.load();
+  runApp(DayPlannerApp(store: AppStore(schedule, recordings)));
+}
+
+class DayPlannerApp extends StatelessWidget {
+  const DayPlannerApp({super.key, required this.store});
+  final AppStore store;
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        title: 'Day Planner',
+        debugShowCheckedModeBanner: false,
+        theme: buildTheme(Brightness.light),
+        darkTheme: buildTheme(Brightness.dark),
+        home: HomePage(store: store),
+      );
+}
