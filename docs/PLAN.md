@@ -49,7 +49,7 @@ _Last updated: 2026-11-18_
 - ✅ Git repo with personal identity, remote added (nothing committed)
 - ✅ `AGENTS.md` with `CLAUDE.md` and `GEMINI.md` symlinked to it
 
-## Phase 2: Core agent (levels 1–6 logic) ✅ written · ⬜ verified
+## Phase 2: Core agent (levels 1–6 logic) ✅
 
 - ✅ `config.dart`: model, effort, 8,000-token teaching budget, step limit 8, safety cap 16
 - ✅ `harness.dart`: 13 harness pieces, a harness per level
@@ -63,10 +63,12 @@ _Last updated: 2026-11-18_
 - ✅ `agent_state.dart`: sealed states, exhaustive switches
 - ✅ `checks.dart`: the 7 deterministic checks, and rules parsed from what the user said or saved
 - ✅ `seeds.dart`: level 4 long chat (20 real search rounds), demo memory and plan
-- ⬜ Unit tests with a fake model client, one per level’s before and after
-- ⬜ Confirm the level 4 seed is over 8,000 tokens with `count_tokens` (needs the key)
+- ✅ Tests with a fake model client: every level’s without and with run, plus replay (`test/levels_test.dart`)
+- ✅ Robustness tests: network error, Cancel, fixed starting state, multi-turn save, rule phrasing (`test/robustness_test.dart`); 27 tests pass
+- ✅ The level 4 seed’s local estimate is over the 4,800-token threshold, so the budget check runs (covered by a test)
+- ⏸ Confirm with real `count_tokens` that the seed is over 8,000 (needs the key)
 
-## Phase 3: App UI ✅ written · ⬜ verified
+## Phase 3: App UI ✅
 
 - ✅ Theme tokens (light and dark) matching the mockup
 - ✅ Presenter bar (levels, experiments, notes)
@@ -76,17 +78,38 @@ _Last updated: 2026-11-18_
 - ✅ Composer with suggested inputs, Save run, restart
 - ✅ Inspector: Context (exact total, stacked bar, sections, raw JSON), Trace (waterfall, loop state, steps), Memory (memory, plan, calendar, leaked data), Checks
 - ✅ `flutter analyze` clean
-- ⬜ macOS build and launch smoke test (no key: shows the missing-key state)
-- ⬜ Screenshot review of each level at stage resolution, light and dark
-- ⬜ Window default size for the projector (for example 1440×900)
+- ✅ macOS build and launch smoke test (no key: shows the missing-key state)
+- ⬜ Screenshot review of each level at stage resolution, light and dark (needs live or recorded runs to show content)
+- ✅ Window opens centred at 1440×900, titled “Day Planner”
+
+## Phase 3b: Fixes from the plan review ✅
+
+A reviewer agent checked the plan against the code. Fixed:
+
+- ✅ Any failure (timeout, network, a login page instead of JSON) ends the turn as `Failed`, so the app never stays busy. The HTTP client retries 408/409/429/5xx/529 and network errors twice.
+- ✅ **Cancel** button while a turn runs. It also declines pending approval and memory cards.
+- ✅ Every experiment starts from a **fixed state** (memory, plan, calendar), so replay doesn’t depend on what ran before.
+- ✅ **Save run saves the whole conversation** (every live turn); failed or cancelled runs can’t be saved. Replay notes when the typed input differs from the recording.
+- ✅ **Reset for stage** button: level 1, inspector closed, replay on when recordings exist. The app starts in Replay when recordings exist.
+- ✅ Level 4 seed uses the same search as the tool. The “no invented sessions” check needs three or more times written as text. Rule parsing handles more phrasings (“earlier than 10am”, “leaving by 5pm”, “skip the roundtables”).
+- ✅ Sharper triggers: the vague request says “keep searching until you’re sure”, and empty searches suggest another keyword. The level 6 injection reads like an organiser’s note asking to call `exportContacts`.
+- ✅ `just release` and `just open-release` for the stage build.
+
+Still open from the review:
+- ⬜ The budget check runs once per turn, before the first call. Tool results later in the turn can go over without being caught (acceptable for the demo; note it if asked).
+- ⬜ “Follow-ups work” checks that history was sent, not that the answer was right (by design: it tests the harness).
 
 ## Phase 4: Live runs and recordings ⏸ needs the API key
+
+Order matters: **freeze prompts, tool descriptions and seeds before recording.** Any later change makes replay show “request differs”. Record along the stage order (levels 1→6), then build the release app.
+
 
 - ⏸ Add `ANTHROPIC_API_KEY` to `.env` (**user**)
 - ⬜ Run each experiment live, without and with; check that each failure shows up
 - ⬜ Tune prompts and inputs where a failure doesn’t reproduce (for example the vague request, or the summary losing “leaving at 17:00”)
 - ⬜ Save good runs for every level, side and turn; replay them all end to end offline
-- ⬜ Rehearse with Wi-Fi off, in replay mode only
+- ⬜ `just release` after the final recordings; rehearse from the release build with Wi-Fi off
+- ⬜ If level 3’s vague request or level 6’s injection doesn’t trigger live, adjust the input or the tool’s reply, then re-record both sides
 
 ## Phase 5: Polish ⬜
 
@@ -117,6 +140,6 @@ The user asked to commit and push after each phase.
 
 ## Known risks
 
-- **Live behaviour varies.** Some failures (context rot, a lossy summary, trying the injected instruction) may not happen on every live run. Recordings are the stage path.
+- **Live behaviour varies.** Some failures (a runaway loop at low effort, a lossy summary, following the injected instruction) may not happen live. Level 6’s without side still fails check 7 through the unapproved calendar write. Recordings are the stage path.
 - **History-editing check.** Opus 5.5 rejects edited history for new accounts. The harness keeps conversations append-only, and strips thinking blocks from turns kept after shrinking. This needs confirming on a live run at level 4.
 - **Refusal fallback header.** The `server-side-fallback-2026-07-01` beta is sent on every request. If the account rejects it, remove it in `model_client.dart`.
