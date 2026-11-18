@@ -4,9 +4,12 @@ import FlutterMacOS
 class MainFlutterWindow: NSWindow {
   override func awakeFromNib() {
     let flutterViewController = FlutterViewController()
-    let windowFrame = self.frame
     self.contentViewController = flutterViewController
-    self.setFrame(windowFrame, display: true)
+    // Projector-friendly default size, centred.
+    self.setContentSize(NSSize(width: 1440, height: 900))
+    self.minSize = NSSize(width: 1100, height: 720)
+    self.center()
+    self.title = "Day Planner"
 
     RegisterGeneratedPlugins(registry: flutterViewController)
 

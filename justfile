@@ -33,6 +33,14 @@ run *args:
 build:
     flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}"
 
+# Release build for the stage: run after the final recordings, then open it with `just open-release`
+release:
+    flutter build macos --release --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}"
+
+# Launch the release build
+open-release:
+    open build/macos/Build/Products/Release/day_planner.app
+
 # Launch the last debug build without the debugger
 open:
     open build/macos/Build/Products/Debug/day_planner.app
