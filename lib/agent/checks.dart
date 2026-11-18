@@ -13,6 +13,7 @@ class TurnRecord {
   bool wasOverBudget = false;
   bool blocked = false;
   bool hadEarlierTurns = false;
+  bool selfContained = false;
   bool requestIncludedEarlierTurns = false;
   bool memoryAvailable = false;
   bool memoryIncluded = false;
@@ -84,18 +85,38 @@ class CheckOutcome {
 }
 
 /// A plan written as text: real if the sessions it names are in the schedule
-/// (for example, when the user pasted it), invented otherwise.
+/// (for example, when the user pasted it), invented if it lists times but
+/// names no real session.
 CheckOutcome _textPlan(TurnRecord t, Schedule schedule,
     CheckOutcome Function(int, CheckResult, String) c) {
-  final text = t.replyTexts.join('\n').toLowerCase();
-  String key(String title) {
-    final head = title.split(':').first.trim().toLowerCase();
-    return head.length > 28 ? head.substring(0, 28) : head;
+  String norm(String x) => x
+      .toLowerCase()
+      .replaceAll(RegExp(r'[‘’`]'), "'")
+      .replaceAll(RegExp(r"[^a-z0-9' ]+"), ' ')
+      .replaceAll(RegExp(r'\s+'), ' ');
+  final text = norm(t.replyTexts.join(' '));
+  // A session counts as named if any three consecutive words of its title appear.
+  bool named(String title) {
+    final w = norm(title).trim().split(' ');
+    if (w.length < 3) return text.contains(w.join(' '));
+    for (var i = 0; i + 3 <= w.length; i++) {
+      if (text.contains(' ${w.sublist(i, i + 3).join(' ')} ')) return true;
+    }
+    return false;
   }
-  final named = schedule.plannable.where((s) => text.contains(key(s.title))).length;
-  return named >= 2
-      ? c(1, CheckResult.pass, '$named sessions named in the reply are in the schedule.')
-      : c(1, CheckResult.fail, 'A plan was written as text, and its sessions aren’t in the schedule.');
+
+  final count = schedule.plannable.where((s) => named(s.title)).length;
+  final times = RegExp(r'\b([01]\d|2[0-3]):[0-5]\d\b')
+      .allMatches(t.replyTexts.join(' '))
+      .map((m) => m[0])
+      .toSet();
+  if (count >= 2) {
+    return c(1, CheckResult.pass, '$count sessions named in the reply are in the schedule.');
+  }
+  if (count == 0 && times.length >= 3) {
+    return c(1, CheckResult.fail, 'A plan with times, but none of its sessions are in the schedule.');
+  }
+  return c(1, CheckResult.notApplicable, 'No plan in this turn.');
 }
 
 /// Deterministic checks over one turn: the same seven at every level.
@@ -118,6 +139,10 @@ List<CheckOutcome> runChecks(TurnRecord t, Rules rules, Schedule schedule) {
     // 2. A follow-up must see the earlier turns.
     if (!t.hadEarlierTurns)
       c(2, CheckResult.notApplicable, 'First message of the conversation.')
+    else if (t.blocked)
+      c(2, CheckResult.notApplicable, 'Nothing was sent.')
+    else if (t.selfContained)
+      c(2, CheckResult.notApplicable, 'The message carries its own data.')
     else if (t.requestIncludedEarlierTurns)
       c(2, CheckResult.pass, 'The request carried the earlier turns.')
     else

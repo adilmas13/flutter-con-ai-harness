@@ -102,6 +102,9 @@ class _ContextTabState extends State<_ContextTab> {
         byKind[s.kind] = (byKind[s.kind] ?? 0) + s.tokens;
       }
       final estTotal = byKind.values.fold(0, (a, b) => a + b);
+      // Section sizes are local estimates; scale them to the exact total.
+      final f = exact && estTotal > 0 ? total / estTotal : 1.0;
+      byKind.updateAll((_, v) => (v * f).round());
       final scale = total > AppConfig.contextBudget ? total : AppConfig.contextBudget;
       final over = total > AppConfig.contextBudget;
       return ListView(padding: const EdgeInsets.all(16), children: [
@@ -177,6 +180,7 @@ class _ContextTabState extends State<_ContextTab> {
         else
           for (var i = 0; i < req.sections.length; i++) ...[
             _SectionRow(
+              scale: f,
               section: req.sections[i],
               open: _open == i,
               onTap: () => setState(() => _open = _open == i ? null : i),
@@ -208,7 +212,9 @@ class _ContextTabState extends State<_ContextTab> {
 }
 
 class _SectionRow extends StatelessWidget {
-  const _SectionRow({required this.section, required this.open, required this.onTap});
+  const _SectionRow(
+      {required this.section, required this.open, required this.onTap, this.scale = 1});
+  final double scale;
   final RequestSection section;
   final bool open;
   final VoidCallback onTap;
@@ -243,7 +249,7 @@ class _SectionRow extends StatelessWidget {
                           fontSize: 14,
                           decoration: s.dropped ? TextDecoration.lineThrough : null)),
                 ),
-                Text('${s.dropped ? 'dropped · ' : ''}≈${s.tokens}',
+                Text('${s.dropped ? 'dropped · ' : ''}≈${(s.tokens * scale).round()}',
                     style: TextStyle(fontFamily: monoFamily, fontSize: 12, color: p.muted)),
               ]),
             ),

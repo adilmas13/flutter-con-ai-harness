@@ -149,6 +149,12 @@ class ContextBuilder {
     }
 
     final tools = toolsFor(config, calendarTools: calendarTools);
+    if (tools.isNotEmpty) {
+      sections.insert(
+          sections.indexWhere((s) => s.kind != SectionKind.instructions).clamp(0, sections.length),
+          RequestSection(SectionKind.instructions, 'Tool definitions · ${tools.length}',
+              tools.map((t) => '${t.name}: ${t.description}\n${t.schema}').join('\n\n')));
+    }
     final body = <String, dynamic>{
       'model': AppConfig.model,
       'max_tokens': 8000,
@@ -156,6 +162,8 @@ class ContextBuilder {
       'fallbacks': 'default',
       if (system.isNotEmpty) 'system': system,
       if (tools.isNotEmpty) 'tools': tools.map((t) => t.toJson()).toList(),
+      if (tools.isNotEmpty)
+        'tool_choice': {'type': 'auto', 'disable_parallel_tool_use': true},
       'messages': sent,
     };
     return BuiltRequest(ModelRequest(body), sections);

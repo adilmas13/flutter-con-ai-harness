@@ -15,9 +15,12 @@ class UserText extends ChatItem {
 }
 
 class AssistantText extends ChatItem {
-  const AssistantText(this.text, {this.fromRecording = false});
+  const AssistantText(this.text, {this.fromRecording = false, this.interim = false});
   final String text;
   final bool fromRecording;
+
+  /// Written alongside tool calls: a progress note, not the answer.
+  final bool interim;
 }
 
 /// Written by the app, not the model (for example, after the step limit).

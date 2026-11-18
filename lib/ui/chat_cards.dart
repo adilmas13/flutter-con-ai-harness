@@ -36,6 +36,8 @@ class ChatCard extends StatelessWidget {
             ]),
           ),
         ),
+      AssistantText(:final text, :final interim) when interim => Text(text,
+          style: TextStyle(fontSize: 13.5, fontStyle: FontStyle.italic, color: p.muted)),
       AssistantText(:final text, :final fromRecording) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -275,7 +275,7 @@ abstract class _AppStore with Store implements LoopHost {
       conv: conversation,
       calendarTools: experiment.calendarTools,
     );
-    final record = await loop.run(text);
+    final record = await loop.run(text, selfContained: pasted);
     _finishTurn(record, key, text, capture);
   }
 
@@ -396,9 +396,9 @@ abstract class _AppStore with Store implements LoopHost {
 
   @override
   @action
-  void assistantText(String text) {
+  void assistantText(String text, {bool interim = false}) {
     _currentGroup = null;
-    chat.add(AssistantText(text, fromRecording: replay));
+    chat.add(AssistantText(text, fromRecording: replay, interim: interim));
   }
 
   @override

@@ -109,7 +109,8 @@ final searchSessions = ToolSpec(
   description:
       'Search today’s flutterCon schedule. Matches keywords in titles and descriptions, '
       'optionally only sessions starting at or after `after` and ending by `before` (24-hour HH:MM). '
-      'Returns id, title, times, room, type (talk or roundtable) and speakers.',
+      'Returns at most 5 sessions per call (id, title, times, room, type, speakers) and the total number of matches; '
+      'use more specific keywords or times to see others.',
   schema: {
     'type': 'object',
     'properties': {
@@ -135,10 +136,16 @@ final searchSessions = ToolSpec(
           }),
           'No sessions matched');
     }
+    const page = 5;
     return ToolOutcome(
         ToolStatus.ok,
-        _json({'count': hits.length, 'sessions': hits.map((s) => s.toBrief()).toList()}),
-        '${hits.length} ${hits.length == 1 ? 'session' : 'sessions'}');
+        _json({
+          'total': hits.length,
+          'sessions': hits.take(page).map((s) => s.toBrief()).toList(),
+          if (hits.length > page)
+            'hint': 'Showing $page of ${hits.length}. Narrow the keyword or time range to see the rest.',
+        }),
+        hits.length > page ? '$page of ${hits.length} sessions' : '${hits.length} ${hits.length == 1 ? 'session' : 'sessions'}');
   },
 );
 

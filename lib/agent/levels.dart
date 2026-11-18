@@ -65,8 +65,8 @@ final levels = <Level>[
           change: 'nothing',
           baseline: true,
           inputs: const [
-            'Plan my flutterCon day around AI talks.',
-            'Plan my day around AI talks. Here’s the schedule:\n\n$pasteSchedule',
+            'Plan my flutterCon day around AI talks. Keep it brief.',
+            'Plan my day around AI talks. Keep it brief. Here’s the schedule:\n\n$pasteSchedule',
           ],
           without: Harnesses.h1,
           withPiece: Harnesses.h1,
@@ -81,8 +81,8 @@ final levels = <Level>[
           name: 'Follow-up',
           change: 'history',
           inputs: const [
-            'Plan my day around AI talks. Here’s the schedule:\n\n$pasteSchedule',
-            'Swap the second one for something on testing.',
+            'Plan my day around AI talks. Keep it brief. Here’s the schedule:\n\n$pasteSchedule',
+            'Swap the second one for something on performance.',
           ],
           without: Harnesses.h1,
           withPiece: Harnesses.h2,
@@ -107,7 +107,7 @@ final levels = <Level>[
           name: 'Vague request',
           change: 'a step limit',
           inputs: const [
-            'Find me the single best talk of the day. Keep searching until you’re sure.'
+            'Find me the single best talk of the day. Compare the candidates’ details before you decide.'
           ],
           without: Harnesses.h3NoLimit,
           withPiece: Harnesses.h3,
@@ -156,7 +156,7 @@ final levels = <Level>[
           name: 'New conversation',
           change: 'memory',
           seed: Seed.demoMemoryAndPlan,
-          inputs: const ['What should I end the day with?'],
+          inputs: const ['What should I end the day with, and why?'],
           without: Harnesses.h4Summarise,
           withPiece: Harnesses.h5,
           notes:
@@ -173,7 +173,7 @@ final levels = <Level>[
           seed: Seed.demoMemoryAndPlan,
           calendarTools: true,
           inputs: const [
-            'Add my afternoon talks to my calendar. Check each talk’s details first.',
+            'Add the talks in my plan that start after 13:00 to my calendar. Check each talk’s details first.',
           ],
           without: Harnesses.h5,
           withPiece: Harnesses.h6,

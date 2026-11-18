@@ -34,7 +34,7 @@ abstract interface class LoopHost implements ToolHost {
   void showRequest(BuiltRequest request, {int? exactTokens});
   int addTrace(TraceEvent event);
   void updateTrace(int index, TraceEvent event);
-  void assistantText(String text);
+  void assistantText(String text, {bool interim = false});
   void appText(String text);
   void budgetError(int tokens);
   void errorText(String text);
@@ -70,12 +70,15 @@ class AgentLoop {
 
   BuiltRequest _build() => builder.build(conv, config, calendarTools: calendarTools);
 
-  Future<TurnRecord> run(String text) async {
+  /// [selfContained]: the message carries its own data (a pasted schedule),
+  /// so it doesn't depend on earlier turns.
+  Future<TurnRecord> run(String text, {bool selfContained = false}) async {
     _clock.start();
     final rec = TurnRecord()
       ..hadEarlierTurns = conv.userTurns > 0
       ..newConversation = conv.isNew && conv.userTurns == 0
       ..memoryAvailable = host.memoryFacts.isNotEmpty;
+    rec.selfContained = selfContained;
 
     // Keep user/assistant alternation if a previous turn ended early.
     if (conv.messages.isNotEmpty && conv.messages.last['role'] == 'user') {
@@ -175,7 +178,7 @@ class AgentLoop {
           return rec;
         }
         if (reply.text.isNotEmpty) {
-          host.assistantText(reply.text);
+          host.assistantText(reply.text, interim: reply.toolUses.isNotEmpty);
           rec.replyTexts.add(reply.text);
           rec.timesInText +=
               RegExp(r'\b([01]\d|2[0-3]):[0-5]\d\b').allMatches(reply.text).length;
@@ -237,18 +240,12 @@ class AgentLoop {
     final name = use['name'] as String;
     final args = (use['input'] as Map? ?? const {}).cast<String, dynamic>();
     final spec = tools.where((t) => t.name == name).firstOrNull;
-    host.setState(CallingTool(name));
-    final handle = host.toolStarted(name, args);
-    final t0 = _now;
-    final ti = host.addTrace(TraceEvent(TraceKind.tool, name, t0, 0));
+    final problem = spec != null && config.has(HarnessPiece.validation)
+        ? spec.validate?.call(args, _schedule)
+        : null;
 
-    ToolOutcome outcome;
-    final problem = spec == null
-        ? null
-        : (config.has(HarnessPiece.validation)
-            ? spec.validate?.call(args, _schedule)
-            : null);
-
+    // Ask the user first, so the card comes before the tool runs on screen.
+    ToolOutcome? outcome;
     if (spec == null) {
       outcome = ToolOutcome(ToolStatus.notAvailable,
           'Error: no tool named $name is available to the planner.',
@@ -257,8 +254,14 @@ class AgentLoop {
       outcome = ToolOutcome(ToolStatus.rejected, 'Invalid arguments: $problem',
           'Rejected: $problem');
     } else {
-      outcome = await _execute(spec, args, rec, ti, t0);
+      outcome = await _askUser(spec, args, rec);
     }
+
+    host.setState(CallingTool(name));
+    final handle = host.toolStarted(name, args);
+    final t0 = _now;
+    final ti = host.addTrace(TraceEvent(TraceKind.tool, name, t0, 0));
+    outcome ??= await _execute(spec!, args, rec, t0);
 
     if (spec == showPlan && outcome.status == ToolStatus.ok) {
       final ids = (args['sessionIds'] as List? ?? const []).map((e) => '$e');
@@ -271,12 +274,8 @@ class AgentLoop {
     host.toolFinished(handle, outcome);
     host.updateTrace(
         ti,
-        TraceEvent(
-            outcome.isError ? TraceKind.failed : TraceKind.tool,
-            name,
-            t0,
-            _now - t0,
-            outcome.isError ? outcome.summary : null));
+        TraceEvent(outcome.isError ? TraceKind.failed : TraceKind.tool, name, t0,
+            _now - t0, outcome.isError ? outcome.summary : null));
     return {
       'type': 'tool_result',
       'tool_use_id': use['id'],
@@ -285,44 +284,47 @@ class AgentLoop {
     };
   }
 
-  Future<ToolOutcome> _execute(ToolSpec spec, Map<String, dynamic> args,
-      TurnRecord rec, int traceIndex, int t0) async {
-    // Memory: the model proposes, the user confirms.
+  /// Memory and approval: the user decides before anything is saved or
+  /// written. Returns an outcome when the user says no, null to go ahead.
+  Future<ToolOutcome?> _askUser(
+      ToolSpec spec, Map<String, dynamic> args, TurnRecord rec) async {
     if (spec == savePreference) {
       final fact = '${args['text']}'.trim();
       host.setState(AwaitingConfirmation(fact));
-      final w = host.addTrace(TraceEvent(TraceKind.wait, 'savePreference', _now, 0));
+      final w0 = _now;
+      final w = host.addTrace(TraceEvent(TraceKind.wait, 'savePreference', w0, 0));
       final ok = await host.confirmMemory(fact);
-      host.updateTrace(w,
-          TraceEvent(TraceKind.wait, 'savePreference', t0, _now - t0,
-              ok ? 'Confirmed by the user' : 'Declined by the user'));
-      if (!ok) {
-        return const ToolOutcome(
-            ToolStatus.declined, 'The user chose not to save this.', 'Not saved');
-      }
-      host.saveMemory(fact);
-      return ToolOutcome(ToolStatus.ok, 'Saved.', 'Saved “$fact”');
+      host.updateTrace(w, TraceEvent(TraceKind.wait, 'savePreference', w0, _now - w0,
+          ok ? 'Confirmed by the user' : 'Declined by the user'));
+      return ok
+          ? null
+          : const ToolOutcome(
+              ToolStatus.declined, 'The user chose not to save this.', 'Not saved');
     }
-
-    // Approval: anything that writes waits for the user.
-    var approved = false;
     if (spec.writes && config.has(HarnessPiece.approval)) {
       host.setState(AwaitingApproval(spec.name));
       final w0 = _now;
       final w = host.addTrace(TraceEvent(TraceKind.wait, spec.name, w0, 0));
-      approved = await host.requestApproval(spec.name, args);
-      host.updateTrace(w,
-          TraceEvent(TraceKind.wait, spec.name, w0, _now - w0,
-              approved ? 'Approved by the user' : 'Declined by the user'));
-      if (!approved) {
-        rec.writes.add((tool: spec.name, approved: false));
-        return const ToolOutcome(
-            ToolStatus.declined, 'The user declined this action.', 'Declined by you');
-      }
+      final approved = await host.requestApproval(spec.name, args);
+      host.updateTrace(w, TraceEvent(TraceKind.wait, spec.name, w0, _now - w0,
+          approved ? 'Approved by the user' : 'Declined by the user'));
+      rec.writes.add((tool: spec.name, approved: approved));
+      return approved
+          ? null
+          : const ToolOutcome(
+              ToolStatus.declined, 'The user declined this action.', 'Declined by you');
     }
-    if (spec.writes) rec.writes.add((tool: spec.name, approved: approved));
+    if (spec.writes) rec.writes.add((tool: spec.name, approved: false));
+    return null;
+  }
 
-    host.setState(CallingTool(spec.name));
+  Future<ToolOutcome> _execute(
+      ToolSpec spec, Map<String, dynamic> args, TurnRecord rec, int t0) async {
+    if (spec == savePreference) {
+      final fact = '${args['text']}'.trim();
+      host.saveMemory(fact);
+      return ToolOutcome(ToolStatus.ok, 'Saved.', 'Saved “$fact”');
+    }
     try {
       final out = await spec.run(args, host);
       if (spec == exportContacts) rec.exportsExecuted++;
@@ -330,19 +332,17 @@ class AgentLoop {
     } on TransientToolError catch (e) {
       // Retry: one more attempt with the same, already-approved request.
       if (config.has(HarnessPiece.retry)) {
-        final f0 = _now;
-        host.addTrace(TraceEvent(TraceKind.failed, spec.name, t0, f0 - t0,
-            '${e.message} Retrying once.'));
+        host.addTrace(TraceEvent(
+            TraceKind.failed, spec.name, t0, _now - t0, '${e.message} Retrying once.'));
         try {
           final out = await spec.run(args, host);
           return ToolOutcome(out.status, out.content, '${out.summary} · retried once');
         } on TransientToolError catch (e2) {
-          return ToolOutcome(ToolStatus.failed, 'Error: ${e2.message}',
-              'Failed again: ${e2.message}');
+          return ToolOutcome(
+              ToolStatus.failed, 'Error: ${e2.message}', 'Failed again: ${e2.message}');
         }
       }
-      return ToolOutcome(ToolStatus.failed, 'Error: ${e.message}',
-          'Failed: ${e.message}');
+      return ToolOutcome(ToolStatus.failed, 'Error: ${e.message}', 'Failed: ${e.message}');
     }
   }
 
@@ -374,7 +374,7 @@ class AgentLoop {
       final reply = await _guard(client.send(req));
       host.updateTrace(ti,
           TraceEvent(TraceKind.summary, 'Summarise old turns', t0, _now - t0,
-              '$turnsGone turns became ${reply.outputTokens} tokens'));
+              '$turnsGone turns became a ${reply.text.split(RegExp(r'\s+')).length}-word summary'));
       conv.summary = reply.text;
     } else {
       host.setState(const Shrinking('Removing old turns'));

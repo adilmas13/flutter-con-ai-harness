@@ -597,12 +597,12 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void assistantText(String text) {
+  void assistantText(String text, {bool interim = false}) {
     final _$actionInfo = _$_AppStoreActionController.startAction(
       name: '_AppStore.assistantText',
     );
     try {
-      return super.assistantText(text);
+      return super.assistantText(text, interim: interim);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
