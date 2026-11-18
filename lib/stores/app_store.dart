@@ -27,7 +27,9 @@ enum InspectorTab { context, trace, memory, checks }
 class AppStore = _AppStore with _$AppStore;
 
 abstract class _AppStore with Store implements LoopHost {
-  _AppStore(this.schedule, this.recordings) : builder = ContextBuilder(schedule) {
+  _AppStore(this.schedule, this.recordings, {ModelClient Function()? liveClient})
+      : builder = ContextBuilder(schedule),
+        _liveClient = liveClient ?? AnthropicClient.new {
     _resetConversation();
   }
 
@@ -35,6 +37,7 @@ abstract class _AppStore with Store implements LoopHost {
   final Schedule schedule;
   final RecordingStore recordings;
   final ContextBuilder builder;
+  final ModelClient Function() _liveClient;
   late Conversation conversation;
 
   // ---- what is selected ----
@@ -229,7 +232,7 @@ abstract class _AppStore with Store implements LoopHost {
       client = ReplayClient(rec.exchanges);
       _capture = null;
     } else {
-      _capture = RecordingClient(AnthropicClient());
+      _capture = RecordingClient(_liveClient());
       client = _capture!;
     }
 

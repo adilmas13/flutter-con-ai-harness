@@ -108,7 +108,9 @@ _Last updated: 2026-11-18_
 The user asked to commit and push after each phase.
 
 - ✅ `justfile` with recipes for every project command (`just` lists them)
-- 🔄 First commit and push: project setup, plus core agent and UI (written, not yet verified)
+- ✅ Conventional Commits, enforced by `just commit` (the first commit predates this and is left as pushed)
+- ✅ Project skills in `.agents/skills/` (phase-complete, add-experiment, record-runs, mobx-store, model-calls), with `.claude/skills` linked to them
+- ✅ First commit and push: project setup, plus core agent and UI (written, not yet verified)
 - ⬜ Commit and push again after each later phase
 
 ---

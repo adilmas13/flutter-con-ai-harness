@@ -41,8 +41,11 @@ class Recording {
 /// started with `PROJECT_DIR` (see `tool/run.sh`), and writes back to it.
 /// Otherwise it falls back to the copy bundled with the app, read-only.
 class RecordingStore {
+  RecordingStore({String? path}) : _path = path ?? AppConfig.recordingsPath;
+
+  final String? _path;
   final Map<String, Recording> _all = {};
-  bool get canWrite => AppConfig.recordingsPath != null;
+  bool get canWrite => _path != null;
 
   static String keyFor({
     required int level,
@@ -57,7 +60,7 @@ class RecordingStore {
 
   Future<void> load() async {
     String raw;
-    final path = AppConfig.recordingsPath;
+    final path = _path;
     if (path != null && File(path).existsSync()) {
       raw = await File(path).readAsString();
     } else {
@@ -74,7 +77,7 @@ class RecordingStore {
   }
 
   Future<void> save(Recording recording) async {
-    final path = AppConfig.recordingsPath;
+    final path = _path;
     if (path == null) {
       throw StateError(
           'Recordings are read-only. Start the app with tool/run.sh to save.');
