@@ -26,6 +26,10 @@ test:
 live-smoke:
     flutter test test/live --run-skipped --dart-define-from-file=.env --reporter expanded
 
+# Scrape the agenda from india.fluttercon.dev's data feed and regenerate the schedule files
+scrape:
+    python3 -I tool/scrape_agenda.py
+
 # Copy the compact schedule (titles, times, rooms, speakers) to the clipboard, for pasting at levels 1–2
 paste-schedule:
     pbcopy < assets/schedule_paste.txt

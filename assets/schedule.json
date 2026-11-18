@@ -82,7 +82,7 @@
    "speakers": [
     "Abdullah Deshmukh"
    ],
-   "description": "Foldables are an established Android form factor, not a lab experiment. Galaxy Z lineup is in its 8th generation, and the iPhone Duo ships this October. Foldable expectations now land on every team's backlog. Most Flutter apps still aren't ready. In this session, you'll learn how to: 1. Read hinges, folds, cutouts, and posture on Android with MediaQuery.displayFeaturesOf and DisplayFeatureState (flat, half-open). 2. Build dual-pane patterns with LayoutBuilder and adaptive navigation, following Material 3 guidelines. 3. Keep navigation, state, and dialogs coherent across fold and split-screen with DisplayFeatureSubScreen and anchorPoint. 4. Prepare for iPhone Duo: side navigation, asymmetric…"
+   "description": "Foldables are an established Android form factor, not a lab experiment. Galaxy Z lineup is in its 8th generation, and the iPhone Duo shipped last month. Foldable expectations now land on every team's backlog. Most Flutter apps still aren't ready. In this session, you'll learn how to: 1. Read hinges, folds, cutouts, and posture on Android with MediaQuery.displayFeaturesOf and DisplayFeatureState (flat, half-open). 2. Build dual-pane patterns with LayoutBuilder and adaptive navigation, following Material 3 guidelines. 3. Keep navigation, state, and dialogs coherent across fold and split-screen with DisplayFeatureSubScreen and anchorPoint. 4. Prepare for iPhone Duo: side navigation, asymmetric…"
   },
   {
    "id": "migrating-to-event-driven-architecture-t",
