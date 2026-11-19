@@ -113,7 +113,7 @@ class _ContextTabState extends State<_ContextTab> {
           Text('$total',
               style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
           const SizedBox(width: 6),
-          Text('of ${AppConfig.contextBudget} tokens${exact ? '' : ' (estimate)'}',
+          Text('of ${AppConfig.contextBudget} tokens${exact ? '' : ' (rough estimate until sent)'}',
               style: TextStyle(color: p.muted)),
           const Spacer(),
           over

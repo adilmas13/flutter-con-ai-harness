@@ -98,7 +98,7 @@ class AgentLoop {
       if (built.sections.fold(0, (a, s) => a + (s.dropped ? 0 : s.tokens)) >
           AppConfig.contextBudget * 0.6) {
         host.setState(const CheckingBudget());
-        var tokens = await _guard(client.countTokens(built.request));
+        var tokens = await _countForBudget(built);
         host.showRequest(built, exactTokens: tokens);
         if (tokens > AppConfig.contextBudget) {
           rec.wasOverBudget = true;
@@ -110,7 +110,7 @@ class AgentLoop {
           }
           await _shrink();
           built = _build();
-          tokens = await _guard(client.countTokens(built.request));
+          tokens = await _countForBudget(built);
           host.showRequest(built, exactTokens: tokens);
           if (tokens > AppConfig.contextBudget) {
             rec.blocked = true;
@@ -354,6 +354,16 @@ class AgentLoop {
     }
   }
 
+  /// Counts the request and shows the harness's decision in the trace.
+  Future<int> _countForBudget(BuiltRequest built) async {
+    final t0 = _now;
+    final tokens = await _guard(client.countTokens(built.request));
+    final verdict = tokens > AppConfig.contextBudget ? 'over the window' : 'fits';
+    host.addTrace(TraceEvent(TraceKind.summary, 'Budget check', t0, _now - t0,
+        '$tokens of ${AppConfig.contextBudget} tokens: $verdict'));
+    return tokens;
+  }
+
   /// Context budget: make the conversation fit by summarising or removing
   /// older turns. Keeps the last three turns and the current one.
   Future<void> _shrink() async {
@@ -384,10 +394,13 @@ class AgentLoop {
           TraceEvent(TraceKind.summary, 'Summarise old turns', t0, _now - t0,
               '$turnsGone turns became a ${reply.text.split(RegExp(r'\s+')).length}-word summary'));
       conv.summary = reply.text;
+      host.appText('The harness replaced $turnsGone older turns with this summary, '
+          'written by a separate model call:\n\n> ${reply.text.trim().replaceAll('\n', '\n> ')}');
     } else {
       host.setState(const Shrinking('Removing old turns'));
       host.addTrace(TraceEvent(TraceKind.summary, 'Remove old turns', _now, 5,
           '$turnsGone turns removed'));
+      host.appText('The harness removed $turnsGone older turns from the request. Nothing replaces them.');
     }
     conv.keptFrom = cut;
     conv.shrunkTurns = turnsGone;
