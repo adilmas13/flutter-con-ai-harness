@@ -278,6 +278,77 @@ void main() {
     });
   });
 
+  group('What carries to the next level', () {
+    test('a Without run never carries forward', () async {
+      final (:store, :client) = storeWith([text('A'), text('B'), text('C')]);
+      store.selectLevel(1);
+      store.selectSide(Side.withPiece);
+      await store.send('I’ve picked three talks.');
+      store.selectLevel(2);
+      await store.send('Only on the without side.'); // without, never with
+      store.selectLevel(3);
+      final history = store.conversation.messages.toString();
+      expect(history, contains('three talks'));
+      expect(history, isNot(contains('Only on the without side')));
+    });
+
+    test('going back to a level starts from the level before it', () async {
+      final (:store, :client) = storeWith([text('A'), text('B'), text('C')]);
+      store.selectLevel(1);
+      store.selectSide(Side.withPiece);
+      await store.send('I’ve picked three talks.');
+      store.selectLevel(2);
+      store.selectSide(Side.withPiece);
+      await store.send('Use the schedule.');
+      store.selectLevel(1); // back
+      expect(store.conversation.messages, isEmpty,
+          reason: 'level 2 follows level 1, which was never run');
+      store.selectLevel(2);
+      final history = store.conversation.messages.toString();
+      expect(history, contains('three talks'));
+      expect(history, isNot(contains('Use the schedule')));
+    });
+
+    test('the first experiment’s With run is the level’s result', () async {
+      final (:store, :client) = storeWith([text('A'), text('B')]);
+      store.selectLevel(2);
+      store.selectSide(Side.withPiece);
+      await store.send('Plan request.');
+      store.selectExperiment(1);
+      store.selectSide(Side.withPiece);
+      await store.send('Vague request.');
+      store.selectLevel(4);
+      final history = store.conversation.messages.toString();
+      expect(history, contains('Plan request'));
+      expect(history, isNot(contains('Vague request')));
+    });
+  });
+
+  test('a new conversation becomes the conversation the next level continues', () async {
+    final (:store, :client) = storeWith([text('A'), text('B')]);
+    store.selectLevel(4);
+    store.selectSide(Side.withPiece);
+    await store.send('Save these.');
+    store.selectExperiment(1); // new conversation
+    store.selectSide(Side.withPiece);
+    await store.send('In the new one.');
+    store.selectLevel(5);
+    final history = store.conversation.messages.toString();
+    expect(history, contains('In the new one'));
+    expect(history, isNot(contains('Save these')));
+  });
+
+  test('each side keeps its own calendar', () async {
+    final (:store, :client) = storeWith([]);
+    store.selectLevel(5);
+    store.addCalendarEvents([schedule.plannable.first]);
+    expect(store.calendar, hasLength(1));
+    store.selectSide(Side.withPiece);
+    expect(store.calendar, isEmpty, reason: 'the other side’s write is not shown here');
+    store.selectSide(Side.without);
+    expect(store.calendar, hasLength(1));
+  });
+
   test('experiments in one level start from the same history', () async {
     final (:store, :client) = storeWith([text('summary'), text('A'), text('B')]);
     store.selectLevel(3);
