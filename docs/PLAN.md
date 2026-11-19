@@ -129,7 +129,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 ## Phase 4b: Rework after user review 🔄
 
 - ✅ **Concise replies:** a reply-style line goes into every request (at most three short sentences or five list items, no headings or tables). It shows as its own Inspector section and says nothing about the app.
-- ✅ **One conversation across levels (accumulator):** history carries from level to level. Within a level, Without and With each branch from the shared history. Moving on carries forward the run used (With first). Level 4 fast-forwards with seeded turns when history is short; level 5’s “New conversation” starts fresh by design.
+- ✅ **One conversation across levels (accumulator):** history carries from level to level. Within a level, Without and With each branch from the shared history. Only the With run of a level’s first experiment carries forward (never a Without run; level 5’s new conversation replaces it once run), and each level starts from the nearest earlier level’s result, so going back never brings later history with it. Level 4 fast-forwards with seeded turns when history is short; level 5’s “New conversation” starts fresh by design.
 - ✅ Earlier turns are sent as plain text (old thinking dropped oldest-first, tool calls written as text), so history works across levels with different system prompts and tools
 - ✅ **No-paste story for levels 1–3:** L1 knows nothing; L2 the user names three talks, then “swap the second one”; L3 “use the schedule” to find a real performance talk with tools
 - ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match. The replay feature stays.

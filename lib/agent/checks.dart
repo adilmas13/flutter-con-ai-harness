@@ -117,7 +117,7 @@ CheckOutcome _textPlan(TurnRecord t, Schedule schedule,
     return c(1, CheckResult.pass, '$count sessions named in the reply are in the schedule.');
   }
   if (count == 0 && times.length >= 3) {
-    return c(1, CheckResult.fail, 'A plan with times, but none of its sessions are in the schedule.');
+    return c(1, CheckResult.fail, 'A plan with times, but nothing ties it to the schedule: no full titles and no plan card.');
   }
   return c(1, CheckResult.notApplicable, 'No plan in this turn.');
 }

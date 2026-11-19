@@ -148,19 +148,31 @@ abstract class _AppStore with Store implements LoopHost {
   // ================= selection =================
   //
   // One conversation accumulates across the levels. Within a level, the
-  // Without and With runs each continue that shared history, so the only
+  // Without and With runs each continue the same history, so the only
   // difference between them is the harness. Experiments in a level share
-  // the level's starting point. Changing level carries forward the run you
-  // used last, preferring With.
+  // the level's starting point. Only the With run of a level's first
+  // experiment carries forward (or of its new conversation, once that has
+  // run), and a level never starts from a later one.
 
-  Conversation _shared = Conversation();
-  List<ChatItem> _sharedChat = const [];
+  /// Each level's result, by level index: the run the next level starts from.
+  final Map<int, _Branch> _results = {};
   final Map<Side, _Branch> _branches = {};
+
+  /// Demo data loaded for this experiment because nothing real was saved.
+  List<String> _staged = [];
+
+  /// The nearest earlier level's result, or null at the start of the talk.
+  _Branch? get _levelStart {
+    for (var i = levelIndex - 1; i >= 0; i--) {
+      if (_results[i] != null) return _results[i];
+    }
+    return null;
+  }
 
   @action
   void selectLevel(int index) {
     if (state.isBusy) return;
-    _commit();
+    _keepResult();
     levelIndex = index;
     experimentIndex = 0;
     side = Side.without;
@@ -173,7 +185,7 @@ abstract class _AppStore with Store implements LoopHost {
   @action
   void selectExperiment(int index) {
     if (state.isBusy) return;
-    _saveBranch();
+    _keepResult();
     experimentIndex = index;
     side = Side.without;
     _startExperiment();
@@ -210,8 +222,7 @@ abstract class _AppStore with Store implements LoopHost {
   @action
   void resetForStage() {
     if (state.isBusy) return;
-    _shared = Conversation();
-    _sharedChat = const [];
+    _results.clear();
     memoryFacts.clear();
     itinerary.clear();
     levelIndex = 0;
@@ -223,24 +234,31 @@ abstract class _AppStore with Store implements LoopHost {
     _startExperiment();
   }
 
-  /// The run you used becomes the shared history for the next level.
-  void _commit() {
+  /// The With run of the level's first experiment becomes the level's
+  /// result. A Without run never carries forward (level 1 has only one run).
+  /// A new conversation replaces it: from then on, that is the conversation.
+  void _keepResult() {
     if (_branches.isEmpty) return;
     _saveBranch();
-    final used = [_branches[Side.withPiece], _branches[Side.without]]
-        .firstWhere((b) => b != null && b.sentTurns > 0, orElse: () => null);
-    if (used == null) return;
-    _shared = used.conv;
-    _sharedChat = used.chat;
+    if (experimentIndex != 0 && experiment.id != 'new-conversation') return;
+    final run = _branches[experiment.baseline ? Side.without : Side.withPiece];
+    if (run != null && run.sentTurns > 0) _results[levelIndex] = run;
   }
 
   @action
   void _startExperiment() {
     final exp = experiment;
     if (exp.id == 'save') memoryFacts.clear();
+    _staged = [];
     if (exp.seed == Seed.demoMemoryAndPlan) {
-      if (memoryFacts.isEmpty) memoryFacts.addAll(demoMemory);
-      if (itinerary.isEmpty) itinerary.addAll(demoPlanIds(schedule));
+      if (memoryFacts.isEmpty) {
+        memoryFacts.addAll(demoMemory);
+        _staged.add('three demo preferences');
+      }
+      if (itinerary.isEmpty) {
+        itinerary.addAll(demoPlanIds(schedule));
+        _staged.add('a demo plan from this morning');
+      }
     }
     calendar.clear();
     exports.clear();
@@ -258,14 +276,18 @@ abstract class _AppStore with Store implements LoopHost {
       conv = Conversation(memorySnapshot: memoryFacts.toList());
       items.add(const DividerText('New conversation'));
     } else {
-      conv = Conversation.continuing(_shared, memoryFacts.toList());
-      items.addAll(_sharedChat);
+      final start = _levelStart;
+      conv = Conversation.continuing(start?.conv ?? Conversation(), memoryFacts.toList());
+      items.addAll(start?.chat ?? const []);
       if (exp.seed == Seed.longChat && _estimate(conv) < AppConfig.contextBudget) {
         final before = conv.userTurns;
         seedLongChat(conv, schedule);
         items.add(DividerText(
             'Fast-forward: ${conv.userTurns - before} earlier turns. The rules were said at the start.'));
       }
+    }
+    if (_staged.isNotEmpty) {
+      items.add(DividerText('Staged for the demo: ${_staged.join(' and ')}.'));
     }
     final label = exp.baseline
         ? level.name
@@ -285,7 +307,9 @@ abstract class _AppStore with Store implements LoopHost {
       ..checks = checks
       ..sentTurns = sentTurns
       ..request = lastRequest
-      ..exactTokens = lastExactTokens;
+      ..exactTokens = lastExactTokens
+      ..calendar = calendar.toList()
+      ..exports = exports.toList();
   }
 
   @action
@@ -303,6 +327,13 @@ abstract class _AppStore with Store implements LoopHost {
     lastRequest =
         b.request ?? builder.build(conversation, config, calendarTools: experiment.calendarTools);
     lastExactTokens = b.exactTokens;
+    // Each side has its own calendar, so one side's writes never show on the other.
+    calendar
+      ..clear()
+      ..addAll(b.calendar);
+    exports
+      ..clear()
+      ..addAll(b.exports);
     canSave = false;
     _turns.clear();
     _pending.clear();
@@ -625,4 +656,6 @@ class _Branch {
   int sentTurns = 0;
   BuiltRequest? request;
   int? exactTokens;
+  List<Session> calendar = const [];
+  List<String> exports = const [];
 }
