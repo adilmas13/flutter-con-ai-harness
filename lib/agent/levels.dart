@@ -123,7 +123,7 @@ final levels = <Level>[
           name: 'Summarise old turns',
           change: 'summarising',
           seed: Seed.longChat,
-          notes: 'Without: about 13.8k tokens against an 8k window, so nothing is sent. With: old turns become a short summary.',
+          notes: 'Without: the request is over the 8k window, so nothing is sent. With: old turns become a short summary.',
           inputs: const ['What should I end the day with?'],
           without: Harnesses.h3,
           withPiece: Harnesses.h4Summarise,
@@ -147,7 +147,7 @@ final levels = <Level>[
           name: 'Save preferences',
           change: 'memory',
           inputs: const [
-            'Remember for today: nothing before 10, no roundtables, and I’m leaving at 17:00.',
+            'Remember for today: nothing before 10, no roundtables, and I’m leaving at 17:00. No need to change my plan yet.',
           ],
           without: Harnesses.h4Summarise,
           withPiece: Harnesses.h5,
