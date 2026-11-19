@@ -19,39 +19,55 @@ class PresenterBar extends StatelessWidget {
     final p = context.pal;
     return Observer(builder: (_) {
       final exps = store.level.experiments;
+      // Two fixed rows, so changing level never moves the level chips or
+      // changes the bar's height.
       return Padding(
-        padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
-        child: Wrap(
-          spacing: 6,
-          runSpacing: 8,
-          crossAxisAlignment: WrapCrossAlignment.center,
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            for (var i = 0; i < levels.length; i++)
-              _Chip(
-                label: levels[i].name,
-                prefix: '${levels[i].number}',
-                selected: i == store.levelIndex,
-                onTap: () => store.selectLevel(i),
-                dark: true,
-              ),
-            if (exps.length > 1) ...[
-              const SizedBox(width: 14),
-              const Cap('Experiment'),
-              for (var i = 0; i < exps.length; i++)
+            Row(children: [
+              for (var i = 0; i < levels.length; i++) ...[
                 _Chip(
-                  label: exps[i].name,
-                  selected: i == store.experimentIndex,
-                  onTap: () => store.selectExperiment(i),
+                  label: levels[i].name,
+                  prefix: '${levels[i].number}',
+                  selected: i == store.levelIndex,
+                  onTap: () => store.selectLevel(i),
+                  dark: true,
                 ),
-            ],
-            const SizedBox(width: 14),
-            Text(store.experiment.notes,
-                style: TextStyle(fontSize: 12.5, color: p.muted)),
-            const SizedBox(width: 14),
-            TextButton.icon(
-              onPressed: store.state.isBusy ? null : store.resetForStage,
-              icon: const Icon(Icons.replay, size: 16),
-              label: const Text('Reset for stage'),
+                const SizedBox(width: 6),
+              ],
+              const SizedBox(width: 8),
+              TextButton.icon(
+                onPressed: store.state.isBusy ? null : store.resetForStage,
+                icon: const Icon(Icons.replay, size: 16),
+                label: const Text('Reset for stage'),
+              ),
+            ]),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 34,
+              child: Row(children: [
+                if (exps.length > 1) ...[
+                  const Cap('Experiment'),
+                  const SizedBox(width: 8),
+                  for (var i = 0; i < exps.length; i++) ...[
+                    _Chip(
+                      label: exps[i].name,
+                      selected: i == store.experimentIndex,
+                      onTap: () => store.selectExperiment(i),
+                    ),
+                    const SizedBox(width: 6),
+                  ],
+                  const SizedBox(width: 8),
+                ],
+                Expanded(
+                  child: Text(store.experiment.notes,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 12.5, color: p.muted)),
+                ),
+              ]),
             ),
           ],
         ),
