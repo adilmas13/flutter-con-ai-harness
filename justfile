@@ -59,6 +59,12 @@ screens:
     @ls build/screens | wc -l | xargs echo "screenshots:"
     flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}"
 
+# The whole talk live in the real window, driven like a presenter; screenshots and transcript in build/stage/ (until=3 stops after level 3)
+stage-run until="0":
+    flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}" --dart-define=AUTOPILOT=true --dart-define=AUTOPILOT_LIVE=true --dart-define=AUTOPILOT_UNTIL={{until}}
+    build/macos/Build/Products/Debug/day_planner.app/Contents/MacOS/day_planner
+    @ls build/stage | wc -l | xargs echo "files in build/stage:"
+
 # Analyze and test: run before every commit
 check: analyze test
 
