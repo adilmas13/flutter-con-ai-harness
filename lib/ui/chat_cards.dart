@@ -38,18 +38,7 @@ class ChatCard extends StatelessWidget {
         ),
       AssistantText(:final text, :final interim) when interim => Text(text,
           style: TextStyle(fontSize: 13.5, fontStyle: FontStyle.italic, color: p.muted)),
-      AssistantText(:final text, :final fromRecording) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AssistantMarkdown(text),
-            if (fromRecording)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Text('Replayed from a saved run',
-                    style: TextStyle(fontSize: 12, color: p.muted)),
-              ),
-          ],
-        ),
+      AssistantText(:final text) => AssistantMarkdown(text),
       AppText(:final text) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

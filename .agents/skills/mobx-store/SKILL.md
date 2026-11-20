@@ -10,6 +10,6 @@ description: Rules for changing the MobX store (lib/stores/app_store.dart) and t
 - **Every mutation happens inside an `@action`,** including callbacks the loop makes (`setState`, `addTrace`, `toolStarted` and the rest). Writing an observed value outside an action trips MobX's write policy in debug builds.
 - **`async` actions** (`send`, `saveRun`) are wrapped per continuation. Mutate state after an `await` in a separate `@action` method, like `_finishTurn` and `_saved`.
 - **Chat items are immutable.** To update one (a tool card finishing, an approval decided), replace it: `chat[i] = updated`. Don't mutate fields.
-- **A `@computed` only tracks observables.** `Conversation` is a plain object, so values derived from it are plain getters (`rules`) or depend on an observable counter (`sentTurns`, `recordingsVersion`).
+- **A `@computed` only tracks observables.** `Conversation` is a plain object, so values derived from it are plain getters (`rules`) or depend on an observable counter (`sentTurns`).
 - **Widgets read state inside `Observer`.** Keep each `Observer` small, around the part that changes.
 - **Switching level, experiment or side calls `_resetConversation()`.** It refuses while a turn is running (`state.isBusy`), because a pending approval would otherwise never complete.

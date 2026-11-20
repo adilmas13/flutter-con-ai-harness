@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:day_planner/agent/model_client.dart';
 
 typedef Responder = Map<String, dynamic> Function(ModelRequest request);
@@ -24,7 +26,7 @@ class FakeModelClient implements ModelClient {
   @override
   Future<int> countTokens(ModelRequest request) async {
     counted.add(request);
-    return tokens?.call(request) ?? (canonicalJson(request.body).length ~/ 4);
+    return tokens?.call(request) ?? (jsonEncode(request.body).length ~/ 4);
   }
 }
 

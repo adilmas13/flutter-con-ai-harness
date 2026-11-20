@@ -14,7 +14,7 @@ description: Finish a phase or task from docs/PLAN.md: verify, update the plan's
 3. **Commit** with `just commit "<message>"`, which refuses to commit if `.env` is staged. Use [Conventional Commits](https://www.conventionalcommits.org):
    - Format: `type(scope): summary`, imperative, lower case, no trailing full stop, 72 characters or fewer.
    - Types: `feat`, `fix`, `test`, `docs`, `refactor`, `chore`, `build`, `style`, `perf`.
-   - Scopes used here: `agent`, `ui`, `store`, `tools`, `checks`, `recordings`, `levels`, `plan`, `skills`, `macos`.
+   - Scopes used here: `agent`, `ui`, `store`, `tools`, `checks`, `levels`, `plan`, `skills`, `macos`.
    - Examples: `feat(agent): add retry for transient tool errors`, `test(levels): cover before and after for all six levels`, `docs(plan): mark phase 3 verified`.
    - Split unrelated changes into separate commits.
 4. **Push** with `just push`. The user asked for a commit and push after each phase.

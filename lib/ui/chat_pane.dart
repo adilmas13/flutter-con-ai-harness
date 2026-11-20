@@ -177,33 +177,12 @@ class _Composer extends StatelessWidget {
                       ),
                   ]),
                 ),
-                if (store.canSave)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: FilledButton.icon(
-                      onPressed: store.saveRun,
-                      icon: const Icon(Icons.save_alt, size: 16),
-                      label: const Text('Save run'),
-                    ),
-                  ),
                 IconButton(
                   tooltip: 'Start this conversation again',
                   onPressed: busy ? null : store.restart,
                   icon: Icon(Icons.restart_alt, color: p.muted),
                 ),
               ]),
-              if (store.toast != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 6),
-                  child: Row(children: [
-                    Icon(Icons.check_circle, size: 16, color: p.ok),
-                    const SizedBox(width: 6),
-                    Expanded(
-                        child: Text(store.toast!,
-                            style: TextStyle(fontSize: 12.5, color: p.muted))),
-                    TextButton(onPressed: store.dismissToast, child: const Text('OK')),
-                  ]),
-                ),
               const SizedBox(height: 8),
               TextField(
                 controller: controller,

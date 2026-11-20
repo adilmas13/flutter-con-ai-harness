@@ -27,11 +27,10 @@ Every project command is a [`just`](https://just.systems) recipe; run `just` to 
 
 | Recipe | Does |
 |---|---|
-| `just run` | Run on macOS with `.env` and `PROJECT_DIR` (live calls, recordings saved here) |
+| `just run` | Run on macOS with `.env` (live calls) |
 | `just gen` | Regenerate MobX code after changing a store |
 | `just check` | `analyze` + `test`; run before every commit |
 | `just build` / `just open` | Build the macOS app, launch the last build |
-| `just recordings` | List saved recordings |
 | `just commit "message"` / `just push` | Commit (refuses if `.env` is staged) and push |
 
 Commit and push after each phase in `docs/PLAN.md` is completed. Commit messages follow [Conventional Commits](https://www.conventionalcommits.org) (`type(scope): summary`); `just commit` rejects anything else.
@@ -44,13 +43,12 @@ Project skills live in `.agents/skills/` (`.claude/skills` links there). Read th
 |---|---|
 | `phase-complete` | Finishing a task or phase: verify, update the plan, commit, push |
 | `add-experiment` | Adding or changing a level, experiment, harness piece, tool, check or seed |
-| `record-runs` | Recording live runs and checking replay for the stage |
 | `mobx-store` | Changing the store or a widget that observes it |
 | `model-calls` | Anything that shapes a request to Claude; append-only history rules |
 
 - `.env` holds `ANTHROPIC_API_KEY` and is git-ignored. **Never commit it, print it, or put the key anywhere else.**
-- `PROJECT_DIR` lets the app write recordings back to `recordings/recordings.json`. Without it, recordings are read-only from the bundled copy.
-- In **Live** mode the app calls Claude. After a run you like, press **Save run**. **Replay** plays the saved model replies back for that level, experiment, side and turn. Tools, approvals and checks still run for real.
+- Every run calls Claude live. There is no replay mode.
+- `PROJECT_DIR` tells `just stage-run` where to write its screenshots and transcript (`build/stage/`).
 
 
 ## Layout
@@ -62,8 +60,7 @@ lib/
   agent/
     harness.dart           HarnessPiece enum and the harness for each level
     levels.dart            levels and experiments (inputs, seeds, without/with harness)
-    model_client.dart      ModelClient interface, AnthropicClient (raw HTTP), recording and replay
-    recordings.dart        recordings/recordings.json store
+    model_client.dart      ModelClient interface, AnthropicClient (raw HTTP)
     context_builder.dart   builds each request from state, and labels its sections for the inspector
     conversation.dart      append-only API message list, plus shrink state
     agent_loop.dart        the loop; every harness piece is a branch
@@ -81,6 +78,6 @@ lib/
 - **Keep conversations append-only.** Claude's thinking blocks are only valid if earlier messages never change. Freeze the system prompt for the whole conversation: memory is snapshotted when the conversation starts. Add new data as new messages. When shrinking, strip thinking blocks from the turns that are kept.
 - **Model:** `claude-opus-5-5` by default, effort `low` for stage speed. Requests use raw HTTP to `POST /v1/messages`, plus `count_tokens` for the budget check.
 - **Product-agnostic wording.** UI text and slides say “your coding assistant”, never a product name.
-- **Keep it honest.** Replies from a recording are labelled as replay. The 8,000-token budget is a teaching budget; real windows are 1M. The safety cap (16 calls) is not part of the harness being taught.
+- **Keep it honest.** The 8,000-token budget is a teaching budget; real windows are 1M. The safety cap (16 calls) is not part of the harness being taught.
 - **State management is MobX.** Any mutation, including those from loop host callbacks, happens in `@action` methods.
 - Keep code readable on a slide: small functions, clear names, few comments that explain why.

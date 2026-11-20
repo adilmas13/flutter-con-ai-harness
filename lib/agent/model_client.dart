@@ -15,12 +15,8 @@ class ModelRequest {
 }
 
 class ModelReply {
-  ModelReply(this.body, {this.fromRecording = false, this.requestMatched});
+  ModelReply(this.body);
   final Map<String, dynamic> body;
-  final bool fromRecording;
-
-  /// In replay: whether today's request is identical to the recorded one.
-  final bool? requestMatched;
 
   List<Map<String, dynamic>> get content =>
       (body['content'] as List? ?? const []).cast<Map<String, dynamic>>();
@@ -73,7 +69,7 @@ class AnthropicClient implements ModelClient {
   void _requireKey() {
     if (!AppConfig.hasKey) {
       throw ModelException(
-          'No API key. Add ANTHROPIC_API_KEY to .env, or switch to Replay.');
+          'No API key. Add ANTHROPIC_API_KEY to .env.');
     }
   }
 
@@ -132,85 +128,4 @@ class AnthropicClient implements ModelClient {
         {..._headers}..remove('anthropic-beta'), body);
     return json['input_tokens'] as int;
   }
-}
-
-/// One recorded round trip.
-class Exchange {
-  Exchange(this.kind, this.request, this.response);
-  final String kind; // 'messages' or 'count_tokens'
-  final Map<String, dynamic> request;
-  final Map<String, dynamic> response;
-
-  Map<String, dynamic> toJson() =>
-      {'kind': kind, 'request': request, 'response': response};
-  factory Exchange.fromJson(Map<String, dynamic> j) => Exchange(
-      j['kind'] as String,
-      (j['request'] as Map).cast<String, dynamic>(),
-      (j['response'] as Map).cast<String, dynamic>());
-}
-
-/// Wraps the live client and keeps every exchange so a good run can be saved.
-class RecordingClient implements ModelClient {
-  RecordingClient(this.inner);
-  final ModelClient inner;
-  final List<Exchange> captured = [];
-
-  @override
-  Future<ModelReply> send(ModelRequest request) async {
-    final reply = await inner.send(request);
-    captured.add(Exchange('messages', request.body, reply.body));
-    return reply;
-  }
-
-  @override
-  Future<int> countTokens(ModelRequest request) async {
-    final n = await inner.countTokens(request);
-    captured.add(Exchange('count_tokens', request.body, {'input_tokens': n}));
-    return n;
-  }
-}
-
-/// Plays back a saved run, one exchange per call, in order.
-class ReplayClient implements ModelClient {
-  ReplayClient(this.exchanges);
-  final List<Exchange> exchanges;
-  int _next = 0;
-
-  Exchange _take(String kind) {
-    while (_next < exchanges.length && exchanges[_next].kind != kind) {
-      _next++;
-    }
-    if (_next >= exchanges.length) {
-      throw ModelException(
-          'The recording has no more ${kind == 'messages' ? 'model replies' : 'token counts'}. Run live and save again.');
-    }
-    return exchanges[_next++];
-  }
-
-  @override
-  Future<ModelReply> send(ModelRequest request) async {
-    final e = _take('messages');
-    await Future<void>.delayed(const Duration(milliseconds: 450));
-    return ModelReply(e.response,
-        fromRecording: true,
-        requestMatched: canonicalJson(e.request) == canonicalJson(request.body));
-  }
-
-  @override
-  Future<int> countTokens(ModelRequest request) async =>
-      _take('count_tokens').response['input_tokens'] as int;
-}
-
-/// JSON with sorted keys, so equal requests compare equal.
-String canonicalJson(Object? value) {
-  Object? sort(Object? v) {
-    if (v is Map) {
-      final keys = v.keys.map((k) => k.toString()).toList()..sort();
-      return {for (final k in keys) k: sort(v[k])};
-    }
-    if (v is List) return v.map(sort).toList();
-    return v;
-  }
-
-  return jsonEncode(sort(value));
 }

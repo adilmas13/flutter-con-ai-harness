@@ -167,8 +167,7 @@ class AgentLoop {
         host.updateTrace(
             ti,
             TraceEvent(TraceKind.model, 'Model call', t0, _now - t0,
-                '${reply.inputTokens} in · ${reply.outputTokens} out'
-                '${reply.requestMatched == false ? ' · request differs from recording' : ''}'));
+                '${reply.inputTokens} in · ${reply.outputTokens} out'));
         host.showRequest(built, exactTokens: reply.inputTokens);
 
         conv.messages.add({'role': 'assistant', 'content': reply.content});

@@ -13,8 +13,8 @@ class AppConfig {
     defaultValue: 'low',
   );
 
-  /// Absolute path of the project folder, so recordings can be written back
-  /// into `recordings/recordings.json`.
+  /// Absolute path of the project folder, where `just stage-run` writes
+  /// its screenshots and transcript.
   static const projectDir = String.fromEnvironment('PROJECT_DIR');
 
   /// A deliberately small window so it fills on stage. Real models have 1M.
@@ -28,7 +28,4 @@ class AppConfig {
   static const safetyCap = 16;
 
   static bool get hasKey => apiKey.isNotEmpty;
-
-  static String? get recordingsPath =>
-      projectDir.isEmpty ? null : '$projectDir/recordings/recordings.json';
 }

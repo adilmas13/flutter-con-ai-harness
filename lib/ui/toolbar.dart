@@ -119,7 +119,7 @@ class _Chip extends StatelessWidget {
   }
 }
 
-/// The app's own toolbar: the harness switch, live or replay, inspector.
+/// The app's own toolbar: the harness switch, API key status, inspector.
 class AppToolbar extends StatelessWidget {
   const AppToolbar({super.key, required this.store});
   final AppStore store;
@@ -146,26 +146,12 @@ class AppToolbar extends StatelessWidget {
                 onChanged: (i) => store.selectSide(i == 0 ? Side.without : Side.withPiece),
               ),
             const Spacer(),
-            Segmented(
-              options: const ['Live', 'Replay'],
-              selected: store.replay ? 1 : 0,
-              onChanged: (i) => store.setReplay(i == 1),
-            ),
-            const SizedBox(width: 8),
             Tooltip(
-              message: store.replay
-                  ? (store.hasRecordingForNextTurn
-                      ? 'A recording exists for the next message'
-                      : 'Nothing recorded for the next message')
-                  : (AppConfig.hasKey ? 'Live calls to ${AppConfig.model}' : 'No API key in .env'),
+              message: AppConfig.hasKey ? 'Live calls to ${AppConfig.model}' : 'No API key in .env',
               child: Icon(
-                store.replay
-                    ? (store.hasRecordingForNextTurn ? Icons.play_circle : Icons.play_disabled)
-                    : (AppConfig.hasKey ? Icons.cloud_done_outlined : Icons.key_off_outlined),
+                AppConfig.hasKey ? Icons.cloud_done_outlined : Icons.key_off_outlined,
                 size: 18,
-                color: store.replay
-                    ? (store.hasRecordingForNextTurn ? p.ok : p.faint)
-                    : (AppConfig.hasKey ? p.ok : p.crit),
+                color: AppConfig.hasKey ? p.ok : p.crit,
               ),
             ),
             const SizedBox(width: 16),

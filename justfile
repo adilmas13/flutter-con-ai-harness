@@ -35,40 +35,20 @@ paste-schedule:
     pbcopy < assets/schedule_paste.txt
     @echo "Schedule copied to the clipboard ($(wc -l < assets/schedule_paste.txt | tr -d ' ') lines)."
 
-# Run experiments live and write each run to build/live_runs/ for review (filter: just run-live L3/vague)
-run-live filter="":
-    flutter test test/live/run_experiments_test.dart --run-skipped --dart-define-from-file=.env --dart-define=ONLY="{{filter}}" --reporter expanded
-
 # The whole talk live as one accumulating conversation; transcript in build/live_flow.md
 live-flow:
     flutter test test/live/flow_test.dart --run-skipped --dart-define-from-file=.env --reporter expanded
 
-# Save reviewed live runs into recordings/recordings.json (e.g. just promote L2/follow-up/with, or all)
-promote +runs:
-    python3 -I tool/promote_runs.py {{runs}}
-
-# Replay every recorded experiment offline and confirm it matches the live run
-verify-replay:
-    flutter test test/replay_test.dart --reporter expanded
-
-# Replay every recorded experiment in the real window and screenshot each to build/screens/
-screens:
-    rm -rf build/screens
-    flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}" --dart-define=AUTOPILOT=true
-    build/macos/Build/Products/Debug/day_planner.app/Contents/MacOS/day_planner
-    @ls build/screens | wc -l | xargs echo "screenshots:"
-    flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}"
-
 # The whole talk live in the real window, driven like a presenter; screenshots and transcript in build/stage/ (until=3 stops after level 3)
 stage-run until="0":
-    flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}" --dart-define=AUTOPILOT=true --dart-define=AUTOPILOT_LIVE=true --dart-define=AUTOPILOT_UNTIL={{until}}
+    flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}" --dart-define=AUTOPILOT=true --dart-define=AUTOPILOT_UNTIL={{until}}
     build/macos/Build/Products/Debug/day_planner.app/Contents/MacOS/day_planner
     @ls build/stage | wc -l | xargs echo "files in build/stage:"
 
 # Analyze and test: run before every commit
 check: analyze test
 
-# Run the app on macOS with the key from .env (live calls, recordings saved here)
+# Run the app on macOS with the key from .env (live calls)
 run *args:
     tool/run.sh {{args}}
 
@@ -76,7 +56,7 @@ run *args:
 build:
     flutter build macos --debug --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}"
 
-# Release build for the stage: run after the final recordings, then open it with `just open-release`
+# Release build for the stage, then open it with `just open-release`
 release:
     flutter build macos --release --dart-define-from-file=.env --dart-define=PROJECT_DIR="{{justfile_directory()}}"
 
@@ -91,10 +71,6 @@ open:
 # Format the Dart code
 fmt:
     dart format lib test
-
-# Show which recordings are saved
-recordings:
-    @python3 -c "import json;d=json.load(open('recordings/recordings.json'))['recordings'];print('\n'.join(sorted(d)) or 'No recordings yet.');print(f'{len(d)} saved')"
 
 # Remove build output
 clean:

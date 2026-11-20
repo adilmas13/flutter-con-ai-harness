@@ -3,8 +3,7 @@ import 'harness.dart';
 enum Seed { none, longChat, demoMemory, demoMemoryAndPlan }
 
 /// Placeholder in a suggested input, replaced by the compact schedule
-/// (`assets/schedule_paste.txt`) when sent. Always the same text, so runs
-/// can be recorded and replayed.
+/// (`assets/schedule_paste.txt`) when sent.
 const pasteSchedule = '{schedule}';
 
 enum Side { without, withPiece }

@@ -22,8 +22,7 @@ Every experiment is the **same input** run on two harnesses that differ only by 
 ## Rules
 
 - **A new harness piece** goes in the `HarnessPiece` enum, in talk order, with its level. The harness bar shows it automatically.
-- **Experiment ids are part of the recording keys** (`L{level}/{experiment}/{side}/turn-{n}`). Renaming an id orphans saved recordings, so re-record or rename the keys in `recordings/recordings.json` as well.
-- **Changing what a request contains** (system text, tool descriptions, seeds) changes it byte for byte. Replay still works, but the trace flags “request differs from recording”. Re-record the affected runs.
+- **Changing what a request contains** (system text, tool descriptions, seeds) changes model behaviour. Re-run the affected levels live (`just live-flow` or `just stage-run`) and check the replies.
 - **Keep conversations append-only** (see the `model-calls` skill).
 - **Add or update a test** in `test/` for the before and after of the experiment, using `FakeModelClient`.
 - **Update `docs/PLAN.md`**, and the talk-flow slides if the narrative changes.

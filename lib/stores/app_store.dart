@@ -13,7 +13,6 @@ import '../agent/conversation.dart';
 import '../agent/harness.dart';
 import '../agent/levels.dart';
 import '../agent/model_client.dart';
-import '../agent/recordings.dart';
 import '../agent/seeds.dart';
 import '../agent/tools.dart';
 import '../config.dart';
@@ -27,7 +26,7 @@ enum InspectorTab { context, trace, memory, checks }
 class AppStore = _AppStore with _$AppStore;
 
 abstract class _AppStore with Store implements LoopHost {
-  _AppStore(this.schedule, this.recordings,
+  _AppStore(this.schedule,
       // Passed through the generated AppStore constructor.
       // ignore: unused_element_parameter
       {ModelClient Function()? liveClient, this.scheduleText = ''})
@@ -38,7 +37,6 @@ abstract class _AppStore with Store implements LoopHost {
 
   @override
   final Schedule schedule;
-  final RecordingStore recordings;
   final ContextBuilder builder;
   final ModelClient Function() _liveClient;
 
@@ -53,8 +51,6 @@ abstract class _AppStore with Store implements LoopHost {
   int experimentIndex = 0;
   @observable
   Side side = Side.without;
-  @observable
-  bool replay = false;
   @observable
   bool inspectorOpen = false;
   @observable
@@ -71,24 +67,6 @@ abstract class _AppStore with Store implements LoopHost {
   @computed
   HarnessConfig get otherConfig =>
       experiment.config(side == Side.without ? Side.withPiece : Side.without);
-
-  String get _sideKey =>
-      experiment.baseline ? 'baseline' : (side == Side.without ? 'without' : 'with');
-
-  @computed
-  String get nextRecordingKey => RecordingStore.keyFor(
-      level: level.number,
-      experiment: experiment.id,
-      side: _sideKey,
-      turn: sentTurns);
-
-  /// Bumped when a run is saved, so the toolbar's replay icon updates.
-  @observable
-  int recordingsVersion = 0;
-
-  @computed
-  bool get hasRecordingForNextTurn =>
-      recordingsVersion >= 0 && recordings[nextRecordingKey] != null;
 
   // ---- the run ----
   @observable
@@ -111,12 +89,6 @@ abstract class _AppStore with Store implements LoopHost {
   final ObservableList<String> itinerary = ObservableList();
   final ObservableList<Session> calendar = ObservableList();
   final ObservableList<String> exports = ObservableList();
-
-  // ---- saving runs ----
-  @observable
-  bool canSave = false;
-  @observable
-  String? toast;
 
   /// The system prompt this side sends, as lines.
   List<String> get systemLines => _systemLines(config);
@@ -200,15 +172,11 @@ abstract class _AppStore with Store implements LoopHost {
   }
 
   @action
-  void setReplay(bool value) => replay = value;
-  @action
   void toggleInspector() => inspectorOpen = !inspectorOpen;
   @action
   void setTab(InspectorTab tab) => inspectorTab = tab;
   @action
   void setRawJson(bool value) => showRawJson = value;
-  @action
-  void dismissToast() => toast = null;
 
   /// Runs this side of the experiment again from the shared history.
   @action
@@ -229,8 +197,6 @@ abstract class _AppStore with Store implements LoopHost {
     experimentIndex = 0;
     side = Side.without;
     inspectorOpen = false;
-    replay = false;
-    toast = null;
     _startExperiment();
   }
 
@@ -334,8 +300,6 @@ abstract class _AppStore with Store implements LoopHost {
     exports
       ..clear()
       ..addAll(b.exports);
-    canSave = false;
-    _turns.clear();
     _pending.clear();
     _cancel = Completer<void>();
     state = const Idle();
@@ -343,8 +307,6 @@ abstract class _AppStore with Store implements LoopHost {
 
   // ================= sending =================
 
-  /// Live turns captured in this conversation, saved together by Save run.
-  final List<({String key, String input, List<Exchange> exchanges})> _turns = [];
   Completer<void> _cancel = Completer<void>();
 
   @override
@@ -358,34 +320,17 @@ abstract class _AppStore with Store implements LoopHost {
     final shown = text.replaceAll(pasteSchedule, '').trim();
     text = text.replaceAll(pasteSchedule, scheduleText.trim());
 
-    final key = nextRecordingKey;
-    ModelClient client;
-    RecordingClient? capture;
     chat.add(UserText(shown,
         pastedLines: pasted ? '\n'.allMatches(scheduleText.trim()).length + 1 : 0));
-    if (replay) {
-      // A recording only plays back for the exact message it was recorded
-      // with, in the same position. Anything else would show a reply to a
-      // different question.
-      final rec = recordings[key];
-      if (rec == null || rec.input != text) {
-        chat.add(ErrorText(_replayMismatch(text)));
-        return;
-      }
-      client = ReplayClient(rec.exchanges);
-    } else {
-      client = capture = RecordingClient(_liveClient());
-    }
 
     if (_cancel.isCompleted) _cancel = Completer<void>();
     _calendarTimedOut = false;
     trace.clear();
     checks = const [];
-    canSave = false;
     _currentGroup = null;
 
     final loop = AgentLoop(
-      client: client,
+      client: _liveClient(),
       builder: builder,
       host: this,
       config: config,
@@ -393,24 +338,7 @@ abstract class _AppStore with Store implements LoopHost {
       calendarTools: experiment.calendarTools,
     );
     final record = await loop.run(text, selfContained: pasted);
-    _finishTurn(record, key, text, capture);
-  }
-
-  /// Explains why a message can't be replayed, and what to do instead.
-  String _replayMismatch(String text) {
-    final suggestions = experiment.inputs
-        .map((i) => i.replaceAll(pasteSchedule, scheduleText.trim()).trim())
-        .toList();
-    final at = suggestions.indexOf(text);
-    if (at >= 0 && at != sentTurns) {
-      return 'In Replay, send the suggestions in order. This one was recorded as message ${at + 1}. '
-          'Press restart (↻) to begin the conversation again.';
-    }
-    if (at < 0) {
-      return 'This message wasn’t recorded, so Replay can’t answer it. '
-          'Use the suggestions below, or switch to Live to ask anything.';
-    }
-    return 'Nothing is recorded for this message yet. Switch to Live, run it, and save the run.';
+    _finishTurn(record);
   }
 
   @action
@@ -432,49 +360,10 @@ abstract class _AppStore with Store implements LoopHost {
   }
 
   @action
-  void _finishTurn(TurnRecord record, String key, String text, RecordingClient? capture) {
+  void _finishTurn(TurnRecord record) {
     checks = runChecks(record, rules, schedule);
     sentTurns++;
-    if (capture == null) return;
-    final broken = state is Failed || (state is Stopped && (state as Stopped).reason == 'cancelled');
-    if (broken) {
-      // Later turns would replay against a conversation that never happened.
-      _turns.clear();
-      canSave = false;
-      return;
-    }
-    if (capture.captured.isNotEmpty) {
-      _turns.add((key: key, input: text, exchanges: List.of(capture.captured)));
-      canSave = true;
-    }
   }
-
-  /// Saves every live turn of this conversation, so multi-turn experiments
-  /// stay consistent.
-  @action
-  Future<void> saveRun() async {
-    if (_turns.isEmpty) return;
-    final turns = List.of(_turns);
-    try {
-      for (final t in turns) {
-        await recordings.save(Recording(
-            key: t.key, input: t.input, savedAt: DateTime.now(), exchanges: t.exchanges));
-      }
-      _saved(turns.length == 1 ? turns.single.key : '${turns.length} turns (${turns.first.key} …)');
-    } catch (e) {
-      _toast('$e');
-    }
-  }
-
-  @action
-  void _saved(String what) {
-    canSave = false;
-    toast = 'Saved $what';
-    recordingsVersion++;
-  }
-
-  @action
-  void _toast(String text) => toast = text;
 
   // ================= chat cards =================
 
@@ -532,7 +421,7 @@ abstract class _AppStore with Store implements LoopHost {
   @action
   void assistantText(String text, {bool interim = false}) {
     _currentGroup = null;
-    chat.add(AssistantText(text, fromRecording: replay, interim: interim));
+    chat.add(AssistantText(text, interim: interim));
   }
 
   @override

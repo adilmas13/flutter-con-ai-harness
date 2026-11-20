@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:day_planner/agent/agent_state.dart';
 import 'package:day_planner/agent/checks.dart';
 import 'package:day_planner/agent/context_builder.dart';
 import 'package:day_planner/agent/levels.dart';
-import 'package:day_planner/agent/recordings.dart';
 import 'package:day_planner/data/schedule.dart';
 import 'package:day_planner/stores/app_store.dart';
 import 'package:day_planner/stores/chat_items.dart';
@@ -16,11 +13,10 @@ late Schedule schedule;
 
 /// A store wired to a scripted model.
 ({AppStore store, FakeModelClient client}) storeWith(List<Responder> replies,
-    {int Function(dynamic)? tokens, RecordingStore? recordings}) {
+    {int Function(dynamic)? tokens}) {
   final client = FakeModelClient(replies,
       tokens: tokens == null ? null : (r) => tokens(r));
-  final store = AppStore(schedule, recordings ?? RecordingStore(),
-      liveClient: () => client);
+  final store = AppStore(schedule, liveClient: () => client);
   return (store: store, client: client);
 }
 
@@ -358,37 +354,5 @@ void main() {
     store.selectExperiment(1); // remove old turns
     expect(store.conversation.summary, isNull, reason: 'starts from the level’s history');
     expect(store.conversation.keptFrom, 0);
-  });
-
-  group('Replay', () {
-    test('a saved run replays with identical requests', () async {
-      final dir = Directory.systemTemp.createTempSync('rec');
-      final path = '${dir.path}/recordings.json';
-      File(path).writeAsStringSync('{"version":1,"recordings":{}}');
-      final recordings = RecordingStore(path: path);
-      await recordings.load();
-
-      final live = storeWith([
-        toolUse('searchSessions', {'keyword': 'AI', 'after': '10:00'}),
-        text('Done.'),
-      ], recordings: recordings);
-      live.store.selectLevel(2);
-      live.store.selectSide(Side.withPiece);
-      await live.store.send('Plan my day around AI talks.');
-      expect(live.store.canSave, isTrue);
-      await live.store.saveRun();
-
-      final reloaded = RecordingStore(path: path);
-      await reloaded.load();
-      final replay = storeWith([], recordings: reloaded);
-      replay.store.selectLevel(2);
-      replay.store.selectSide(Side.withPiece);
-      replay.store.setReplay(true);
-      expect(replay.store.hasRecordingForNextTurn, isTrue);
-      await replay.store.send('Plan my day around AI talks.');
-      expect(replay.store.state, isA<Done>());
-      expect(replay.store.trace.any((e) => (e.note ?? '').contains('differs')), isFalse);
-      dir.deleteSync(recursive: true);
-    });
   });
 }

@@ -1,4 +1,3 @@
-import 'package:day_planner/agent/recordings.dart';
 import 'package:day_planner/data/schedule.dart';
 import 'package:day_planner/stores/app_store.dart';
 import 'package:day_planner/stores/chat_items.dart';
@@ -12,7 +11,7 @@ void main() {
   testWidgets('a long pasted message fits its bubble', (tester) async {
     final schedule = await Schedule.load();
     final paste = await rootBundle.loadString('assets/schedule_paste.txt');
-    final store = AppStore(schedule, RecordingStore());
+    final store = AppStore(schedule);
     tester.view.physicalSize = const Size(1440, 900);
     tester.view.devicePixelRatio = 1;
     for (final item in [

@@ -5,7 +5,6 @@ import 'package:day_planner/agent/agent_state.dart';
 import 'package:day_planner/agent/checks.dart';
 import 'package:day_planner/agent/levels.dart';
 import 'package:day_planner/agent/model_client.dart';
-import 'package:day_planner/agent/recordings.dart';
 import 'package:day_planner/data/schedule.dart';
 import 'package:day_planner/stores/app_store.dart';
 import 'package:day_planner/stores/chat_items.dart';
@@ -37,24 +36,22 @@ void main() {
   setUpAll(() async => schedule = await Schedule.load());
 
   test('a network error ends the turn instead of locking the app', () async {
-    final store = AppStore(schedule, RecordingStore(), liveClient: BrokenClient.new);
+    final store = AppStore(schedule, liveClient: BrokenClient.new);
     await store.send('Plan my day.');
     expect(store.state, isA<Failed>());
     expect(store.state.isBusy, isFalse);
-    expect(store.canSave, isFalse);
     store.selectLevel(1); // not locked
     expect(store.levelIndex, 1);
   });
 
   test('Cancel frees a hung run', () async {
-    final store = AppStore(schedule, RecordingStore(), liveClient: HangingClient.new);
+    final store = AppStore(schedule, liveClient: HangingClient.new);
     final run = store.send('Plan my day.');
     await Future<void>.delayed(const Duration(milliseconds: 50));
     expect(store.state.isBusy, isTrue);
     store.cancel();
     await run;
     expect(store.state, isA<Stopped>());
-    expect(store.canSave, isFalse);
   });
 
   test('memory saved at level 5 carries into level 6', () async {
@@ -62,7 +59,7 @@ void main() {
       toolUse('savePreference', {'text': 'Something else'}),
       text('ok'),
     ]);
-    final store = AppStore(schedule, RecordingStore(), liveClient: () => client);
+    final store = AppStore(schedule, liveClient: () => client);
     store.selectLevel(4);
     store.selectSide(Side.withPiece);
     final run = store.send('Remember something.');
@@ -77,56 +74,6 @@ void main() {
     expect(store.memoryFacts, ['Something else']);
     expect(store.itinerary, hasLength(3), reason: 'demo plan when none was made');
     expect(store.calendar, isEmpty);
-  });
-
-  test('Save run stores every turn of the conversation', () async {
-    final dir = Directory.systemTemp.createTempSync('rec');
-    final path = '${dir.path}/r.json';
-    File(path).writeAsStringSync('{"version":1,"recordings":{}}');
-    final recs = RecordingStore(path: path);
-    await recs.load();
-    final client = FakeModelClient([text('A plan.'), text('Swapped.')]);
-    final store = AppStore(schedule, recs, liveClient: () => client);
-    store.selectLevel(1);
-    store.selectSide(Side.withPiece);
-    await store.send('Plan my day.');
-    await store.send('Swap the second one.');
-    await store.saveRun();
-    expect(recs['L2/follow-up/with/turn-0'], isNotNull);
-    expect(recs['L2/follow-up/with/turn-1'], isNotNull);
-    dir.deleteSync(recursive: true);
-  });
-
-  test('replay plays only the exact recorded message, in order', () async {
-    final dir = Directory.systemTemp.createTempSync('rec');
-    final path = '${dir.path}/r.json';
-    File(path).writeAsStringSync('{"version":1,"recordings":{}}');
-    final recs = RecordingStore(path: path);
-    await recs.load();
-    final live = AppStore(schedule, recs,
-        scheduleText: 'S', liveClient: () => FakeModelClient([text('Plan.'), text('Swapped.')]));
-    live.selectLevel(1);
-    live.selectSide(Side.without);
-    await live.send(levels[1].experiments[0].inputs[0]);
-    await live.send(levels[1].experiments[0].inputs[1]);
-    await live.saveRun();
-
-    final replay = AppStore(schedule, recs, scheduleText: 'S',
-        liveClient: () => throw StateError('no network in replay'));
-    replay.selectLevel(1);
-    replay.selectSide(Side.without);
-    replay.setReplay(true);
-    // Out of order: the follow-up first.
-    await replay.send(levels[1].experiments[0].inputs[1]);
-    expect((replay.chat.last as ErrorText).text, contains('in order'));
-    // Something never recorded.
-    await replay.send('What is the weather?');
-    expect((replay.chat.last as ErrorText).text, contains('wasn’t recorded'));
-    expect(replay.chat.whereType<AssistantText>(), isEmpty);
-    // The right message plays.
-    await replay.send(levels[1].experiments[0].inputs[0]);
-    expect(replay.chat.whereType<AssistantText>().single.text, 'Plan.');
-    dir.deleteSync(recursive: true);
   });
 
   group('rules are read from how people actually say them', () {
@@ -165,7 +112,7 @@ void main() {
 
     test('the pasted schedule replaces the placeholder when sent', () async {
       final client = FakeModelClient([text('ok')]);
-      final store = AppStore(schedule, RecordingStore(),
+      final store = AppStore(schedule,
           liveClient: () => client, scheduleText: 'SCHEDULE LINES');
       await store.send('Plan my day. Here’s the schedule:\n\n{schedule}');
       expect(client.requests.single.messages.single['content'], contains('SCHEDULE LINES'));

@@ -20,7 +20,7 @@ _Last updated: 2026-11-18_
 | Demo app | One macOS Flutter app: a planner plus a collapsible inspector (Context, Trace, Memory, Checks), using the real flutterCon India schedule. |
 | Data flow | Pure tools. The schedule stays in the app; the model only sees tool results. |
 | Model | Claude `claude-opus-5-5`, effort `low`, raw HTTP to the Messages API. Our own loop, one round trip per call. |
-| Live and replay | Run live. Save the runs you like to `recordings/recordings.json`. Replay plays saved model replies back; tools, approvals and checks still run. |
+| Live only | Every run calls Claude live. Recording and replay were removed on 20 Nov (see Phase 4b). |
 | State management | MobX (codegen). |
 | Secrets | `ANTHROPIC_API_KEY` in `.env`, git-ignored, left blank for the user. |
 | Git | Personal identity for this repo (`adilmas13@gmail.com`), remote `adilmas13/flutter-con-ai-harness`. Commit and push after each phase (user’s instruction). |
@@ -123,7 +123,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ L3 vague loops now: 16 model calls without the limit (safety cap), stopped at 8 with it
 - ⬜ Tune prompts and inputs where a failure doesn’t reproduce (for example the vague request, or the summary losing “leaving at 17:00”)
 - ✅ Save good runs for every level, side and turn; replay them all end to end offline
-- ⬜ `just release` after the final recordings; rehearse from the release build with Wi-Fi off (**next**)
+- ⬜ `just release`; rehearse from the release build on the venue network (live calls, no offline fallback)
 - ⬜ If level 3’s vague request or level 6’s injection doesn’t trigger live, adjust the input or the tool’s reply, then re-record both sides
 
 ## Phase 4b: Rework after user review 🔄
@@ -132,7 +132,8 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ **One conversation across levels (accumulator):** history carries from level to level. Within a level, Without and With each branch from the shared history. Only the With run of a level’s first experiment carries forward (never a Without run; level 5’s new conversation replaces it once run), and each level starts from the nearest earlier level’s result, so going back never brings later history with it. Level 4 fast-forwards with seeded turns when history is short; level 5’s “New conversation” starts fresh by design.
 - ✅ Earlier turns are sent as plain text (old thinking dropped oldest-first, tool calls written as text), so history works across levels with different system prompts and tools
 - ✅ **No-paste story for levels 1–3:** L1 knows nothing; L2 the user names three talks, then “swap the second one”; L3 “use the schedule” to find a real performance talk with tools
-- ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match. The replay feature stays.
+- ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match.
+- ✅ **Replay removed (20 Nov):** `RecordingClient`, `ReplayClient`, `recordings.dart`, `recordings/`, the Live/Replay toggle, Save run, `just promote`, `just verify-replay`, `just recordings`, `just run-live`, `just screens`, the `record-runs` skill and the replay tests are gone. Live runs and `just stage-run` are the rehearsal path.
 - ✅ Live run of the whole stage path as one conversation (`just live-flow`, transcript in `build/live_flow.md`): no API errors, every check as intended, replies mostly 2–4 sentences
 - ✅ Fix: experiments within one level start from the level’s history (L4 “remove” had started from the summarised chat)
 - ✅ Inspector **System prompt** panel: the full prompt for this side, compared line by line with the other side
@@ -143,7 +144,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ⬜ Keyboard shortcuts for the presenter (level 1–6, toggle without/with, open inspector)
 - ⬜ Projector legibility pass (font sizes, contrast)
 - ⬜ Update the planning artifact’s raw JSON shape to match the Messages API
-- ⬜ README for people cloning the repo after the talk (replay works without a key)
+- ⬜ README for people cloning the repo after the talk (needs an API key in `.env`)
 
 ## Phase 6: Talk materials ⬜
 
@@ -159,7 +160,7 @@ The user asked to commit and push after each phase.
 
 - ✅ `justfile` with recipes for every project command (`just` lists them)
 - ✅ Conventional Commits, enforced by `just commit` (the first commit predates this and is left as pushed)
-- ✅ Project skills in `.agents/skills/` (phase-complete, add-experiment, record-runs, mobx-store, model-calls), with `.claude/skills` linked to them
+- ✅ Project skills in `.agents/skills/` (phase-complete, add-experiment, mobx-store, model-calls; record-runs removed with replay), with `.claude/skills` linked to them
 - ✅ First commit and push: project setup, plus core agent and UI (written, not yet verified)
 - ⬜ Commit and push again after each later phase
 
@@ -167,6 +168,6 @@ The user asked to commit and push after each phase.
 
 ## Known risks
 
-- **Live behaviour varies.** Some failures (a runaway loop at low effort, a lossy summary, following the injected instruction) may not happen live. Level 6’s without side still fails check 7 through the unapproved calendar write. Recordings are the stage path.
+- **Live behaviour varies.** Some failures (a runaway loop at low effort, a lossy summary, following the injected instruction) may not happen live. Level 6’s without side still fails check 7 through the unapproved calendar write. With replay removed, the stage path is live: rehearse, and say so on stage when a run differs.
 - **History-editing check.** Opus 5.5 rejects edited history for new accounts. The harness keeps conversations append-only, and strips thinking blocks from turns kept after shrinking. This needs confirming on a live run at level 4.
 - **Refusal fallback header.** The `server-side-fallback-2026-07-01` beta is sent on every request. If the account rejects it, remove it in `model_client.dart`.

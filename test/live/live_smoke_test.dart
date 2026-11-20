@@ -5,7 +5,6 @@ import 'dart:io';
 
 import 'package:day_planner/agent/levels.dart';
 import 'package:day_planner/agent/model_client.dart';
-import 'package:day_planner/agent/recordings.dart';
 import 'package:day_planner/config.dart';
 import 'package:day_planner/data/schedule.dart';
 import 'package:day_planner/stores/app_store.dart';
@@ -47,16 +46,14 @@ void main() {
   }
 
   test('level 1: plain call works', () async {
-    final s = AppStore(schedule, RecordingStore());
-    s.setReplay(false);
+    final s = AppStore(schedule);
     await s.send('Plan my flutterCon day around AI talks.');
     report('L1 baseline', s);
     expect(s.chat.whereType<ErrorText>(), isEmpty);
   }, skip: skip, timeout: const Timeout(Duration(minutes: 2)));
 
   test('level 3 with tools: loop, tool calls, plan', () async {
-    final s = AppStore(schedule, RecordingStore())
-      ..setReplay(false)
+    final s = AppStore(schedule)
       ..selectLevel(2)
       ..selectSide(Side.withPiece);
     await s.send('Plan my day around AI talks. Nothing before 10, and no roundtables.');
@@ -65,7 +62,7 @@ void main() {
   }, skip: skip, timeout: const Timeout(Duration(minutes: 3)));
 
   test('level 4: real token count of the seeded chat', () async {
-    final s = AppStore(schedule, RecordingStore())
+    final s = AppStore(schedule)
       ..selectLevel(3)
       ..selectSide(Side.without);
     final n = await AnthropicClient().countTokens(s.lastRequest!.request);

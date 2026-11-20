@@ -4,7 +4,6 @@ library;
 import 'dart:io';
 
 import 'package:day_planner/agent/levels.dart';
-import 'package:day_planner/agent/recordings.dart';
 import 'package:day_planner/config.dart';
 import 'package:day_planner/data/schedule.dart';
 import 'package:day_planner/stores/app_store.dart';
@@ -21,7 +20,7 @@ void main() {
 
   test('stage path', () async {
     HttpOverrides.global = null;
-    final store = AppStore(await Schedule.load(), RecordingStore(),
+    final store = AppStore(await Schedule.load(),
         scheduleText: await rootBundle.loadString('assets/schedule_paste.txt'));
     final out = StringBuffer();
     var errors = 0;

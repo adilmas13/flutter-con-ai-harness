@@ -38,22 +38,6 @@ mixin _$AppStore on _AppStore, Store {
         () => super.otherConfig,
         name: '_AppStore.otherConfig',
       )).value;
-  Computed<String>? _$nextRecordingKeyComputed;
-
-  @override
-  String get nextRecordingKey =>
-      (_$nextRecordingKeyComputed ??= Computed<String>(
-        () => super.nextRecordingKey,
-        name: '_AppStore.nextRecordingKey',
-      )).value;
-  Computed<bool>? _$hasRecordingForNextTurnComputed;
-
-  @override
-  bool get hasRecordingForNextTurn =>
-      (_$hasRecordingForNextTurnComputed ??= Computed<bool>(
-        () => super.hasRecordingForNextTurn,
-        name: '_AppStore.hasRecordingForNextTurn',
-      )).value;
   Computed<int>? _$contextTokensComputed;
 
   @override
@@ -113,21 +97,6 @@ mixin _$AppStore on _AppStore, Store {
     });
   }
 
-  late final _$replayAtom = Atom(name: '_AppStore.replay', context: context);
-
-  @override
-  bool get replay {
-    _$replayAtom.reportRead();
-    return super.replay;
-  }
-
-  @override
-  set replay(bool value) {
-    _$replayAtom.reportWrite(value, super.replay, () {
-      super.replay = value;
-    });
-  }
-
   late final _$inspectorOpenAtom = Atom(
     name: '_AppStore.inspectorOpen',
     context: context,
@@ -179,24 +148,6 @@ mixin _$AppStore on _AppStore, Store {
   set showRawJson(bool value) {
     _$showRawJsonAtom.reportWrite(value, super.showRawJson, () {
       super.showRawJson = value;
-    });
-  }
-
-  late final _$recordingsVersionAtom = Atom(
-    name: '_AppStore.recordingsVersion',
-    context: context,
-  );
-
-  @override
-  int get recordingsVersion {
-    _$recordingsVersionAtom.reportRead();
-    return super.recordingsVersion;
-  }
-
-  @override
-  set recordingsVersion(int value) {
-    _$recordingsVersionAtom.reportWrite(value, super.recordingsVersion, () {
-      super.recordingsVersion = value;
     });
   }
 
@@ -284,36 +235,6 @@ mixin _$AppStore on _AppStore, Store {
     });
   }
 
-  late final _$canSaveAtom = Atom(name: '_AppStore.canSave', context: context);
-
-  @override
-  bool get canSave {
-    _$canSaveAtom.reportRead();
-    return super.canSave;
-  }
-
-  @override
-  set canSave(bool value) {
-    _$canSaveAtom.reportWrite(value, super.canSave, () {
-      super.canSave = value;
-    });
-  }
-
-  late final _$toastAtom = Atom(name: '_AppStore.toast', context: context);
-
-  @override
-  String? get toast {
-    _$toastAtom.reportRead();
-    return super.toast;
-  }
-
-  @override
-  set toast(String? value) {
-    _$toastAtom.reportWrite(value, super.toast, () {
-      super.toast = value;
-    });
-  }
-
   late final _$sendAsyncAction = AsyncAction(
     '_AppStore.send',
     context: context,
@@ -322,16 +243,6 @@ mixin _$AppStore on _AppStore, Store {
   @override
   Future<void> send(String text) {
     return _$sendAsyncAction.run(() => super.send(text));
-  }
-
-  late final _$saveRunAsyncAction = AsyncAction(
-    '_AppStore.saveRun',
-    context: context,
-  );
-
-  @override
-  Future<void> saveRun() {
-    return _$saveRunAsyncAction.run(() => super.saveRun());
   }
 
   late final _$_AppStoreActionController = ActionController(
@@ -376,18 +287,6 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void setReplay(bool value) {
-    final _$actionInfo = _$_AppStoreActionController.startAction(
-      name: '_AppStore.setReplay',
-    );
-    try {
-      return super.setReplay(value);
-    } finally {
-      _$_AppStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void toggleInspector() {
     final _$actionInfo = _$_AppStoreActionController.startAction(
       name: '_AppStore.toggleInspector',
@@ -418,18 +317,6 @@ mixin _$AppStore on _AppStore, Store {
     );
     try {
       return super.setRawJson(value);
-    } finally {
-      _$_AppStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void dismissToast() {
-    final _$actionInfo = _$_AppStoreActionController.startAction(
-      name: '_AppStore.dismissToast',
-    );
-    try {
-      return super.dismissToast();
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
@@ -496,41 +383,12 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void _finishTurn(
-    TurnRecord record,
-    String key,
-    String text,
-    RecordingClient? capture,
-  ) {
+  void _finishTurn(TurnRecord record) {
     final _$actionInfo = _$_AppStoreActionController.startAction(
       name: '_AppStore._finishTurn',
     );
     try {
-      return super._finishTurn(record, key, text, capture);
-    } finally {
-      _$_AppStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void _saved(String what) {
-    final _$actionInfo = _$_AppStoreActionController.startAction(
-      name: '_AppStore._saved',
-    );
-    try {
-      return super._saved(what);
-    } finally {
-      _$_AppStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void _toast(String text) {
-    final _$actionInfo = _$_AppStoreActionController.startAction(
-      name: '_AppStore._toast',
-    );
-    try {
-      return super._toast(text);
+      return super._finishTurn(record);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
@@ -770,24 +628,18 @@ mixin _$AppStore on _AppStore, Store {
 levelIndex: ${levelIndex},
 experimentIndex: ${experimentIndex},
 side: ${side},
-replay: ${replay},
 inspectorOpen: ${inspectorOpen},
 inspectorTab: ${inspectorTab},
 showRawJson: ${showRawJson},
-recordingsVersion: ${recordingsVersion},
 state: ${state},
 lastRequest: ${lastRequest},
 lastExactTokens: ${lastExactTokens},
 checks: ${checks},
 sentTurns: ${sentTurns},
-canSave: ${canSave},
-toast: ${toast},
 level: ${level},
 experiment: ${experiment},
 config: ${config},
 otherConfig: ${otherConfig},
-nextRecordingKey: ${nextRecordingKey},
-hasRecordingForNextTurn: ${hasRecordingForNextTurn},
 contextTokens: ${contextTokens}
     ''';
   }
