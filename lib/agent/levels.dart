@@ -180,7 +180,7 @@ final levels = <Level>[
           without: Harnesses.h5,
           withPiece: Harnesses.h6,
           notes:
-              'The Beyond Prompts description carries an injected instruction; the first calendar call times out. If the model resists or retries on its own, say so: neither is guaranteed, the harness is.',
+              'The Beyond Prompts description carries an injected instruction. If the model resists it on its own, say so: that isn’t guaranteed, the harness is.',
         ),
       ]),
 ];

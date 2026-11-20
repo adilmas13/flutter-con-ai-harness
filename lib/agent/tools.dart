@@ -18,11 +18,6 @@ class ToolOutcome {
   bool get isError => status != ToolStatus.ok;
 }
 
-class TransientToolError implements Exception {
-  TransientToolError(this.message);
-  final String message;
-}
-
 /// What tools can read and change: the app's own state.
 abstract interface class ToolHost {
   Schedule get schedule;
@@ -30,9 +25,6 @@ abstract interface class ToolHost {
   void showPlan(List<Session> sessions, List<String> unknownIds);
   void addCalendarEvents(List<Session> sessions);
   void recordExport(String to, int count);
-
-  /// Returns true the first time it is called in a run: the calendar "times out".
-  bool calendarShouldTimeOut();
 }
 
 class ToolSpec {
@@ -245,9 +237,6 @@ final addToCalendar = ToolSpec(
   validate: (a, s) => _checkIds(a['sessionIds'], s),
   run: (a, host) async {
     await Future<void>.delayed(const Duration(milliseconds: 600));
-    if (host.calendarShouldTimeOut()) {
-      throw TransientToolError('The calendar service timed out.');
-    }
     final sessions = [
       for (final id in (a['sessionIds'] as List? ?? const [])) ?host.schedule.byId('$id')
     ];

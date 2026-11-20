@@ -319,7 +319,7 @@ class AgentLoop {
     return null;
   }
 
-  /// The trace row for the tool call in progress; a retry opens a new one.
+  /// The trace row for the tool call in progress.
   int _row = 0;
   int _rowStart = 0;
 
@@ -330,27 +330,9 @@ class AgentLoop {
       host.saveMemory(fact);
       return ToolOutcome(ToolStatus.ok, 'Saved.', 'Saved “$fact”');
     }
-    try {
-      final out = await spec.run(args, host);
-      if (spec == exportContacts) rec.exportsExecuted++;
-      return out;
-    } on TransientToolError catch (e) {
-      // Retry: one more attempt with the same, already-approved request.
-      if (config.has(HarnessPiece.retry)) {
-        host.updateTrace(_row, TraceEvent(TraceKind.failed, spec.name, _rowStart,
-            _now - _rowStart, '${e.message} Retrying once.'));
-        _rowStart = _now;
-        _row = host.addTrace(TraceEvent(TraceKind.tool, spec.name, _rowStart, 0));
-        try {
-          final out = await spec.run(args, host);
-          return ToolOutcome(out.status, out.content, '${out.summary} · retried once');
-        } on TransientToolError catch (e2) {
-          return ToolOutcome(
-              ToolStatus.failed, 'Error: ${e2.message}', 'Failed again: ${e2.message}');
-        }
-      }
-      return ToolOutcome(ToolStatus.failed, 'Error: ${e.message}', 'Failed: ${e.message}');
-    }
+    final out = await spec.run(args, host);
+    if (spec == exportContacts) rec.exportsExecuted++;
+    return out;
   }
 
   /// Counts the request and shows the harness's decision in the trace.

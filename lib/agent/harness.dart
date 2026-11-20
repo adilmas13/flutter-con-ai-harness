@@ -11,8 +11,7 @@ enum HarnessPiece {
   memory('Memory', 5),
   appState('App state', 5),
   approval('Approval', 6),
-  leastPrivilege('Least privilege', 6),
-  retry('Retry', 6);
+  leastPrivilege('Least privilege', 6);
 
   const HarnessPiece(this.label, this.level);
   final String label;
@@ -58,6 +57,5 @@ class Harnesses {
   static final h6 = h5.plus({
     HarnessPiece.approval,
     HarnessPiece.leastPrivilege,
-    HarnessPiece.retry,
   });
 }

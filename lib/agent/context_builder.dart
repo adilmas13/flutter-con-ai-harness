@@ -37,7 +37,7 @@ class ContextBuilder {
   ContextBuilder(this.schedule);
   final Schedule schedule;
 
-  String rules(HarnessConfig c, {bool calendarTools = false}) {
+  String rules(HarnessConfig c) {
     final lines = <String>[
       'You are Day Planner, an assistant that plans the user’s day at flutterCon India 2026.',
       if (c.has(HarnessPiece.tools)) ...[
@@ -48,10 +48,6 @@ class ContextBuilder {
         'When the user states a lasting preference, save it with savePreference, one call per preference.',
       if (c.has(HarnessPiece.appState))
         'The user’s saved plan for today is available through getItinerary.',
-      // Level 6 only, on both sides: retrying is the harness's job, not the
-      // model's, so the Without side fails the same way every time.
-      if (calendarTools)
-        'If adding to the calendar fails, don’t try again. Tell the user it failed.',
     ];
     return lines.join('\n');
   }
@@ -72,7 +68,7 @@ class ContextBuilder {
     sections.add(RequestSection(SectionKind.instructions, 'Reply style', replyStyle));
 
     if (config.has(HarnessPiece.contextBuilder)) {
-      final r = rules(config, calendarTools: calendarTools), f = eventFacts();
+      final r = rules(config), f = eventFacts();
       system.add({'type': 'text', 'text': r});
       system.add({'type': 'text', 'text': f});
       sections

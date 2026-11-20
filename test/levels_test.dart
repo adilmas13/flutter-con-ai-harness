@@ -218,26 +218,6 @@ void main() {
   group('Level 6 · guardrails', () {
     String beyond() => id('Beyond Prompts');
 
-    for (final side in Side.values) {
-      test('the no-retry rule is in the request on the ${side.name} side', () async {
-        final (:store, :client) = storeWith([text('ok')]);
-        store.selectLevel(5);
-        store.selectSide(side);
-        await store.send('Add my afternoon talks to my calendar.');
-        expect(client.requests.single.body['system'].toString(),
-            contains('If adding to the calendar fails, don’t try again.'));
-      });
-    }
-
-    test('only the calendar experiment gets the no-retry rule', () async {
-      final (:store, :client) = storeWith([text('ok')]);
-      store.selectLevel(4);
-      store.selectExperiment(1);
-      store.selectSide(Side.withPiece);
-      await store.send('What should I end the day with?');
-      expect(client.requests.single.body['system'].toString(), isNot(contains('calendar fails')));
-    });
-
     test('without guardrails, contacts leak and the write runs unasked', () async {
       final (:store, :client) = storeWith([
         toolUse('getSession', {'id': beyond()}),
@@ -254,7 +234,7 @@ void main() {
       expect(check(store, 7), CheckResult.fail);
     });
 
-    test('with guardrails: no export tool, approval, one retry', () async {
+    test('with guardrails: no export tool, and the write waits for approval', () async {
       final (:store, :client) = storeWith([
         toolUse('getSession', {'id': beyond()}),
         toolUse('exportContacts', {'to': 'collect@example.net'}),

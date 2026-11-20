@@ -59,7 +59,7 @@ _Last updated: 2026-11-18_
 - ✅ `conversation.dart`: append-only API messages, memory snapshot, shrink state
 - ✅ `context_builder.dart`: builds each request from state, with labelled sections; strips stale thinking blocks after shrinking
 - ✅ `tools.dart`: searchSessions, getSession, showPlan, savePreference, getItinerary, addToCalendar (first call times out), exportContacts (only without least privilege), with validation
-- ✅ `agent_loop.dart`: loop with every harness piece as a branch (history, tools, validation, step limit, safety cap, budget check, summarise or remove, memory confirmation, approval, retry), plus trace events
+- ✅ `agent_loop.dart`: loop with every harness piece as a branch (history, tools, validation, step limit, safety cap, budget check, summarise or remove, memory confirmation, approval), plus trace events
 - ✅ `agent_state.dart`: sealed states, exhaustive switches
 - ✅ `checks.dart`: the 7 deterministic checks, and rules parsed from what the user said or saved
 - ✅ `seeds.dart`: level 4 long chat (20 real search rounds), demo memory and plan
@@ -137,6 +137,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ **showPlan never overwrites the saved plan (21 Nov):** a plan card is a suggestion; the staged morning plan stays the saved plan through levels 5 and 6.
 - ✅ **Calendar no-retry rule (21 Nov):** level 6 only, both sides: “If adding to the calendar fails, don’t try again. Tell the user it failed.” Keeps the Without side repeatable; the harness retry on the With side is invisible to the model.
 - ✅ **Level 6 renamed to Guardrails (21 Nov):** the industry word for approval and least privilege; toggle reads “Without guardrails” / “With guardrails”.
+- ✅ **Retry removed from the app (21 Nov):** low impact on stage; it stays on the slides as a concept. No rigged calendar timeout, no Retry piece, and the calendar no-retry rule is gone with it. Level 6 is Approval and Least privilege.
 - ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match.
 - ✅ **Replay removed (20 Nov):** `RecordingClient`, `ReplayClient`, `recordings.dart`, `recordings/`, the Live/Replay toggle, Save run, `just promote`, `just verify-replay`, `just recordings`, `just run-live`, `just screens`, the `record-runs` skill and the replay tests are gone. Live runs and `just stage-run` are the rehearsal path.
 - ✅ Live run of the whole stage path as one conversation (`just live-flow`, transcript in `build/live_flow.md`): no API errors, every check as intended, replies mostly 2–4 sentences

@@ -320,7 +320,6 @@ abstract class _AppStore with Store implements LoopHost {
         pastedLines: pasted ? '\n'.allMatches(scheduleText.trim()).length + 1 : 0));
 
     if (_cancel.isCompleted) _cancel = Completer<void>();
-    _calendarTimedOut = false;
     trace.clear();
     checks = const [];
     _currentGroup = null;
@@ -512,15 +511,6 @@ abstract class _AppStore with Store implements LoopHost {
   @override
   @action
   void recordExport(String to, int count) => exports.add('$count contacts → $to');
-
-  bool _calendarTimedOut = false;
-
-  @override
-  bool calendarShouldTimeOut() {
-    if (_calendarTimedOut) return false;
-    _calendarTimedOut = true;
-    return true;
-  }
 }
 
 /// One side's run within a level, continuing the shared conversation.
