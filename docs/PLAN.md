@@ -134,6 +134,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ **No-paste story for levels 1–3:** L1 knows nothing; L2 the user names three talks, then “swap the second one”; L3 “use the schedule” to find a real performance talk with tools
 - ✅ **Simpler opening (20 Nov):** L1 sends “Hi”, “I’m going to attend flutterCon 2026”, then “Tell me more about this event” (stateless: it doesn’t know which event); L2 sends that last message Without and With history; L3 asks for an AI-talk plan
 - ✅ **Memory only from approved saves (21 Nov):** no staged demo preferences, and opening Save preferences no longer clears memory; only an approved save adds to it and only Reset for stage empties it. The demo plan is still staged.
+- ✅ **showPlan never overwrites the saved plan (21 Nov):** a plan card is a suggestion; the staged morning plan stays the saved plan through levels 5 and 6.
 - ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match.
 - ✅ **Replay removed (20 Nov):** `RecordingClient`, `ReplayClient`, `recordings.dart`, `recordings/`, the Live/Replay toggle, Save run, `just promote`, `just verify-replay`, `just recordings`, `just run-live`, `just screens`, the `record-runs` skill and the replay tests are gone. Live runs and `just stage-run` are the rehearsal path.
 - ✅ Live run of the whole stage path as one conversation (`just live-flow`, transcript in `build/live_flow.md`): no API errors, every check as intended, replies mostly 2–4 sentences

@@ -575,18 +575,6 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void setItinerary(List<String> ids) {
-    final _$actionInfo = _$_AppStoreActionController.startAction(
-      name: '_AppStore.setItinerary',
-    );
-    try {
-      return super.setItinerary(ids);
-    } finally {
-      _$_AppStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void showPlan(List<Session> sessions, List<String> unknownIds) {
     final _$actionInfo = _$_AppStoreActionController.startAction(
       name: '_AppStore.showPlan',

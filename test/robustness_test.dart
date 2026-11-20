@@ -76,6 +76,23 @@ void main() {
     expect(store.calendar, isEmpty);
   });
 
+  test('a suggested plan never replaces the saved plan', () async {
+    final saved = AppStore(schedule)..selectLevel(4)..selectExperiment(1);
+    final planned = saved.itinerary.toList();
+    final late = schedule.sessions.where((s) => s.start.compareTo('16:00') >= 0).first.id;
+    final client = FakeModelClient([
+      toolUse('showPlan', {'sessionIds': [late]}),
+      text('End with that one.'),
+    ]);
+    final store = AppStore(schedule, liveClient: () => client)
+      ..selectLevel(4)
+      ..selectExperiment(1)
+      ..selectSide(Side.withPiece);
+    await store.send('What should I end the day with?');
+    expect(store.chat.whereType<PlanCard>(), hasLength(1));
+    expect(store.itinerary, planned);
+  });
+
   group('rules are read from how people actually say them', () {
     for (final (text, field) in [
       ('Nothing before 10, and no roundtables.', 'min'),

@@ -27,7 +27,6 @@ class TransientToolError implements Exception {
 abstract interface class ToolHost {
   Schedule get schedule;
   List<String> get itineraryIds;
-  void setItinerary(List<String> ids);
   void showPlan(List<Session> sessions, List<String> unknownIds);
   void addCalendarEvents(List<Session> sessions);
   void recordExport(String to, int count);

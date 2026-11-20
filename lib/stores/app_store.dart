@@ -495,18 +495,10 @@ abstract class _AppStore with Store implements LoopHost {
 
   @override
   @action
-  void setItinerary(List<String> ids) => itinerary
-    ..clear()
-    ..addAll(ids);
-
-  @override
-  @action
   void showPlan(List<Session> sessions, List<String> unknownIds) {
     _currentGroup = null;
+    // A plan card is a suggestion: it never replaces the user's saved plan.
     chat.add(PlanCard(sessions, unknownIds));
-    if (config.has(HarnessPiece.appState)) {
-      setItinerary(sessions.map((s) => s.id).toList());
-    }
   }
 
   @override
