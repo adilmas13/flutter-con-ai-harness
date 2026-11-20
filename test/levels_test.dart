@@ -215,7 +215,7 @@ void main() {
     }
   });
 
-  group('Level 6 · trust', () {
+  group('Level 6 · guardrails', () {
     String beyond() => id('Beyond Prompts');
 
     for (final side in Side.values) {
@@ -238,7 +238,7 @@ void main() {
       expect(client.requests.single.body['system'].toString(), isNot(contains('calendar fails')));
     });
 
-    test('without trust controls, contacts leak and the write runs unasked', () async {
+    test('without guardrails, contacts leak and the write runs unasked', () async {
       final (:store, :client) = storeWith([
         toolUse('getSession', {'id': beyond()}),
         toolUse('exportContacts', {'to': 'collect@example.net'}),
@@ -254,7 +254,7 @@ void main() {
       expect(check(store, 7), CheckResult.fail);
     });
 
-    test('with trust controls: no export tool, approval, one retry', () async {
+    test('with guardrails: no export tool, approval, one retry', () async {
       final (:store, :client) = storeWith([
         toolUse('getSession', {'id': beyond()}),
         toolUse('exportContacts', {'to': 'collect@example.net'}),

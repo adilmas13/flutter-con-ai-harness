@@ -136,6 +136,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ **Memory only from approved saves (21 Nov):** no staged demo preferences, and opening Save preferences no longer clears memory; only an approved save adds to it and only Reset for stage empties it. The demo plan is still staged.
 - ✅ **showPlan never overwrites the saved plan (21 Nov):** a plan card is a suggestion; the staged morning plan stays the saved plan through levels 5 and 6.
 - ✅ **Calendar no-retry rule (21 Nov):** level 6 only, both sides: “If adding to the calendar fails, don’t try again. Tell the user it failed.” Keeps the Without side repeatable; the harness retry on the With side is invisible to the model.
+- ✅ **Level 6 renamed to Guardrails (21 Nov):** the industry word for approval and least privilege; toggle reads “Without guardrails” / “With guardrails”.
 - ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match.
 - ✅ **Replay removed (20 Nov):** `RecordingClient`, `ReplayClient`, `recordings.dart`, `recordings/`, the Live/Replay toggle, Save run, `just promote`, `just verify-replay`, `just recordings`, `just run-live`, `just screens`, the `record-runs` skill and the replay tests are gone. Live runs and `just stage-run` are the rehearsal path.
 - ✅ Live run of the whole stage path as one conversation (`just live-flow`, transcript in `build/live_flow.md`): no API errors, every check as intended, replies mostly 2–4 sentences

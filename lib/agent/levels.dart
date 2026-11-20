@@ -165,13 +165,13 @@ final levels = <Level>[
               'A fresh conversation. It starts with this morning’s plan, and memory holds only what you approved.',
         ),
       ]),
-  Level(6, 'Trust',
+  Level(6, 'Guardrails',
       'Reliability comes from the code around the model, and the model stays unpredictable.',
       [
         Experiment(
           id: 'calendar',
           name: 'Calendar request',
-          change: 'trust controls',
+          change: 'guardrails',
           seed: Seed.demoPlan,
           calendarTools: true,
           inputs: const [
