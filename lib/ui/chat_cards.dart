@@ -171,9 +171,7 @@ class _PlanCard extends StatelessWidget {
     final p = context.pal;
     final rules = store.rules;
     Widget row(String time, String title, String sub, List<String> problems) {
-      final bad = problems.isNotEmpty;
       return Container(
-        color: bad ? p.critBg : null,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
@@ -186,11 +184,9 @@ class _PlanCard extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 14.5,
-                      color: bad ? p.crit : p.fg)),
+                      color: p.fg)),
               Text(sub, style: TextStyle(fontSize: 12.5, color: p.muted)),
-              for (final pr in problems)
-                Text('Breaks a rule: $pr',
-                    style: TextStyle(fontSize: 12, color: p.crit)),
+              for (final pr in problems) _WarnTag(pr),
             ]),
           ),
         ]),
@@ -205,11 +201,11 @@ class _PlanCard extends StatelessWidget {
         for (final s in sessions) ...[
           row(s.start, s.title,
               '${s.room} · until ${s.end}${s.speakers.isEmpty ? '' : ' · ${s.speakers.join(', ')}'}',
-              rules.breaches(s)),
+              [for (final b in rules.breaches(s)) 'Breaks your rule: $b']),
           Divider(height: 1, color: p.line),
         ],
         for (final id in unknownIds)
-          row('?', 'Unknown session “$id”', 'Not in the schedule', const ['invented']),
+          row('?', 'Unknown session “$id”', 'Not in the schedule', const ['Invented by the model']),
       ]),
     );
   }
@@ -478,6 +474,30 @@ class AssistantMarkdown extends StatelessWidget {
         blockSpacing: 10,
         listIndent: 22,
       ),
+    );
+  }
+}
+
+/// A small amber tag on a plan row: worth pointing at, not an app error.
+class _WarnTag extends StatelessWidget {
+  const _WarnTag(this.text);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.pal;
+    return Container(
+      margin: const EdgeInsets.only(top: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+          color: p.warnBg,
+          border: Border.all(color: p.warn),
+          borderRadius: BorderRadius.circular(6)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        Icon(Icons.warning_amber_rounded, size: 14, color: p.warn),
+        const SizedBox(width: 5),
+        Flexible(child: Text(text, style: TextStyle(fontSize: 12, color: p.warn))),
+      ]),
     );
   }
 }

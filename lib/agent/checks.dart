@@ -69,12 +69,13 @@ class Rules {
     return r;
   }
 
+  /// Short reasons a session breaks the rules, without its title.
   List<String> breaches(Session s) => [
         if (minStart != null && s.start.compareTo(minStart!) < 0)
-          '${s.start} is before $minStart',
-        if (noRoundtables && s.isRoundtable) '“${s.title}” is a roundtable',
+          'starts ${s.start}, before $minStart',
+        if (noRoundtables && s.isRoundtable) 'it’s a roundtable',
         if (maxEnd != null && s.end.compareTo(maxEnd!) > 0)
-          '${s.title} ends at ${s.end}, after $maxEnd',
+          'ends ${s.end}, after $maxEnd',
       ];
 }
 
@@ -160,7 +161,10 @@ List<CheckOutcome> runChecks(TurnRecord t, Rules rules, Schedule schedule) {
           rules.isEmpty ? 'The user stated no rules.' : 'No plan to check.')
     else ...[
       () {
-        final b = plan.expand(rules.breaches).toList();
+        final b = [
+          for (final s in plan)
+            for (final r in rules.breaches(s)) '“${s.title}” $r'
+        ];
         return b.isEmpty
             ? c(3, CheckResult.pass, 'All ${plan.length} sessions follow the rules.')
             : c(3, CheckResult.fail, b.join('; '));
