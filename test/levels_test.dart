@@ -185,14 +185,30 @@ void main() {
       expect(store.memoryFacts, contains('Leaving at 17:00'));
     });
 
+    test('nothing is in memory until the user approves a save', () async {
+      final (:store, :client) = storeWith([text('Stop after Beyond Prompts.')]);
+      store.selectLevel(4);
+      store.selectExperiment(1);
+      store.selectSide(Side.withPiece);
+      expect(store.memoryFacts, isEmpty);
+      await store.send('What should I end the day with?');
+      expect(client.requests.single.body['system'].toString(), isNot(contains('Saved preferences')));
+    });
+
     for (final side in Side.values) {
       test('a new conversation ${side == Side.withPiece ? 'gets' : 'lacks'} saved memory', () async {
-        final (:store, :client) = storeWith([text('Stop after Beyond Prompts.')]);
+        final (:store, :client) = storeWith([
+          toolUse('savePreference', {'text': 'No roundtables'}),
+          text('Saved.'),
+          text('Stop after Beyond Prompts.'),
+        ]);
         store.selectLevel(4);
+        store.selectSide(Side.withPiece);
+        await runAnswering(store, store.send('Remember: no roundtables.'));
         store.selectExperiment(1);
         store.selectSide(side);
         await store.send('What should I end the day with?');
-        final system = client.requests.single.body['system'].toString();
+        final system = client.requests.last.body['system'].toString();
         expect(system.contains('No roundtables'), side == Side.withPiece);
         expect(check(store, 6), side == Side.withPiece ? CheckResult.pass : CheckResult.fail);
       });

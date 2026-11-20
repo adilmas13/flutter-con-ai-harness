@@ -67,7 +67,7 @@ lib/
     agent_state.dart       sealed AgentState, rendered with exhaustive switches
     tools.dart             tool specs, validation, handlers
     checks.dart            the seven checks
-    seeds.dart             level 4 long chat, demo memory and plan
+    seeds.dart             level 4 long chat and the demo plan
   stores/app_store.dart    MobX store; it is also the loop's host
   ui/                      app shell, chat, inspector (context, trace, memory, checks)
 ```

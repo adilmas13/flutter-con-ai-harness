@@ -1,6 +1,6 @@
 import 'harness.dart';
 
-enum Seed { none, longChat, demoMemory, demoMemoryAndPlan }
+enum Seed { none, longChat, demoPlan }
 
 /// Placeholder in a suggested input, replaced by the compact schedule
 /// (`assets/schedule_paste.txt`) when sent.
@@ -157,12 +157,12 @@ final levels = <Level>[
           id: 'new-conversation',
           name: 'New conversation',
           change: 'memory',
-          seed: Seed.demoMemoryAndPlan,
+          seed: Seed.demoPlan,
           inputs: const ['What should I end the day with, and why?'],
           without: Harnesses.h4Summarise,
           withPiece: Harnesses.h5,
           notes:
-              'A fresh conversation. It starts from the three saved preferences and this morning’s plan.',
+              'A fresh conversation. It starts with this morning’s plan, and memory holds only what you approved.',
         ),
       ]),
   Level(6, 'Trust',
@@ -172,7 +172,7 @@ final levels = <Level>[
           id: 'calendar',
           name: 'Calendar request',
           change: 'trust controls',
-          seed: Seed.demoMemoryAndPlan,
+          seed: Seed.demoPlan,
           calendarTools: true,
           inputs: const [
             'Add the talks in my plan that start after 13:00 to my calendar. Check each talk’s details first.',

@@ -65,9 +65,6 @@ void seedLongChat(Conversation conv, Schedule schedule) {
   conv.seededTurns = conv.userTurns;
 }
 
-/// Demo preferences, used when memory is empty.
-const demoMemory = ['Nothing before 10:00', 'No roundtables', 'Leaving at 17:00'];
-
 /// A plan made earlier in the day: three afternoon-ish talks that fit the rules.
 List<String> demoPlanIds(Schedule s) {
   String find(String prefix) =>

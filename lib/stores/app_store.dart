@@ -214,13 +214,9 @@ abstract class _AppStore with Store implements LoopHost {
   @action
   void _startExperiment() {
     final exp = experiment;
-    if (exp.id == 'save') memoryFacts.clear();
+    // Memory changes only when the user approves a save, or on Reset for stage.
     _staged = [];
-    if (exp.seed == Seed.demoMemoryAndPlan) {
-      if (memoryFacts.isEmpty) {
-        memoryFacts.addAll(demoMemory);
-        _staged.add('three demo preferences');
-      }
+    if (exp.seed == Seed.demoPlan) {
       if (itinerary.isEmpty) {
         itinerary.addAll(demoPlanIds(schedule));
         _staged.add('a demo plan from this morning');
