@@ -82,6 +82,7 @@ final levels = <Level>[
           change: 'history',
           inputs: const [
             'Tell me more about this event.',
+            'Plan my day there around AI talks, and show me my plan.',
           ],
           without: Harnesses.h1,
           withPiece: Harnesses.h2,
