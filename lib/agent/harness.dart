@@ -40,14 +40,14 @@ class Harnesses {
   static final h2 = h1.plus({HarnessPiece.history});
 
   /// Level 3 adds the context builder (system rules that describe the tools)
-  /// together with the tools themselves.
-  static final h3NoLimit = h2.plus({
+  /// together with the tools, the loop and its limits.
+  static final h3 = h2.plus({
     HarnessPiece.contextBuilder,
     HarnessPiece.tools,
     HarnessPiece.loop,
     HarnessPiece.validation,
+    HarnessPiece.stepLimit,
   });
-  static final h3 = h3NoLimit.plus({HarnessPiece.stepLimit});
   static final h4Summarise = h3.plus({HarnessPiece.contextBudget},
       shrink: ShrinkStrategy.summarise);
   static final h4Remove =

@@ -99,20 +99,8 @@ final levels = <Level>[
             'Plan my day there around AI talks, and show me my plan.',
           ],
           without: Harnesses.h2,
-          withPiece: Harnesses.h3NoLimit,
-          notes: 'Continues from level 2. Without tools it still has no agenda; with tools it searches the schedule and shows a real plan.',
-        ),
-        Experiment(
-          id: 'vague',
-          name: 'Vague request',
-          change: 'a step limit',
-          inputs: const [
-            'Which is the single best AI talk today? Read the full details of every AI talk, one at a time, before you decide.'
-          ],
-          without: Harnesses.h3NoLimit,
           withPiece: Harnesses.h3,
-          notes:
-              'Without the limit, a safety cap of 16 calls (not part of the harness) stops runaway spend.',
+          notes: 'Continues from level 2. Without tools it still has no agenda; with tools it searches the schedule and shows a real plan.',
         ),
       ]),
   Level(4, 'When the window fills',

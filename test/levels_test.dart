@@ -110,21 +110,9 @@ void main() {
       expect(check(store, 3), CheckResult.fail);
     });
 
-    test('without a step limit the safety cap stops a runaway loop', () async {
-      final (:store, :client) = storeWith(forever(toolUse('searchSessions', {'keyword': 'best'}), 20));
-      store.selectLevel(2);
-      store.selectExperiment(1);
-      store.selectSide(Side.without);
-      await store.send('Find me the single best talk of the day.');
-      expect(client.requests, hasLength(16));
-      expect(check(store, 4), CheckResult.fail);
-      expect(store.chat.whereType<AppText>(), isNotEmpty);
-    });
-
     test('the step limit stops the loop at 8', () async {
       final (:store, :client) = storeWith(forever(toolUse('searchSessions', {'keyword': 'best'}), 20));
       store.selectLevel(2);
-      store.selectExperiment(1);
       store.selectSide(Side.withPiece);
       await store.send('Find me the single best talk of the day.');
       expect(client.requests, hasLength(8));
@@ -322,17 +310,17 @@ void main() {
     });
 
     test('the first experiment’s With run is the level’s result', () async {
-      final (:store, :client) = storeWith([text('A'), text('B')]);
-      store.selectLevel(2);
+      final (:store, :client) = storeWith([text('Summary.'), text('A'), text('B')]);
+      store.selectLevel(3);
       store.selectSide(Side.withPiece);
-      await store.send('Plan request.');
+      await store.send('Summarise request.');
       store.selectExperiment(1);
       store.selectSide(Side.withPiece);
-      await store.send('Vague request.');
+      await store.send('Remove request.');
       store.selectLevel(4);
       final history = store.conversation.messages.toString();
-      expect(history, contains('Plan request'));
-      expect(history, isNot(contains('Vague request')));
+      expect(history, contains('Summarise request'));
+      expect(history, isNot(contains('Remove request')));
     });
   });
 
