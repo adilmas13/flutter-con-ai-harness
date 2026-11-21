@@ -122,6 +122,15 @@ void main() {
   });
 
   group('Level 4 · context management', () {
+    test('the rules from the long chat are shown as messages', () {
+      final (:store, :client) = storeWith([]);
+      store.selectLevel(3);
+      final said = store.chat.whereType<UserText>().map((m) => m.text).join(' ');
+      expect(said, contains('Nothing before 10'));
+      expect(said, contains('leaving at 17:00'));
+      expect(store.chat.whereType<UserText>().where((m) => m.text.startsWith('What’s on about')), isEmpty);
+    });
+
     test('the seeded long chat is over the window, so it is blocked', () async {
       final (:store, :client) = storeWith([]);
       store.selectLevel(3);

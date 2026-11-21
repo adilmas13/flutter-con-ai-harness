@@ -249,8 +249,13 @@ abstract class _AppStore with Store implements LoopHost {
       if (exp.seed == Seed.longChat && _estimate(conv) < AppConfig.contextBudget) {
         final before = conv.userTurns;
         seedLongChat(conv, schedule);
-        items.add(DividerText(
-            'Fast-forward: ${conv.userTurns - before} earlier turns. The rules were said at the start.'));
+        for (final (said, reply) in seedRules) {
+          items
+            ..add(UserText(said))
+            ..add(AssistantText(reply));
+        }
+        final searches = conv.userTurns - before - seedRules.length;
+        items.add(DividerText('Fast-forward: $searches more turns of schedule searches.'));
       }
     }
     if (_staged.isNotEmpty) {

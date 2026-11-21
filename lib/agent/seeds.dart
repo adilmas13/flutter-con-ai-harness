@@ -4,6 +4,14 @@ import '../data/schedule.dart';
 import 'conversation.dart';
 import 'tools.dart';
 
+/// The opening of level 4's long chat, where the user sets the rules. Shown
+/// in the chat as real messages, so the audience knows what can be lost.
+const seedRules = [
+  ('I’m planning my flutterCon day. Nothing before 10, and no roundtables please.',
+      'Got it: nothing before 10:00 and no roundtables. What do you want to focus on?'),
+  ('Also, I’m leaving at 17:00.', 'Noted. I’ll keep everything finishing by 17:00.'),
+];
+
 /// Level 4's long conversation: the rules are said at the start, then many
 /// turns of real schedule searches fill the window.
 void seedLongChat(Conversation conv, Schedule schedule) {
@@ -15,10 +23,10 @@ void seedLongChat(Conversation conv, Schedule schedule) {
         ]
       });
 
-  user('I’m planning my flutterCon day. Nothing before 10, and no roundtables please.');
-  assistant('Got it: nothing before 10:00 and no roundtables. What do you want to focus on?');
-  user('Also, I’m leaving at 17:00.');
-  assistant('Noted. I’ll keep everything finishing by 17:00.');
+  for (final (said, reply) in seedRules) {
+    user(said);
+    assistant(reply);
+  }
 
   const topics = [
     'performance', 'testing', 'architecture', 'security', 'native', 'AI',
