@@ -30,7 +30,7 @@ class BuiltRequest {
 /// Sent at every level, so replies stay short enough to project. It says
 /// nothing about the app: level 1 still knows nothing about the event.
 const replyStyle =
-    'Reply in at most three short sentences, or a list of at most five items. '
+    'Reply briefly and precisely, in at most three or four short lines. '
     'No headings, no tables, no preamble.';
 
 class ContextBuilder {
