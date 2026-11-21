@@ -121,7 +121,7 @@ void main() {
     });
   });
 
-  group('Level 4 · when the window fills', () {
+  group('Level 4 · context management', () {
     test('the seeded long chat is over the window, so it is blocked', () async {
       final (:store, :client) = storeWith([]);
       store.selectLevel(3);

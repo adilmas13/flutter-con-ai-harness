@@ -141,6 +141,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ **Levels reopen on the last experiment (21 Nov):** going back to a level opens the experiment last used there (first visit still opens the first). What carries forward is unchanged; Reset for stage forgets it.
 - ✅ **Clearer id error (21 Nov):** when the model sends sessionIds as one string instead of an array, the rejection says so, so it can fix the next call instead of repeating it.
 - ✅ **Vague request removed from the app (21 Nov):** level 3 is the plan request only; the step limit joins its With side with the other level 3 pieces. The vague request and step limit stay on the slides. The demo’s safety cap remains in the loop as a guard.
+- ✅ **Level 4 renamed to Context management (21 Nov):** the industry term, replacing “When the window fills”; the slides keep the why in a subtitle.
 - ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match.
 - ✅ **Replay removed (20 Nov):** `RecordingClient`, `ReplayClient`, `recordings.dart`, `recordings/`, the Live/Replay toggle, Save run, `just promote`, `just verify-replay`, `just recordings`, `just run-live`, `just screens`, the `record-runs` skill and the replay tests are gone. Live runs and `just stage-run` are the rehearsal path.
 - ✅ Live run of the whole stage path as one conversation (`just live-flow`, transcript in `build/live_flow.md`): no API errors, every check as intended, replies mostly 2–4 sentences

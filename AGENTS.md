@@ -15,7 +15,7 @@ There are six levels. Each is a **before-and-after experiment**: the same input,
 | 1 The call | Bare model (baseline) | Baseline |
 | 2 History and context | History, context builder | Follow-up |
 | 3 Tools and the loop | Tools, loop, validation, step limit | Plan request |
-| 4 When the window fills | Context budget (summarise or remove old turns) | Summarise, remove |
+| 4 Context management | Context budget (summarise or remove old turns) | Summarise, remove |
 | 5 Memory and state | Memory (model proposes, user confirms), app state | Save preferences, new conversation |
 | 6 Guardrails | Approval, least privilege | Calendar request (with an injected instruction) |
 

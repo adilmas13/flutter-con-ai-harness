@@ -103,7 +103,7 @@ final levels = <Level>[
           notes: 'Continues from level 2. Without tools it still has no agenda; with tools it searches the schedule and shows a real plan.',
         ),
       ]),
-  Level(4, 'When the window fills',
+  Level(4, 'Context management',
       'A long conversation has to be shrunk, and every way of shrinking it loses something.',
       [
         Experiment(
