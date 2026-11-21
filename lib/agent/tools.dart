@@ -61,8 +61,13 @@ String? _checkTime(Object? v, String field) =>
         : '$field must be a 24-hour time like 10:00, not "$v".';
 
 String? _checkIds(Object? ids, Schedule s, {bool allowEmpty = false}) {
+  // Say what was wrong, so the model can fix its next call.
+  if (ids is String) {
+    return 'sessionIds was sent as a string. Send a JSON array of strings instead, '
+        'like ["id-one", "id-two"], not "[\\"id-one\\"]".';
+  }
   if (ids is! List || (!allowEmpty && ids.isEmpty)) {
-    return 'sessionIds must be a non-empty list of session ids.';
+    return 'sessionIds must be a non-empty JSON array of session ids.';
   }
   final unknown = ids.where((id) => s.byId('$id') == null).toList();
   return unknown.isEmpty

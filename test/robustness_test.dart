@@ -5,6 +5,7 @@ import 'package:day_planner/agent/agent_state.dart';
 import 'package:day_planner/agent/checks.dart';
 import 'package:day_planner/agent/levels.dart';
 import 'package:day_planner/agent/model_client.dart';
+import 'package:day_planner/agent/tools.dart';
 import 'package:day_planner/data/schedule.dart';
 import 'package:day_planner/stores/app_store.dart';
 import 'package:day_planner/stores/chat_items.dart';
@@ -104,6 +105,12 @@ void main() {
     store.resetForStage();
     store.selectLevel(3);
     expect(store.experimentIndex, 0, reason: 'reset forgets it');
+  });
+
+  test('ids sent as one string get an error that says so', () {
+    final err = showPlan.validate!({'sessionIds': '["beyond-prompts-context-memory-agent-loop"]'}, schedule);
+    expect(err, contains('sent as a string'));
+    expect(showPlan.validate!({'sessionIds': ['beyond-prompts-context-memory-agent-loop']}, schedule), isNull);
   });
 
   group('rules are read from how people actually say them', () {
