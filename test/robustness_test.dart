@@ -93,6 +93,19 @@ void main() {
     expect(store.itinerary, planned);
   });
 
+  test('going back to a level reopens the experiment last used there', () {
+    final store = AppStore(schedule)
+      ..selectLevel(3)
+      ..selectExperiment(1)
+      ..selectLevel(4);
+    expect(store.experimentIndex, 0, reason: 'first visit opens the first experiment');
+    store.selectLevel(3);
+    expect(store.experiment.id, 'remove');
+    store.resetForStage();
+    store.selectLevel(3);
+    expect(store.experimentIndex, 0, reason: 'reset forgets it');
+  });
+
   group('rules are read from how people actually say them', () {
     for (final (text, field) in [
       ('Nothing before 10, and no roundtables.', 'min'),

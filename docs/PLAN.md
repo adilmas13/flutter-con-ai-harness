@@ -138,6 +138,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ **Calendar no-retry rule (21 Nov):** level 6 only, both sides: “If adding to the calendar fails, don’t try again. Tell the user it failed.” Keeps the Without side repeatable; the harness retry on the With side is invisible to the model.
 - ✅ **Level 6 renamed to Guardrails (21 Nov):** the industry word for approval and least privilege; toggle reads “Without guardrails” / “With guardrails”.
 - ✅ **Retry removed from the app (21 Nov):** low impact on stage; it stays on the slides as a concept. No rigged calendar timeout, no Retry piece, and the calendar no-retry rule is gone with it. Level 6 is Approval and Least privilege.
+- ✅ **Levels reopen on the last experiment (21 Nov):** going back to a level opens the experiment last used there (first visit still opens the first). What carries forward is unchanged; Reset for stage forgets it.
 - ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match.
 - ✅ **Replay removed (20 Nov):** `RecordingClient`, `ReplayClient`, `recordings.dart`, `recordings/`, the Live/Replay toggle, Save run, `just promote`, `just verify-replay`, `just recordings`, `just run-live`, `just screens`, the `record-runs` skill and the replay tests are gone. Live runs and `just stage-run` are the rehearsal path.
 - ✅ Live run of the whole stage path as one conversation (`just live-flow`, transcript in `build/live_flow.md`): no API errors, every check as intended, replies mostly 2–4 sentences

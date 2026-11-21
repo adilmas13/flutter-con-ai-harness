@@ -128,6 +128,9 @@ abstract class _AppStore with Store implements LoopHost {
 
   /// Each level's result, by level index: the run the next level starts from.
   final Map<int, _Branch> _results = {};
+
+  /// The experiment last open in each level, so going back reopens it.
+  final Map<int, int> _lastExperiment = {};
   final Map<Side, _Branch> _branches = {};
 
   /// Demo data loaded for this experiment because nothing real was saved.
@@ -145,8 +148,9 @@ abstract class _AppStore with Store implements LoopHost {
   void selectLevel(int index) {
     if (state.isBusy) return;
     _keepResult();
+    _lastExperiment[levelIndex] = experimentIndex;
     levelIndex = index;
-    experimentIndex = 0;
+    experimentIndex = _lastExperiment[index] ?? 0;
     side = Side.without;
     inspectorOpen = index > 0;
     _startExperiment();
@@ -191,6 +195,7 @@ abstract class _AppStore with Store implements LoopHost {
   void resetForStage() {
     if (state.isBusy) return;
     _results.clear();
+    _lastExperiment.clear();
     memoryFacts.clear();
     itinerary.clear();
     levelIndex = 0;
