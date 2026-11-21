@@ -122,6 +122,21 @@ void main() {
   });
 
   group('Level 4 · context management', () {
+    test('a plan made before the rules is not flagged by them later', () async {
+      final early = schedule.sessions.firstWhere((x) => x.start.compareTo('10:00') < 0);
+      final (:store, :client) = storeWith([
+        toolUse('showPlan', {'sessionIds': [early.id]}),
+        text('Here you go.'),
+      ]);
+      store.selectLevel(2);
+      store.selectSide(Side.withPiece);
+      await store.send('Plan my day.');
+      store.selectLevel(3); // the long chat adds the rules
+      expect(store.rules.minStart, '10:00');
+      final card = store.chat.whereType<PlanCard>().single;
+      expect(card.rules.breaches(early), isEmpty);
+    });
+
     test('the rules from the long chat are shown as messages', () {
       final (:store, :client) = storeWith([]);
       store.selectLevel(3);

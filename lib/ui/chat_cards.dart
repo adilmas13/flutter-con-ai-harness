@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 
+import '../agent/checks.dart';
 import '../data/schedule.dart';
 import '../stores/app_store.dart';
 import '../stores/chat_items.dart';
@@ -65,8 +66,8 @@ class ChatCard extends StatelessWidget {
       ErrorText(:final text) => _Notice(text: text, color: p.crit, bg: p.critBg),
       BudgetError(:final tokens, :final budget) =>
         _BudgetCard(tokens: tokens, budget: budget),
-      PlanCard(:final sessions, :final unknownIds) =>
-        _PlanCard(store: store, sessions: sessions, unknownIds: unknownIds),
+      PlanCard(:final sessions, :final unknownIds, :final rules) =>
+        _PlanCard(sessions: sessions, unknownIds: unknownIds, rules: rules),
       ToolGroup() => _ToolCard(store: store, index: index, group: item as ToolGroup),
       ApprovalCard() => _ApprovalCard(store: store, card: item as ApprovalCard),
       MemoryCard() => _MemoryCard(store: store, card: item as MemoryCard),
@@ -161,15 +162,14 @@ class _BudgetCard extends StatelessWidget {
 }
 
 class _PlanCard extends StatelessWidget {
-  const _PlanCard({required this.store, required this.sessions, required this.unknownIds});
-  final AppStore store;
+  const _PlanCard({required this.sessions, required this.unknownIds, required this.rules});
   final List<Session> sessions;
   final List<String> unknownIds;
+  final Rules rules;
 
   @override
   Widget build(BuildContext context) {
     final p = context.pal;
-    final rules = store.rules;
     Widget row(String time, String title, String sub, List<String> problems) {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),

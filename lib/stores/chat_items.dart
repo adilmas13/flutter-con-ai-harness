@@ -1,3 +1,4 @@
+import '../agent/checks.dart';
 import '../agent/tools.dart';
 import '../data/schedule.dart';
 
@@ -45,9 +46,13 @@ class BudgetError extends ChatItem {
 }
 
 class PlanCard extends ChatItem {
-  const PlanCard(this.sessions, this.unknownIds);
+  const PlanCard(this.sessions, this.unknownIds, this.rules);
   final List<Session> sessions;
   final List<String> unknownIds;
+
+  /// The rules when the plan was made, so a later rule never flags an
+  /// earlier plan.
+  final Rules rules;
 }
 
 enum CallState { running, ok, rejected, failed, declined }

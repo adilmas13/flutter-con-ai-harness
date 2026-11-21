@@ -507,7 +507,7 @@ abstract class _AppStore with Store implements LoopHost {
   void showPlan(List<Session> sessions, List<String> unknownIds) {
     _currentGroup = null;
     // A plan card is a suggestion: it never replaces the user's saved plan.
-    chat.add(PlanCard(sessions, unknownIds));
+    chat.add(PlanCard(sessions, unknownIds, rules));
   }
 
   @override
