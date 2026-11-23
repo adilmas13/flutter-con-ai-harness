@@ -144,6 +144,7 @@ Order matters: **freeze prompts, tool descriptions and seeds before recording.**
 - ✅ **Level 4 renamed to Context management (21 Nov):** the industry term, replacing “When the window fills”; the slides keep the why in a subtitle.
 - ✅ **Level 4 rules shown in the chat (21 Nov):** the two seeded turns that set the rules appear as real messages; the divider stands in only for the 20 schedule searches.
 - ✅ **Plan cards keep the rules they were made under (21 Nov):** a rule stated later never flags an earlier plan (Level 3’s plan stays clean when Level 4 adds the rules).
+- ✅ **README and field guide (23 Nov):** README describes the app and links the public slides, field guide and planning mockup; the field guide matches the app (new inputs, no vague request or retry in the app, rules in the chat, memory vs history, injection, production code).
 - ✅ **Replay set aside for now:** the app starts in Live, and the old recordings were cleared because they no longer match.
 - ✅ **Replay removed (20 Nov):** `RecordingClient`, `ReplayClient`, `recordings.dart`, `recordings/`, the Live/Replay toggle, Save run, `just promote`, `just verify-replay`, `just recordings`, `just run-live`, `just screens`, the `record-runs` skill and the replay tests are gone. Live runs and `just stage-run` are the rehearsal path.
 - ✅ Live run of the whole stage path as one conversation (`just live-flow`, transcript in `build/live_flow.md`): no API errors, every check as intended, replies mostly 2–4 sentences
