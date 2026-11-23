@@ -6,7 +6,9 @@ The single source of truth for what is done and what is left. Update the status 
 
 **Status key:** ✅ done · 🔄 in progress · ⬜ not started · ⏸ blocked on the user · 💤 deferred by decision
 
-_Last updated: 2026-11-18_
+_Last updated: 2026-11-23_
+
+**Project complete.** The talk was given on 21 Nov 2026. Remaining ⬜ items below were not needed and are closed as won’t do.
 
 ---
 

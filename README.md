@@ -2,6 +2,8 @@
 
 The demo app for **“Beyond Prompts: Context, Memory & Agent Loops for Reliable AI-Powered Flutter Apps”** at flutterCon India 2026 (21 Nov, Junior Ballroom, 14:15), by Neelansh Sethi and Adil Shaikh.
 
+**Status:** the talk was given on 21 Nov 2026. The project is finished and kept as a reference; it isn't maintained.
+
 It's a macOS Flutter app that plans a day at the conference from the real schedule. The model never changes. What changes is the **harness** around it: the code that decides what is sent, which tools exist, how the loop runs, what is kept and what is allowed. Each level is a before-and-after experiment: the same input, run **without** and **with** one new piece of the harness.
 
 ## Talk material
