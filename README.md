@@ -12,6 +12,15 @@ It's a macOS Flutter app that plans a day at the conference from the real schedu
 | **Field guide** (speaker notes: every level's concept, requests, code, example runs and likely questions) | https://claude.ai/artifact/PFNA2mojeqJ97A27W73cEX |
 | Early planning mockup (historical; the app has moved on since) | https://claude.ai/artifact/Mtd4WQPbEwwPKuHvD1d1bB |
 
+Archived copies, in case the links stop working, are in [`docs/talk/`](docs/talk) (exported 23 Nov 2026):
+
+| | PDF | HTML |
+|---|---|---|
+| Slides | [slides.pdf](docs/talk/slides.pdf) | [slides.html](docs/talk/slides.html) (self-contained, open in a browser) |
+| Speaker notes (from the slides) | [speaker-notes.pdf](docs/talk/speaker-notes.pdf) | |
+| Field guide | [field-guide.pdf](docs/talk/field-guide.pdf) | [field-guide.html](docs/talk/field-guide.html) |
+| Planning mockup | [planning-mockup.pdf](docs/talk/planning-mockup.pdf) (first view only) | [planning-mockup.html](docs/talk/planning-mockup.html) (interactive) |
+
 ## The six levels
 
 | Level | Adds | Experiments |
